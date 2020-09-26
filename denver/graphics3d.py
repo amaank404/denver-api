@@ -1,13 +1,16 @@
 #  Copyright (c) 2020 Xcodz.
 #  All Rights Reserved.
 
-import math, copy
+from __future__ import annotations
+
+import copy
+import math
 
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
 
-def flatten(x, y, z, scale, distance) -> ("x", "y"):
+def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[float, float]:
     """Converts 3d point to a 2d drwable point"""
     projectedY = int(((y * distance) / (z + distance)) * scale)
     projectedX = int(((x * distance) / (z + distance)) * scale)
