@@ -1,5 +1,3 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
 import re
 import sys
 import os

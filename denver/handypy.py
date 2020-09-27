@@ -1,7 +1,5 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 __version__ = "2020.6.4"
+
 
 def _strip_inside_white_space(line: str):
     return ' '.join([x.strip() for x in line.split(' ')])

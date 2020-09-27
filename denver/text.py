@@ -5,9 +5,6 @@ don't trouble.
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 import textwrap
 
 class text:

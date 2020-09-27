@@ -1,6 +1,3 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 # from winbase.h
 STDOUT = -11
 STDERR = -12

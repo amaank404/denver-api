@@ -1,6 +1,3 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 __version__ = "2020.6.4"
 
 import copy
