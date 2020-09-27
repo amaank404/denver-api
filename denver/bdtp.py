@@ -10,9 +10,6 @@ compressing data with gzip module to make the transfer
 even faster on slow networks and less data consumption.
 """
 
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 __author__ = "Xcodz"
 __version__ = "2020.6.4"
 

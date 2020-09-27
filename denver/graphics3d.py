@@ -11,10 +11,16 @@ __author__ = "Xcodz"
 
 
 def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[float, float]:
-    """Converts 3d point to a 2d drwable point"""
+    """
+    Converts 3d point to a 2d drawable point
+
+    >>> flatten(1, 2, 3, 10, 10)
+    (7, 15)
+
+    """
     projectedY = int(((y * distance) / (z + distance)) * scale)
     projectedX = int(((x * distance) / (z + distance)) * scale)
-    return (projectedX, projectedY)
+    return projectedX, projectedY
 
 
 def model_rotate(model, axis, angle) -> "model":
@@ -37,9 +43,23 @@ def model_flatten(model, scale, distance) -> "model":
     return d
 
 
-def rotate(x, y, z, axis, angle):
+def rotate(x: int, y: int, z: int, axis: str, angle: int):
+    """
+    rotate a point around a certain axis with a certain angle
+    angler can be any integer between 1, 360
+
+    >>> rotate(1, 2, 3, 'y', 90)
+    (3.130524675073759, 2, 0.4470070007889556)
+    """
+    if angle > 360 or angle < 0:
+        raise ValueError("Angle is supposed to be in between 0, 360")
+    if type(x) is not int:
+        raise TypeError("x must be int")
+    if type(y) is not int:
+        raise TypeError("y must be int")
+    if type(z) is not int:
+        raise TypeError("z must be int")
     angle = angle / 450 * 180 / math.pi
-    sqrt2 = math.sqrt(2)
     if axis == 'z':
         newX = x * math.cos(angle) - y * math.sin(angle)
         newY = y * math.cos(angle) + x * math.sin(angle)
