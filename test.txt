@@ -1,6 +1,0 @@
-target `s` `('127.0.0.1', 3000)`;
-connect `s`;
-send `s` `b'status'`;
-recv `s` `stat` `1000`;
-close `s`;
-print_var `stat`;
