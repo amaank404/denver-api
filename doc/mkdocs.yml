@@ -2,7 +2,7 @@ site_name: Denver Docs
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Breif: breif.md
+  - Brief: brief.md
   - Modules:
       - bcli: modules/bcli.md
       - bdtp: modules/bdtp.md
