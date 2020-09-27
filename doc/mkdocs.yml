@@ -13,10 +13,10 @@ nav:
       - datau: modules/datau.md
       - datp: modules/datp.md
       - docs: modules/docs.md
-      - get: modules/get.py
+      - get: modules/get.md
       - graphics3d: modules/graphics3d.md
       - handypy: modules/handypy.md
       - log: modules/log.md
       - pysetup: modules/pysetup.md
       - rawd: modules/rawd.md
-      - text: moudles/text.md
+      - text: modules/text.md
