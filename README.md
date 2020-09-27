@@ -20,7 +20,7 @@ pip install --upgrade pydenver
 ```
 
 ## Documentation
-Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denverdocs).
+Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denverdocs) (*currently in progress and may not be visible for some time*).
 Also Documentation provided with this project can be used but you will have to install mkdocs
 by the following command
 ```commandline

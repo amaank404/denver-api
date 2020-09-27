@@ -1,7 +1,7 @@
 # Denver Documentation
 To Navigate the document use the menu above
 For Installation guide click [here](installation.md).
-For Breif about modules click [here](brief.md)
+For Brief about modules click [here](brief.md)
 
 This Documentation is not complete and may be incomplete at some areas.
 Also you can check
