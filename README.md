@@ -30,3 +30,5 @@ or if you already have then you can upgrade it by following command
 ```commandline
 pip install --upgrade mkdocs
 ```
+## Contributions
+All Contributions here are welcome, we do not apply any restrictions upon you code but we may edit your code to perform better.
