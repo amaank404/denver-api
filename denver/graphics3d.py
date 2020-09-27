@@ -82,7 +82,7 @@ def rotate(x: int, y: int, z: int, axis: str, angle: int):
     return nx, ny, nz
 
 
-class model_make:
+class ModelMake:
     def cube(x, y, z, s=1):
         mcube = [((x, y, z), (x + s, y, z)),
                  ((x, y, z), (x, y + s, z)),
@@ -100,11 +100,10 @@ class model_make:
 
 
 def model_dump_to_file(model_file, model):
-    f = open(model_file, 'w')
-    for segment in model:
-        coord1, coord2 = segment
-        f.write(f"{coord1[0]} {coord1[1]} {coord1[2]}:{coord2[0]} {coord2[1]} {coord2[2]}\n")
-    f.close()
+    with open(model_file, 'w') as f:
+        for segment in model:
+            coord1, coord2 = segment
+            f.write( "{} {} {}:{} {} {}\n".format(*coord1, *coord2))
 
 
 def model_load_from_file(model_file):
@@ -125,7 +124,7 @@ def model_load_from_file(model_file):
 def main():
     import pygame, sys
     sys.argv.append("rectangle.txt")
-    model_dump_to_file("rectangle.txt", model_make.cube(-1, -1, -1, 2))
+    model_dump_to_file("rectangle.txt", ModelMake.cube(-1, -1, -1, 2))
     pygame.init()
     fpsclock = pygame.time.Clock()
     disp = pygame.display.set_mode((600, 400))
