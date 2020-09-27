@@ -1,3 +1,4 @@
 setuptools
 Gooey
 requests
+pyinstaller
