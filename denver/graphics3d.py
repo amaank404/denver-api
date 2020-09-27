@@ -1,13 +1,16 @@
 #  Copyright (c) 2020 Xcodz.
 #  All Rights Reserved.
 
-import math, copy
+from __future__ import annotations
+
+import copy
+import math
 
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
 
-def flatten(x: int, y: int, z: int, scale: int, distance: int) -> tuple:
+def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[float, float]:
     """
     Converts 3d point to a 2d drawable point
 
