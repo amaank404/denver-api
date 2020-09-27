@@ -5,9 +5,12 @@ from __future__ import annotations
 
 import copy
 import math
+from typing import NewType
 
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
+
+ModelType = NewType("ModelType", list[tuple[tuple[int]]])
 
 
 def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[float, float]:
@@ -16,14 +19,13 @@ def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[fl
 
     >>> flatten(1, 2, 3, 10, 10)
     (7, 15)
-
     """
-    projectedY = int(((y * distance) / (z + distance)) * scale)
-    projectedX = int(((x * distance) / (z + distance)) * scale)
-    return projectedX, projectedY
+    projected_x = ((x * distance) / (z + distance)) * scale
+    projected_y = ((y * distance) / (z + distance)) * scale
+    return projected_x, projected_y
 
 
-def model_rotate(model, axis, angle) -> "model":
+def model_rotate(model, axis, angle) -> ModelType:
     """Rotate a model"""
     d = copy.deepcopy(model)
     for x in range(len(d)):
@@ -33,7 +35,7 @@ def model_rotate(model, axis, angle) -> "model":
     return d
 
 
-def model_flatten(model, scale, distance) -> "model":
+def model_flatten(model, scale, distance) -> ModelType:
     """flatten complete model"""
     d = copy.deepcopy(model)
     for x in range(len(d)):
