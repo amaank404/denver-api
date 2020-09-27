@@ -2,7 +2,7 @@
 This module provides you with basic logging facilities which
 can be used by your programs to get developed easily. while
 debugging you can keep the configurations on and while
-releasing you can swicth of error, warnings, debug or you
+releasing you can switch of error, warnings, debug or you
 can also change the file to a new file which can contain
 the log.
 """
