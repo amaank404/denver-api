@@ -18,7 +18,7 @@ def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[fl
     Converts 3d point to a 2d drawable point
 
     >>> flatten(1, 2, 3, 10, 10)
-    (7, 15)
+    (7.6923076923076925, 15.384615384615385)
     """
     projected_x = ((x * distance) / (z + distance)) * scale
     projected_y = ((y * distance) / (z + distance)) * scale
