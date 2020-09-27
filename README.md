@@ -5,9 +5,9 @@ This API is specifically disigned for python developers who want to use
 advanced utilities but without coding much. The API requires you to
 have minimum Python 3.8
 
-## Sockets
-This API contains a high level API to send very big data over sockets which
-is not posibble with standard `socket.recv()` method
+## sockets (script)
+This script contains the complete environment for parsing server scripts. The server script format is new
+and cannot be found out anywhere, therefore usage guide will be published with the denver API documentation.
 
 ## Installation
 The package can be installed by
