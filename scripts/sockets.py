@@ -5,7 +5,6 @@ import denver.bcli
 import denver.bdtp
 import argparse
 import version_info
-from gooey import Gooey
 
 version_stat = f"Sockets {version_info.build_platform} [{version_info.build_version}]({version_info.build_time})"
 
@@ -166,6 +165,7 @@ def main():
         with open(args.script, "r") as f:
             script = f.read()
         run_script(script, interactive=args.not_interactive)
+
 
 if __name__ == '__main__':
     main()
