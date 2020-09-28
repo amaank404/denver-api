@@ -30,6 +30,7 @@ or if you already have then you can upgrade it by following command
 ```commandline
 pip install --upgrade mkdocs
 ```
+After installation cd to `./docs/` and run this command `mkdocs build` or if you want to edit `mkdocs serve` and then you can edit any file (any file editid during `mkdocs serve` will be reflected on server every time you save a file)
 
 ## Community
 This is a community driven project and accepts pull requests
