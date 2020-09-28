@@ -21,12 +21,54 @@ __version__ = "1.0.0"  # Semantic versioning
 #  Repository can be forked or cloned
 
 # Below is the Base classes and function without any code, (You can add or remove them, also add code)
+from typing import List, Tuple, Union
+
+DEFAULT_PORTS = {
+    "dvsc": 6080,
+    "fserv": 6081,
+    "http": 80
+}
 
 
 class DenverRepository:
-    def __init__(self, name: str, origin: str):
+    def __init__(self, name: str, original: str):
         self.name = name
-        self.origin = origin
+        self.origin = original
+
+
+def update():
+    pass
+
+
+def parse_url(url: str) -> List[str, Union[Tuple[str, int], None], str]:
+    """
+    Parse a URL in format:
+        {protocol}://{server_ip}:{port=protocol_default}/{path_to_file}/
+    Example:
+        dvsc://127.0.0.1:6744/MyRepos/repo1/denver_vsc.repo
+        fserv://127.0.0.1:1245/MyRepos/repo2/denver_vsc.repo
+        http://127.0.0.1:1249/MyRepos/repo3/denver_vsc.repo
+        file://MyRepos/repo4/denver_vsc.repo
+    Default Ports:
+        dvsc = 6080
+        fserv = 6081
+        http = 80
+        file = None
+    Return Value:
+        dvsc, fserv, http = [protocol, (ip, port), sub_address]
+        file = ["file", None, sub_address]
+    """
+    url_protocol, url = url.split("://", 1)
+    url_address, url_sub_address = url.split("/", 1)
+    if ':' in url_address:
+        url_address = tuple(url_address.split(":"))
+    else:
+        url_address = (url_address, DEFAULT_PORTS[url_protocol])
+
+    if url_protocol is not "file":
+        return [url_protocol, url_address, url_sub_address]
+    else:
+        return ["file", None, f"{url_address}/{url_sub_address}"]
 
 
 # TODO ArgParse CLI
