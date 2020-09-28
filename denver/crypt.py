@@ -12,10 +12,9 @@ break the code by using different techniques.
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 import math
+
+
 class cryptomath:
     def gcd(a,b):
         while a != 0:

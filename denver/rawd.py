@@ -1,6 +1,3 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 """
 Raw Data
 

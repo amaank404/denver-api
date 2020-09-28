@@ -17,8 +17,6 @@ if __name__ != '__main__':
         import _colorama as colorama
 else:
     import _colorama as colorama
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
 
 import os, sys, shutil
 

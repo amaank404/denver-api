@@ -1,5 +1,3 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
 import atexit
 import contextlib
 import sys

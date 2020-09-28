@@ -57,5 +57,3 @@ def convert(text:str, rept:dict):
 	for k,v in rept.items():
 		x= x.replace(k,v)
 	return x
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.

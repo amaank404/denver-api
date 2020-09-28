@@ -1,5 +1,3 @@
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
 from .initialise import init, deinit, reinit, colorama_text
 from .ansi import Fore, Back, Style, Cursor
 from .ansitowin32 import AnsiToWin32

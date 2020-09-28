@@ -17,9 +17,6 @@ Text_To_RgbGrayScale = {
 }
 
 
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 class BitMap():
     def __init__(self, x, y):
         self.buffer = [[(255, 255, 255) for _ in range(x)] for _ in range(y)]

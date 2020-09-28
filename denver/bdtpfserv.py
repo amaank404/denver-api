@@ -5,9 +5,6 @@ ranging up to 2.0 MB/s or more if computer have
 good powered CPU
 """
 
-#  Copyright (c) 2020 Xcodz.
-#  All Rights Reserved.
-
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
