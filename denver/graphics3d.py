@@ -23,7 +23,9 @@ def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[fl
 
 
 def model_rotate(model, axis, angle) -> ModelType:
-    """Rotate a model"""
+    """
+    Rotate a model
+    """
     d = copy.deepcopy(model)
     for x in range(len(d)):
         p1, p2 = d[x]
