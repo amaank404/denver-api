@@ -3,10 +3,10 @@ Contributing to this repository is easy but must follow a few guidelines for per
 contributions from community
 
 ## Code Format
-Your code must comply with the requirements mensioned below.
+Your code must comply with the requirements mentioned below.
 
 ### Must
-* Your code must be PEP8 compilent (test will be conducted automatically when you submit a pull request)
+* Your code must be PEP8 compliant (test will be conducted automatically when you submit a pull request)
 * Your code must contain version, description, instructions in (classes, function, methods)
 * Your code must be compatible with Python 3.8+
 
