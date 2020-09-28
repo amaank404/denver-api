@@ -2,5 +2,5 @@
 
 Tasks
 
-[] I have read CONTRIBUTING.md
-[] My files comply with Contributing Guidelines
+- [] I have read CONTRIBUTING.md
+- [] My files comply with Contributing Guidelines
