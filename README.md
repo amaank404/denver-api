@@ -34,4 +34,4 @@ After installation cd to `./docs/` and run this command `mkdocs build` or if you
 
 ## Community
 This is a community driven project and accepts pull requests
-of any kind, Thanks to all all the contributors. Contributions are appreciated 
+of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), Thanks to all the contributors. Contributions are appreciated 
