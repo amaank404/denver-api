@@ -258,7 +258,7 @@ def main():
     Thread(target=launch, args=(sc,)).start()
     rc.recv()
     print(len(spl))
-    print(f"Data Send:\n\tlen: {len(sc.data)}\nData Recieved:\n\tlen: {len(rc.data)}\n\tis_equal: {rc.data == sc.data}")
+    print(f"Data Send:\n\tlen: {len(sc.data)}\nData Received:\n\tlen: {len(rc.data)}\n\tis_equal: {rc.data == sc.data}")
     print(f"Average Speed: {average_speed_log(spl)} bytes per second")
 
 if __name__ == "__main__":

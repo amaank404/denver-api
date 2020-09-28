@@ -2,9 +2,9 @@
 """
 Data Unicode
 
-This module provides with Unicode Data Handeling also methods to draw boxes.
+This module provides with Unicode Data Handling also methods to draw boxes.
 Anyone can easily use these unicode data functions until you are working
-with a terminal which supports Unicode. It will completly work only if
+with a terminal which supports Unicode. It will completely work only if
 you have Unicode-13.0.0
 """
 

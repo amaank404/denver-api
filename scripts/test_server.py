@@ -4,7 +4,7 @@ import secrets
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser("test server")
-    parser.add_argument("-a", "--ip", action="store", help="Ip Adress for test hosting", required=False,
+    parser.add_argument("-a", "--ip", action="store", help="Ip Address for test hosting", required=False,
                         default="127.0.0.1")
     parser.add_argument("-p", "--port", action="store", help="Port for test hosting", required=False, default=3000,
                         type=int)
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     s.listen(5)
 
     while True:
-        c, addr = s.accept()
+        c, _ = s.accept()
         print(d := c.recv(1000))
         if d == b'bytes_token':
             c.sendall(secrets.token_bytes(100))
