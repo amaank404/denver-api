@@ -10,6 +10,8 @@ which target *nix, Windows, etc.
 __version__ = '2020.6.4'
 __author__ = "Xcodz"
 
+import builtins
+
 if __name__ != '__main__':
     try:
         from . import _colorama as colorama
@@ -134,3 +136,18 @@ d.update(
 ColoredText.escapeSequence = d
 
 del d, s
+
+
+def print(*text, fore='none', back='none', style='bright', sep=' ', end='\n', flush=False, file=sys.stdout):
+    try:
+        builtins.print(
+            ColoredText.styleText(sep.join([x if type(x) == str else repr(x) for x in text]),
+                                  fore=fore, back=back, style=style), sep=sep, flush=flush,
+            file=file, end=end)
+    except Exception as e:
+        builtins.print(*text, sep=sep, flush=flush, file=file, end=end)
+
+
+def input(prompt='', fore='none', back='none', style='bright'):
+    print(prompt, fore=fore, back=back, style=style, end='', flush=True)
+    return builtins.input()

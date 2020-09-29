@@ -9,6 +9,22 @@ have minimum Python 3.8
 This script contains the complete environment for parsing server scripts. The server script format is new
 and cannot be found out anywhere, therefore usage guide will be published with the denver API documentation.
 
+## colored text (denver.ctext)
+Colored console output have been a problem since long but here at denver API, we provide
+cross-platform colored console output in almost any console. we also provide emulated
+print and input function with extra keyword arguments for coloring and customizing. the
+default print and input function of you code can be switched out to these one by
+```python
+from denver import ctext
+
+print = ctext.print
+input = ctext.input
+
+# You can do the same with input
+print("Hello", "World in colored", "text", fore="green", back="white", style="bright")
+print("Hello", "World in simple", "environment")
+```
+
 ## Installation
 The package can be installed by
 ```commandline
