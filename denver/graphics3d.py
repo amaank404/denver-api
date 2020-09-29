@@ -32,7 +32,9 @@ def model_rotate(model, axis, angle) -> list:
 
 
 def model_flatten(model, scale, distance) -> list:
-    """flatten complete model"""
+    """
+    flatten complete model
+    """
     d = copy.deepcopy(model)
     for x in range(len(d)):
         p1, p2 = d[x]
