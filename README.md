@@ -1,7 +1,7 @@
 # denver
 Denver API for Python
 
-This API is specifically disigned for python developers who want to use
+This API is specifically designed for python developers who want to use
 advanced utilities but without coding much. The API requires you to
 have minimum Python 3.8
 
@@ -36,7 +36,8 @@ pip install --upgrade pydenver
 ```
 
 ## Documentation
-Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denverdocs) (*currently in progress and may not be visible for some time*).
+Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denverdocs) (*currently in progress
+and may not be visible for some time*).
 Also Documentation provided with this project can be used but you will have to install mkdocs
 by the following command
 ```commandline
@@ -46,7 +47,8 @@ or if you already have then you can upgrade it by following command
 ```commandline
 pip install --upgrade mkdocs
 ```
-After installation cd to `./docs/` and run this command `mkdocs build` or if you want to edit `mkdocs serve` and then you can edit any file (any file editid during `mkdocs serve` will be reflected on server every time you save a file)
+After installation cd to `./docs/` and run this command `mkdocs build` or if you want to edit `mkdocs serve` and then 
+you can edit any file (any file edited during `mkdocs serve` will be reflected on server every time you save a file)
 
 ## Community
 This is a community driven project and accepts pull requests
