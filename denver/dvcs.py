@@ -7,7 +7,7 @@ In order for your work to be considered:
     *No Typos
     *Standard PEP8 Compatible
     *Must Support Python 3.8
-    *Doctest (Optional)
+    *Doctest
 """
 
 __author__ = "xcodz-dot"  # I will add your name here if you contribute
@@ -21,7 +21,6 @@ __version__ = "1.0.0"  # Semantic versioning
 #  Repository can be forked or cloned
 
 # Below is the Base classes and function without any code, (You can add or remove them, also add code)
-from typing import List, Tuple, Union
 
 DEFAULT_PORTS = {
     "dvsc": 6080,
@@ -36,11 +35,7 @@ class DenverRepository:
         self.origin = original
 
 
-def update():
-    pass
-
-
-def parse_url(url: str) -> List[str, Union[Tuple[str, int], None], str]:
+def parse_url(url: str):
     """
     Parse a URL in format:
         {protocol}://{server_ip}:{port=protocol_default}/{path_to_file}/
@@ -57,18 +52,29 @@ def parse_url(url: str) -> List[str, Union[Tuple[str, int], None], str]:
     Return Value:
         dvsc, fserv, http = [protocol, (ip, port), sub_address]
         file = ["file", None, sub_address]
+
+    DocTests
+    >>> parse_url("dvsc://127.0.0.1:6744/MyRepos/repo1/denver_vsc.repo")
+    ['dvsc', ('127.0.0.1', 6744), 'MyRepos/repo1/denver_vsc.repo']
+
+    >>> parse_url("dvsc://127.0.0.1/MyRepos/repo1/denver_vsc.repo")
+    ['dvsc', ('127.0.0.1', 6080), 'MyRepos/repo1/denver_vsc.repo']
+
+    >>> parse_url("file://MyRepos/repo1/denver_vsc.repo")
+    ['file', None, 'MyRepos/repo1/denver_vsc.repo']
     """
     url_protocol, url = url.split("://", 1)
-    url_address, url_sub_address = url.split("/", 1)
-    if ':' in url_address:
-        url_address = tuple(url_address.split(":"))
-    else:
-        url_address = (url_address, DEFAULT_PORTS[url_protocol])
-
-    if url_protocol is not "file":
+    if url_protocol != "file":
+        url_address, url_sub_address = url.split("/", 1)
+        if ':' in url_address:
+            url_address = url_address.split(":")
+            url_address[1] = int(url_address[1])
+            url_address = tuple(url_address)
+        else:
+            url_address = (url_address, DEFAULT_PORTS[url_protocol])
         return [url_protocol, url_address, url_sub_address]
     else:
-        return ["file", None, f"{url_address}/{url_sub_address}"]
+        return ['file', None, url]
 
 
 # TODO ArgParse CLI
