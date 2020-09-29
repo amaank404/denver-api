@@ -2,15 +2,12 @@ from __future__ import annotations
 
 import copy
 import math
-from typing import NewType
 
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
-ModelType = NewType("ModelType", list[tuple[tuple[int]]])
 
-
-def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[float, float]:
+def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple:
     """
     Converts 3d point to a 2d drawable point
 
@@ -22,7 +19,7 @@ def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple[fl
     return projected_x, projected_y
 
 
-def model_rotate(model, axis, angle) -> ModelType:
+def model_rotate(model, axis, angle) -> list:
     """
     Rotate a model
     """
@@ -34,7 +31,7 @@ def model_rotate(model, axis, angle) -> ModelType:
     return d
 
 
-def model_flatten(model, scale, distance) -> ModelType:
+def model_flatten(model, scale, distance) -> list:
     """flatten complete model"""
     d = copy.deepcopy(model)
     for x in range(len(d)):
