@@ -40,10 +40,10 @@ def parse_url(url: str):
     Parse a URL in format:
         {protocol}://{server_ip}:{port=protocol_default}/{path_to_file}/
     Example:
-        dvsc://127.0.0.1:6744/MyRepos/repo1/denver_vsc.repo
-        fserv://127.0.0.1:1245/MyRepos/repo2/denver_vsc.repo
-        http://127.0.0.1:1249/MyRepos/repo3/denver_vsc.repo
-        file://MyRepos/repo4/denver_vsc.repo
+        dvsc://127.0.0.1:6744/MyRepos/repo1/denver_vsc.json
+        fserv://127.0.0.1:1245/MyRepos/repo2/denver_vsc.json
+        http://127.0.0.1:1249/MyRepos/repo3/denver_vsc.json
+        file://MyRepos/repo4/denver_vsc.json
     Default Ports:
         dvsc = 6080
         fserv = 6081
@@ -54,14 +54,14 @@ def parse_url(url: str):
         file = ["file", None, sub_address]
 
     DocTests
-    >>> parse_url("dvsc://127.0.0.1:6744/MyRepos/repo1/denver_vsc.repo")
-    ['dvsc', ('127.0.0.1', 6744), 'MyRepos/repo1/denver_vsc.repo']
+    >>> parse_url("dvsc://127.0.0.1:6744/MyRepos/repo1/denver_vsc.json")
+    ['dvsc', ('127.0.0.1', 6744), 'MyRepos/repo1/denver_vsc.json']
 
-    >>> parse_url("dvsc://127.0.0.1/MyRepos/repo1/denver_vsc.repo")
-    ['dvsc', ('127.0.0.1', 6080), 'MyRepos/repo1/denver_vsc.repo']
+    >>> parse_url("dvsc://127.0.0.1/MyRepos/repo1/denver_vsc.json")
+    ['dvsc', ('127.0.0.1', 6080), 'MyRepos/repo1/denver_vsc.json']
 
-    >>> parse_url("file://MyRepos/repo1/denver_vsc.repo")
-    ['file', None, 'MyRepos/repo1/denver_vsc.repo']
+    >>> parse_url("file://MyRepos/repo1/denver_vsc.json")
+    ['file', None, 'MyRepos/repo1/denver_vsc.json']
     """
     url_protocol, url = url.split("://", 1)
     if url_protocol != "file":
