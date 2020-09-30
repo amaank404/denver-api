@@ -1,3 +1,9 @@
 {
-  "": ""
+  "nav-dir": [
+    "abc",
+    "abc/xyz",
+    "abc/xyz/12",
+    "xyz",
+    "xyz/abcd2"
+  ]
 }
