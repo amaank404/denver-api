@@ -12,11 +12,11 @@ nav:
       - ctext: modules/ctext.md
       - datau: modules/datau.md
       - datp: modules/datp.md
-      - docs: modules/docs.md
       - get: modules/get.md
       - graphics3d: modules/graphics3d.md
       - handypy: modules/handypy.md
       - log: modules/log.md
       - pysetup: modules/pysetup.md
       - rawd: modules/rawd.md
+      - sound: modules/sound.md
       - text: modules/text.md
