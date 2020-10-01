@@ -128,4 +128,43 @@ we provide some of the good methods like List printing using indentation or tree
 and tree3 for representation of dictionaries. we also privide StorageTree to extract files
 under a folder into VSD (Virtual Storage Dictionary).
 
- 
+## [get](modules/get.md)
+this module is just awesome for anyone not gud at taking input from user or may be validating it, you can use its
+print tree method to print directories or you can simply use get file path to get a
+path to file from user input. there are tons of features
+
+* tree printer
+* screen clear
+* path input
+* ipv4 validator
+* (ipv4, port) input
+
+## [graphics3d](modules/graphics3d.md)
+Well this module is loaded with a few algorithms and a fully featured model viewer by which you can view models very
+easily. There are many algorithms that
+
+* flattens a 3d vector point to 2d rendered vector point
+* rotate a 3d vector point around its axis
+* model flatten
+* model rotate
+* model maker
+* model dump to file
+* model load from file
+* model viewer
+
+## [handypy](modules/handypy.md)
+This module have functionalities for interacting with real python 3 code. it contains the following
+featurs
+
+* analise of imports made by source file
+
+that's all for this small module
+
+## [log](modules/log.md)
+This module provides you with basic logging facilities which
+can be used by your programs to get developed easily. while
+debugging you can keep the configurations on and while
+releasing you can switch of error, warnings, debug or you
+can also change the file to a new file which can contain
+the log.
+
