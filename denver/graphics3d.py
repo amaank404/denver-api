@@ -119,14 +119,12 @@ def model_load_from_file(model_file):
     return model
 
 
-def main():
-    import pygame, sys
-    sys.argv.append("rectangle.txt")
-    model_dump_to_file("rectangle.txt", ModelMake.cube(-1, -1, -1, 2))
+def model_veiwer(model):
+    import pygame
     pygame.init()
     fpsclock = pygame.time.Clock()
     disp = pygame.display.set_mode((600, 400))
-    cube3 = model_load_from_file(sys.argv[1])
+    cube3 = model_load_from_file(model)
     rotate = False
     rotate2 = False
     scale = 1
@@ -196,4 +194,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    parser = argparse.ArgumentParser("graphics3d pygame veiw")
+    parser.add_argument("model", metavar="PATH_TO_MODEL", help="PATH TO MODEL")
+    args = parser.parse_args()
+    model_veiwer(args.model)
+
