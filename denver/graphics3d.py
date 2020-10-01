@@ -119,7 +119,7 @@ def model_load_from_file(model_file):
     return model
 
 
-def model_veiwer(model):
+def model_viewer(model):
     import pygame
     pygame.init()
     fpsclock = pygame.time.Clock()
@@ -198,5 +198,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser("graphics3d pygame veiw")
     parser.add_argument("model", metavar="PATH_TO_MODEL", help="PATH TO MODEL")
     args = parser.parse_args()
-    model_veiwer(args.model)
+    model_viewer(args.model)
 
