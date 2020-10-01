@@ -15,7 +15,6 @@ Also you can check
 * [ctext](modules/ctext.md)
 * [datau](modules/datau.md)
 * [datp](modules/datp.md)
-* [docs](modules/docs.md)
 * [get](modules/get.md)
 * [graphics3d](modules/graphics3d.md)
 * [handypy](modules/handypy.md)
