@@ -1,7 +1,7 @@
 # Denver Documentation
-To Navigate the document use the menu above
-For Installation guide click [here](installation.md).
-For Brief about modules click [here](brief.md)
+To Navigate the document use the menu above <br/>
+For Installation guide click [here](installation.md) <br/>
+For Brief about modules click [here](brief.md) <br/>
 
 This Documentation is not complete and may be incomplete at some areas.
 Also you can check
@@ -22,4 +22,5 @@ Also you can check
 * [log](modules/log.md)
 * [pysetup](modules/pysetup.md)
 * [rawd](modules/rawd.md)
+* [sound](modules/sound.md)
 * [text](modules/text.md)
