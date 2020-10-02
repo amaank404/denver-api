@@ -23,3 +23,6 @@ Also you can check
 * [rawd](modules/rawd.md)
 * [sound](modules/sound.md)
 * [text](modules/text.md)
+
+## Tools
+* [bdtpserver](tools/bdtpserver.md)

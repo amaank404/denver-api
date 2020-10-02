@@ -1,7 +1,8 @@
 # Brief
 This page contains information about every module in the project.
 
-## [bcli](modules/bcli.md)
+## Modules
+### [bcli](modules/bcli.md)
 This module is usually useful for beautiful command line interface
 for users. the user can easily understand with the help of cross-platform
 coloring solutions which is a good sign and what is the bad sign, Nothing.
@@ -17,7 +18,7 @@ bcli's default format contains the following functions.
 all the above function emulates complete print function except for input
 which emulates input function.
 
-## [bdtp](modules/bdtp.md)
+### [bdtp](modules/bdtp.md)
 This module is all about sockets, many times it happens that you are unable
 to send up large data with sockets and you are not willing to write
 tons of lines for the same. So here we are, we implement the easiest methods
@@ -36,7 +37,7 @@ to implement our API. No Problems, we provide the following features.
 * Compress data to save data over internet, also resulting in fast transfer on slow
   connections
 
-## [bdtpfserv](modules/bdtpfserv.md)
+### [bdtpfserv](modules/bdtpfserv.md)
 We have solved the problem of data transfer using BDTP but now the
 problem is with hosting files on the server. Well, that requires a lot of lines
 for hosting and getting the things but why to worry we provide the module for that.
@@ -48,7 +49,7 @@ It basically provide the following features for you to work with
 * Function like listdir, mkdir, post, get to retrieve files and data
 * Our hosting service is also supports multi-threaded get functionality.
 
-## [bitmap](modules/bitmap.md)
+### [bitmap](modules/bitmap.md)
 
 BitMap module is a little weird because you can not save images or load images, but
 instead you can work on Ascii images using it. Ok, I know that is not something
@@ -62,7 +63,7 @@ out the features below
   if you edit something in bitmap portion, they will be directly reflected over bitmap.
   Also, your image would not be overwritten after a certain limit of height and width.
   
-## [crypt](modules/crypt.md)
+### [crypt](modules/crypt.md)
 
 It is very sure that you might have encountered security issues with your program and
 you might look for a very simple library to do your task, so here we are we bring
@@ -80,7 +81,7 @@ you the crypt which features
 also you can simply use the new feature cipher combinator for making a class which can
 encrypt your code with multiple ciphers.
 
-## [ctext](modules/ctext.md)
+### [ctext](modules/ctext.md)
 ctext is are favorite and best module we have ever built, because it is cross platform console
 coloring system which supports colors for both windows and unix based os. Also this module is
 loaded with tons of features like emulated print and input function which you can easily use
@@ -97,7 +98,7 @@ other features
 * print at position
 * formatted escape sequence
 
-## [datau](modules/datau.md)
+### [datau](modules/datau.md)
 Data Unicode might not be good enough to satisfy your needs but we have a prebuild library of
 replacement dictionaries which are escaped by function `convert`, it converts multiline text into
 the useful unicode text using the dictionaries for example you can convert the following
@@ -122,13 +123,13 @@ my_smooth_box = datau.convert(my_box, datau.box['soft box'])
 print(my_smooth_box)
 ```
 
-## [datp](modules/datp.md)
+### [datp](modules/datp.md)
 This class is awesome for list representation also datp means Data Processor.
 we provide some of the good methods like List printing using indentation or tree2 for other type of list representation
 and tree3 for representation of dictionaries. we also privide StorageTree to extract files
 under a folder into VSD (Virtual Storage Dictionary).
 
-## [get](modules/get.md)
+### [get](modules/get.md)
 this module is just awesome for anyone not gud at taking input from user or may be validating it, you can use its
 print tree method to print directories or you can simply use get file path to get a
 path to file from user input. there are tons of features
@@ -139,7 +140,7 @@ path to file from user input. there are tons of features
 * ipv4 validator
 * (ipv4, port) input
 
-## [graphics3d](modules/graphics3d.md)
+### [graphics3d](modules/graphics3d.md)
 Well this module is loaded with a few algorithms and a fully featured model viewer by which you can view models very
 easily. There are many algorithms that
 
@@ -152,7 +153,7 @@ easily. There are many algorithms that
 * model load from file
 * model viewer
 
-## [handypy](modules/handypy.md)
+### [handypy](modules/handypy.md)
 This module have functionalities for interacting with real python 3 code. it contains the following
 featurs
 
@@ -160,7 +161,7 @@ featurs
 
 that's all for this small module
 
-## [log](modules/log.md) \[Depreciated]
+### [log](modules/log.md) \[Depreciated]
 This module provides you with basic logging facilities which
 can be used by your programs to get developed easily. while
 debugging you can keep the configurations on and while
@@ -168,20 +169,20 @@ releasing you can switch of error, warnings, debug or you
 can also change the file to a new file which can contain
 the log.
 
-## [pysetup](modules/pysetup.md)
+### [pysetup](modules/pysetup.md)
 Utilities for `setuptools.setup`, this module basically finds the extra non python data
 which is sometimes very important for your program, like images, txt, data files
 
-## [rawd](modules/rawd.md)
+### [rawd](modules/rawd.md)
 Raw D stands for Raw Data, It is implementation of struct module but with guarantee of cross platform support,
 there are  little functions in this module using this modules you can pack, unpack, create format, calculate size and 
 much more.
 
-## [sound](modules/sound.md)
+### [sound](modules/sound.md)
 Sound is simple implementation for cross platform integration of playsound module you can simply
 call `play_sound` function to simply use it to play sound files.
 
-## [text](modules/text.md)
+### [text](modules/text.md)
 Well, text might have been a long time with you, you might have also faced the problems with text like wrap arounds,
 side by side joining, but you may have had a disappointing result like this
 
@@ -196,4 +197,17 @@ but if you use this module you can always expect this
     abcd a        |
 
 and also you can use `denver.datau` to make it look a little more beautiful in between
- 
+
+## Tools
+### [bdtpserver](tools/bdtpserver.md)
+
+There might be many people who are not interested in modules and implementing themselves so here we are with our tools
+for bdtpfserv. this tool can easily do your work with complete command line implementation of the module, it features
+
+* Hosting
+* Getting
+* Posting
+* Listing
+* Directory Creation
+
+you can also know more about it using the following command `python -m denver.tools.bdtpserver --help`
