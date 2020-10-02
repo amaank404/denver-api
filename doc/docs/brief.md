@@ -160,7 +160,7 @@ featurs
 
 that's all for this small module
 
-## [log](modules/log.md)
+## [log](modules/log.md) \[Depreciated]
 This module provides you with basic logging facilities which
 can be used by your programs to get developed easily. while
 debugging you can keep the configurations on and while
@@ -168,3 +168,32 @@ releasing you can switch of error, warnings, debug or you
 can also change the file to a new file which can contain
 the log.
 
+## [pysetup](modules/pysetup.py)
+Utilities for `setuptools.setup`, this module basically finds the extra non python data
+which is sometimes very important for your program, like images, txt, data files
+
+## [rawd](modules/rawd.py)
+Raw D stands for Raw Data, It is implementation of struct module but with guarantee of cross platform support,
+there are  little functions in this module using this modules you can pack, unpack, create format, calculate size and 
+much more.
+
+## [sound](modules/sound.md)
+Sound is simple implementation for cross platform integration of playsound module you can simply
+call `play_sound` function to simply use it to play sound files.
+
+## [text](modules/text.md)
+Well, text might have been a long time with you, you might have also faced the problems with text like wrap arounds,
+side by side joining, but you may have had a disappointing result like this
+
+    abcd abcd | This text is split
+    abcd abcd fgf | And this is second line
+    abcd a |
+
+but if you use this module you can always expect this
+
+    abcd abcd     | This text is split
+    abcd abcd fgf | And this is second line
+    abcd a        |
+
+and also you can use `denver.datau` to make it look a little more beautiful in between
+ 
