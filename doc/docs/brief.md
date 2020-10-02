@@ -168,11 +168,11 @@ releasing you can switch of error, warnings, debug or you
 can also change the file to a new file which can contain
 the log.
 
-## [pysetup](modules/pysetup.py)
+## [pysetup](modules/pysetup.md)
 Utilities for `setuptools.setup`, this module basically finds the extra non python data
 which is sometimes very important for your program, like images, txt, data files
 
-## [rawd](modules/rawd.py)
+## [rawd](modules/rawd.md)
 Raw D stands for Raw Data, It is implementation of struct module but with guarantee of cross platform support,
 there are  little functions in this module using this modules you can pack, unpack, create format, calculate size and 
 much more.
