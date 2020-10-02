@@ -35,12 +35,13 @@ def exclude_files(filespath: list, exts: list):
         filespath.remove(x)
 
 
-def concatinate_dictionaries(d1: dict, d2: dict, *d):
+def concatenate_dictionaries(d1: dict, d2: dict, *d):
     base = d1
     base.update(d2)
     for x in d:
         base.update(x)
     return base
+
 
 if __name__ == '__main__':
     from pprint import pprint
