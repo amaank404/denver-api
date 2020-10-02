@@ -6,7 +6,7 @@ with open("README.md") as f:
 setuptools.setup(
     name="pydenver",
     packages=["denver"],
-    version="1.0.0",
+    version="2.0.0",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
