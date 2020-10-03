@@ -5,9 +5,10 @@ This API is specifically designed for python developers who want to use
 advanced utilities but without coding much. The API requires you to
 have minimum Python 3.8
 
-## sockets (script)
-This script contains the complete environment for parsing server scripts. The server script format is new
-and cannot be found out anywhere, therefore usage guide will be published with the denver API documentation.
+## tools
+this is a new package built into denver and now you can use every module inside it as a command line
+tool. You can type the following command `python denver.tools` to get a list of available tools.
+
 
 ## colored text (denver.ctext)
 Colored console output have been a problem since long but here at denver API, we provide
