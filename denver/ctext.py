@@ -86,7 +86,6 @@ class ColoredText:
         "none": ''
     }
     cloredTextEscapeSequenceFore = {
-        "none": '',
         "black": colorama.Fore.BLACK,
         "blue": colorama.Fore.BLUE,
         "red": colorama.Fore.RED,
@@ -102,7 +101,8 @@ class ColoredText:
         "lightblue": colorama.Fore.LIGHTBLUE_EX,
         "lightmagenta": colorama.Fore.LIGHTMAGENTA_EX,
         "lightcyan": colorama.Fore.LIGHTCYAN_EX,
-        "lightwhite": colorama.Fore.LIGHTWHITE_EX
+        "lightwhite": colorama.Fore.LIGHTWHITE_EX,
+        "none": ''
     }
     styleEscapeSequence = {
         "bright": colorama.Style.BRIGHT,
