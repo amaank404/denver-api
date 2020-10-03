@@ -56,10 +56,13 @@ def read_image(file: str) -> CImage:
     ascii_text = ascii_text.decode("utf-8")
     return CImage(ascii_text, ansi_code)
 
-image_ascii = """+1
-234"""
 
-image_ansi = b"""\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"""
+if __name__ == '__main__':
 
-mi = CImage(image_ascii, image_ansi)
-print(combine(mi))
+    image_ascii = """+1
+    234"""
+
+    image_ansi = b"""\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"""
+
+    mi = CImage(image_ascii, image_ansi)
+    print(combine(mi))
