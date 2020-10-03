@@ -21,4 +21,5 @@ from . import (bdtp,
                pysetup,
                rawd,
                sound,
-               text)
+               text,
+               cpic)
