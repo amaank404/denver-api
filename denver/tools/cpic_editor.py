@@ -11,6 +11,7 @@ CELL_HEIGHT = 20
 CELL_WIDTH = 12
 
 # Colors  (R,  G,  B)
+GRAY = (220, 220, 220)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
@@ -34,7 +35,7 @@ NORMAL = (240, 240, 240)
 DIM = (230, 230, 230,)
 
 COLORS = denver.ctext.ColoredText.cloredTextEscapeSequenceFore
-COLORS_PYGAME_LIST = [None, BLACK, BLUE, RED, GREEN, YELLOW, MAGENTA, CYAN, WHITE,
+COLORS_PYGAME_LIST = [BLACK, BLUE, RED, GREEN, YELLOW, MAGENTA, CYAN, WHITE,
                       LIGHT_BLACK, LIGHT_RED, LIGHT_GREEN, LIGHT_YELLOW, LIGHT_BLUE,
                       LIGHT_MAGENTA, LIGHT_CYAN, LIGHT_WHITE]
 STYLE_PYGAME_LIST = [DIM, NORMAL, BRIGHT]
@@ -47,7 +48,7 @@ def generate_color_pallet(colors: list, selected: int):
     surface = pygame.Surface((len(colors)*CELL_WIDTH, CELL_HEIGHT))
     for position, index in zip(range(0, len(colors)*CELL_WIDTH, CELL_WIDTH), range(len(colors))):
         pygame.draw.rect(surface, colors[index], pygame.Rect((position, 0), (CELL_WIDTH, CELL_HEIGHT)))
-    pygame.draw.rect(surface, BLACK, pygame.Rect(selected*CELL_WIDTH, 0, CELL_WIDTH, CELL_HEIGHT), 1)
+    pygame.draw.rect(surface, BLACK, pygame.Rect(selected*CELL_WIDTH, 0, CELL_WIDTH, CELL_HEIGHT), 2)
     return surface
 
 
@@ -77,7 +78,12 @@ def main(args):
     font = pygame.font.Font("freesansbold.ttf", 10)
     fore_color_label = font.render("Fore Color", True, BLACK)
     fore_color_label_rect: pygame.Rect = fore_color_label.get_rect()
-    fore_color_label_rect.midtop = (360, 2)
+    fore_color_label_rect.midtop = (600, 2)
+
+    back_color_label = font.render("Back Color", True, BLACK)
+    back_color_label_rect: pygame.Rect = back_color_label.get_rect()
+    back_color_label_rect.midtop = (600, 38)
+
     display = pygame.display.set_mode((WIDTH, HEIGHT))
     grid_surface = pygame.Surface((720, 480))
     clock = pygame.time.Clock()
@@ -91,17 +97,22 @@ def main(args):
                 pygame.quit()
                 raise SystemExit(0)
         display.fill(WHITE)
-        grid_surface.fill(WHITE)
+        grid_surface.fill(GRAY)
         draw_grid(grid_surface)
 
         color_pallet_fore = generate_color_pallet(COLORS_PYGAME_LIST, COLOR_SELECT_FORE)
         color_pallet_fore_rect: pygame.Rect = color_pallet_fore.get_rect()
-        color_pallet_fore_rect.midtop = (360, 14)
+        color_pallet_fore_rect.midtop = (600, 14)
 
         color_pallet_back = generate_color_pallet(COLORS_PYGAME_LIST, COLOR_SELECT_BACK)
+        color_pallet_back_rect: pygame.Rect = color_pallet_back.get_rect()
+        color_pallet_back_rect.midtop = (600, 50)
+
         display.blit(grid_surface, grid_surface_rect)
         display.blit(color_pallet_fore, color_pallet_fore_rect)
+        display.blit(color_pallet_back, color_pallet_back_rect)
         display.blit(fore_color_label, fore_color_label_rect)
+        display.blit(back_color_label, back_color_label_rect)
         pygame.display.update()
 
 
