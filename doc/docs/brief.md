@@ -126,11 +126,11 @@ print(my_smooth_box)
 ### [datp](modules/datp.md)
 This class is awesome for list representation also datp means Data Processor.
 we provide some of the good methods like List printing using indentation or tree2 for other type of list representation
-and tree3 for representation of dictionaries. we also privide StorageTree to extract files
+and tree3 for representation of dictionaries. we also provide StorageTree to extract files
 under a folder into VSD (Virtual Storage Dictionary).
 
 ### [get](modules/get.md)
-this module is just awesome for anyone not gud at taking input from user or may be validating it, you can use its
+this module is just awesome for anyone not good at taking input from user or may be validating it, you can use its
 print tree method to print directories or you can simply use get file path to get a
 path to file from user input. there are tons of features
 
@@ -155,9 +155,9 @@ easily. There are many algorithms that
 
 ### [handypy](modules/handypy.md)
 This module have functionalities for interacting with real python 3 code. it contains the following
-featurs
+features
 
-* analise of imports made by source file
+* analyse of imports made by source file
 
 that's all for this small module
 
