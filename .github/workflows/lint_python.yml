@@ -17,6 +17,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install black codespell flake8 isort pytest
+      - run: pip install https://github.com/xcodz-dot/denver/tarball/master
       - run: black --check . || true
       # - run: black --diff . || true
       # - if: matrix.python-version >= 3.6
