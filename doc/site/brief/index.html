@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Brief - Denver Docs</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Denver Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../installation/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Brief</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Modules <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../modules/bcli/" class="dropdown-item">bcli</a>
+</li>
+                                    
+<li>
+    <a href="../modules/bdtp/" class="dropdown-item">bdtp</a>
+</li>
+                                    
+<li>
+    <a href="../modules/bdtpfserv/" class="dropdown-item">bdtpfserv</a>
+</li>
+                                    
+<li>
+    <a href="../modules/bitmap/" class="dropdown-item">bitmap</a>
+</li>
+                                    
+<li>
+    <a href="../modules/crypt/" class="dropdown-item">crypt</a>
+</li>
+                                    
+<li>
+    <a href="../modules/ctext/" class="dropdown-item">ctext</a>
+</li>
+                                    
+<li>
+    <a href="../modules/datau/" class="dropdown-item">datau</a>
+</li>
+                                    
+<li>
+    <a href="../modules/datp/" class="dropdown-item">datp</a>
+</li>
+                                    
+<li>
+    <a href="../modules/get/" class="dropdown-item">get</a>
+</li>
+                                    
+<li>
+    <a href="../modules/graphics3d/" class="dropdown-item">graphics3d</a>
+</li>
+                                    
+<li>
+    <a href="../modules/handypy/" class="dropdown-item">handypy</a>
+</li>
+                                    
+<li>
+    <a href="../modules/log/" class="dropdown-item">log</a>
+</li>
+                                    
+<li>
+    <a href="../modules/pysetup/" class="dropdown-item">pysetup</a>
+</li>
+                                    
+<li>
+    <a href="../modules/rawd/" class="dropdown-item">rawd</a>
+</li>
+                                    
+<li>
+    <a href="../modules/sound/" class="dropdown-item">sound</a>
+</li>
+                                    
+<li>
+    <a href="../modules/text/" class="dropdown-item">text</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../installation/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../modules/bcli/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#brief" class="nav-link">Brief</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#modules" class="nav-link">Modules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tools" class="nav-link">Tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="brief">Brief</h1>
+<p>This page contains information about every module in the project.</p>
+<h2 id="modules">Modules</h2>
+<h3 id="bcli"><a href="../modules/bcli/">bcli</a></h3>
+<p>This module is usually useful for beautiful command line interface
+for users. the user can easily understand with the help of cross-platform
+coloring solutions which is a good sign and what is the bad sign, Nothing.</p>
+<p>bcli's default format contains the following functions.</p>
+<ul>
+<li>good (green color)</li>
+<li>bad (red color)</li>
+<li>info (yellow color)</li>
+<li>run (bright white color)</li>
+<li>input (emulates default input function with blue colored input prompt)</li>
+</ul>
+<p>all the above function emulates complete print function except for input
+which emulates input function.</p>
+<h3 id="bdtp"><a href="../modules/bdtp/">bdtp</a></h3>
+<p>This module is all about sockets, many times it happens that you are unable
+to send up large data with sockets and you are not willing to write
+tons of lines for the same. So here we are, we implement the easiest methods
+for implementing sockets for big data transfer. we provide</p>
+<ul>
+<li>Host side sending</li>
+<li>Client side sending</li>
+<li>Host side receiving</li>
+<li>Client side receiving</li>
+</ul>
+<p>Also there are situations where you have a socket already hosted but want
+to implement our API. No Problems, we provide the following features.</p>
+<ul>
+<li>Use BDTP with existing socket</li>
+<li>Get the average speed of the socket</li>
+<li>Compress data to save data over internet, also resulting in fast transfer on slow
+  connections</li>
+</ul>
+<h3 id="bdtpfserv"><a href="../modules/bdtpfserv/">bdtpfserv</a></h3>
+<p>We have solved the problem of data transfer using BDTP but now the
+problem is with hosting files on the server. Well, that requires a lot of lines
+for hosting and getting the things but why to worry we provide the module for that.
+It basically provide the following features for you to work with</p>
+<ul>
+<li>Hosting solution for hosting your files which are within a directory. Also, you can
+  simply specify the sub directory of the files hosting service to limit user posts to
+  that directory.</li>
+<li>Function like listdir, mkdir, post, get to retrieve files and data</li>
+<li>Our hosting service is also supports multi-threaded get functionality.</li>
+</ul>
+<h3 id="bitmap"><a href="../modules/bitmap/">bitmap</a></h3>
+<p>BitMap module is a little weird because you can not save images or load images, but
+instead you can work on Ascii images using it. Ok, I know that is not something
+you might have thought because that can be done with the inbuilt list. But check
+out the features below</p>
+<ul>
+<li>bitmap allows you to write images without any index errors also just by 
+  <code>image[x, y]</code> syntax. Also, it will just ignore anything that is set outside the
+  bitmap.</li>
+<li>bitmap portions allows you to get a reference to a part of image, basically
+  if you edit something in bitmap portion, they will be directly reflected over bitmap.
+  Also, your image would not be overwritten after a certain limit of height and width.</li>
+</ul>
+<h3 id="crypt"><a href="../modules/crypt/">crypt</a></h3>
+<p>It is very sure that you might have encountered security issues with your program and
+you might look for a very simple library to do your task, so here we are we bring
+you the crypt which features</p>
+<ul>
+<li>morse code</li>
+<li>basic encode</li>
+<li>reverse cipher</li>
+<li>caesar cipher</li>
+<li>transposition cipher</li>
+<li>affine cipher</li>
+<li>substitution cipher</li>
+<li>vigenere cipher</li>
+</ul>
+<p>also you can simply use the new feature cipher combinator for making a class which can
+encrypt your code with multiple ciphers.</p>
+<h3 id="ctext"><a href="../modules/ctext/">ctext</a></h3>
+<p>ctext is are favorite and best module we have ever built, because it is cross platform console
+coloring system which supports colors for both windows and unix based os. Also this module is
+loaded with tons of features like emulated print and input function which you can easily use
+in place of builtin print and input functions they are very simple to apply. You can also use
+other features</p>
+<ul>
+<li>terminal size query</li>
+<li>clear line</li>
+<li>clear screen</li>
+<li>style text</li>
+<li>code to character</li>
+<li>window title set</li>
+<li>cursor movement in all direction</li>
+<li>print at position</li>
+<li>formatted escape sequence</li>
+</ul>
+<h3 id="datau"><a href="../modules/datau/">datau</a></h3>
+<p>Data Unicode might not be good enough to satisfy your needs but we have a prebuild library of
+replacement dictionaries which are escaped by function <code>convert</code>, it converts multiline text into
+the useful unicode text using the dictionaries for example you can convert the following</p>
+<pre><code>/-------\
+| Hello |
+\-------/
+</code></pre>
+<p>into a very nice unicode text which does not show ugly looking spaced between them</p>
+<p>You can probably try this example to know about an example</p>
+<pre><code class="python">from denver import datau
+
+my_box = &quot;&quot;&quot;
+/-------\\
+| Hello |
+\\-------/
+&quot;&quot;&quot; # you might need to escape back slashes, we recommend using files for storing and retrieving data
+
+my_smooth_box = datau.convert(my_box, datau.box['soft box'])
+print(my_smooth_box)
+</code></pre>
+
+<h3 id="datp"><a href="../modules/datp/">datp</a></h3>
+<p>This class is awesome for list representation also datp means Data Processor.
+we provide some of the good methods like List printing using indentation or tree2 for other type of list representation
+and tree3 for representation of dictionaries. we also privide StorageTree to extract files
+under a folder into VSD (Virtual Storage Dictionary).</p>
+<h3 id="get"><a href="../modules/get/">get</a></h3>
+<p>this module is just awesome for anyone not gud at taking input from user or may be validating it, you can use its
+print tree method to print directories or you can simply use get file path to get a
+path to file from user input. there are tons of features</p>
+<ul>
+<li>tree printer</li>
+<li>screen clear</li>
+<li>path input</li>
+<li>ipv4 validator</li>
+<li>(ipv4, port) input</li>
+</ul>
+<h3 id="graphics3d"><a href="../modules/graphics3d/">graphics3d</a></h3>
+<p>Well this module is loaded with a few algorithms and a fully featured model viewer by which you can view models very
+easily. There are many algorithms that</p>
+<ul>
+<li>flattens a 3d vector point to 2d rendered vector point</li>
+<li>rotate a 3d vector point around its axis</li>
+<li>model flatten</li>
+<li>model rotate</li>
+<li>model maker</li>
+<li>model dump to file</li>
+<li>model load from file</li>
+<li>model viewer</li>
+</ul>
+<h3 id="handypy"><a href="../modules/handypy/">handypy</a></h3>
+<p>This module have functionalities for interacting with real python 3 code. it contains the following
+featurs</p>
+<ul>
+<li>analise of imports made by source file</li>
+</ul>
+<p>that's all for this small module</p>
+<h3 id="log-depreciated"><a href="../modules/log/">log</a> [Depreciated]</h3>
+<p>This module provides you with basic logging facilities which
+can be used by your programs to get developed easily. while
+debugging you can keep the configurations on and while
+releasing you can switch of error, warnings, debug or you
+can also change the file to a new file which can contain
+the log.</p>
+<h3 id="pysetup"><a href="../modules/pysetup/">pysetup</a></h3>
+<p>Utilities for <code>setuptools.setup</code>, this module basically finds the extra non python data
+which is sometimes very important for your program, like images, txt, data files</p>
+<h3 id="rawd"><a href="../modules/rawd/">rawd</a></h3>
+<p>Raw D stands for Raw Data, It is implementation of struct module but with guarantee of cross platform support,
+there are  little functions in this module using this modules you can pack, unpack, create format, calculate size and 
+much more.</p>
+<h3 id="sound"><a href="../modules/sound/">sound</a></h3>
+<p>Sound is simple implementation for cross platform integration of playsound module you can simply
+call <code>play_sound</code> function to simply use it to play sound files.</p>
+<h3 id="text"><a href="../modules/text/">text</a></h3>
+<p>Well, text might have been a long time with you, you might have also faced the problems with text like wrap arounds,
+side by side joining, but you may have had a disappointing result like this</p>
+<pre><code>abcd abcd | This text is split
+abcd abcd fgf | And this is second line
+abcd a |
+</code></pre>
+<p>but if you use this module you can always expect this</p>
+<pre><code>abcd abcd     | This text is split
+abcd abcd fgf | And this is second line
+abcd a        |
+</code></pre>
+<p>and also you can use <code>denver.datau</code> to make it look a little more beautiful in between</p>
+<h2 id="tools">Tools</h2>
+<h3 id="bdtpserver"><a href="../tools/bdtpserver/">bdtpserver</a></h3>
+<p>There might be many people who are not interested in modules and implementing themselves so here we are with our tools
+for bdtpfserv. this tool can easily do your work with complete command line implementation of the module, it features</p>
+<ul>
+<li>Hosting</li>
+<li>Getting</li>
+<li>Posting</li>
+<li>Listing</li>
+<li>Directory Creation</li>
+</ul>
+<p>you can also know more about it using the following command <code>python -m denver.tools.bdtpserver --help</code></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

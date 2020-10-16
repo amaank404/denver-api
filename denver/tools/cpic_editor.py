@@ -11,7 +11,7 @@ CELL_HEIGHT = 20
 CELL_WIDTH = 12
 
 # Colors  (R,  G,  B)
-GRAY = (220, 220, 220)
+GRAY = (250, 250, 250)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
@@ -39,9 +39,9 @@ COLORS_PYGAME_LIST = [BLACK, BLUE, RED, GREEN, YELLOW, MAGENTA, CYAN, WHITE,
                       LIGHT_BLACK, LIGHT_RED, LIGHT_GREEN, LIGHT_YELLOW, LIGHT_BLUE,
                       LIGHT_MAGENTA, LIGHT_CYAN, LIGHT_WHITE]
 STYLE_PYGAME_LIST = [DIM, NORMAL, BRIGHT]
-COLOR_SELECT_FORE = 0
-COLOR_SELECT_BACK = 0
-STYLE_SELECT = 1
+color_select_fore = 0
+color_select_back = 0
+style_select = 1
 
 
 def generate_color_pallet(colors: list, selected: int):
@@ -62,7 +62,7 @@ def draw_grid(surface: pygame.Surface):
 
 
 def transform_surface_coordinates_to_grid_coordinates(surface_coordinates):
-    return surface_coordinates[0] // CELL_WIDTH - 1, surface_coordinates[1] // CELL_HEIGHT - 1
+    return surface_coordinates[0] // CELL_WIDTH, surface_coordinates[1] // CELL_HEIGHT
 
 
 def grid_to_surface_coordinates(grid_coordinates):
@@ -70,6 +70,9 @@ def grid_to_surface_coordinates(grid_coordinates):
 
 
 def main(args):
+    global color_select_fore
+    global color_select_back
+    global style_select
     file_name = args.store
     if file_name is None:
         file_name = args.file
@@ -90,21 +93,19 @@ def main(args):
 
     grid_surface_rect: pygame.Rect = grid_surface.get_rect()
     grid_surface_rect.bottom = HEIGHT
+
+    last_selected = "fore"
     while True:
         clock.tick(FPS)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                raise SystemExit(0)
         display.fill(WHITE)
         grid_surface.fill(GRAY)
         draw_grid(grid_surface)
 
-        color_pallet_fore = generate_color_pallet(COLORS_PYGAME_LIST, COLOR_SELECT_FORE)
+        color_pallet_fore = generate_color_pallet(COLORS_PYGAME_LIST, color_select_fore)
         color_pallet_fore_rect: pygame.Rect = color_pallet_fore.get_rect()
         color_pallet_fore_rect.midtop = (600, 14)
 
-        color_pallet_back = generate_color_pallet(COLORS_PYGAME_LIST, COLOR_SELECT_BACK)
+        color_pallet_back = generate_color_pallet(COLORS_PYGAME_LIST, color_select_back)
         color_pallet_back_rect: pygame.Rect = color_pallet_back.get_rect()
         color_pallet_back_rect.midtop = (600, 50)
 
@@ -114,6 +115,50 @@ def main(args):
         display.blit(fore_color_label, fore_color_label_rect)
         display.blit(back_color_label, back_color_label_rect)
         pygame.display.update()
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                raise SystemExit(0)
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT:
+                    if last_selected == "fore":
+                        color_select_fore -= 1
+                    elif last_selected == "back":
+                        color_select_back -= 1
+                    elif last_selected == "style":
+                        style_select -= 1
+                if event.key == pygame.K_RIGHT:
+                    if last_selected == "fore":
+                        color_select_fore += 1
+                    elif last_selected == "back":
+                        color_select_back += 1
+                    elif last_selected == "style":
+                        style_select += 1
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_position = event.pos
+                if color_pallet_fore_rect.collidepoint(*mouse_position):
+                    last_selected = "fore"
+                    mouse_x_no_offset = mouse_position[0]-color_pallet_fore_rect.left
+                    color_select_fore = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset, 1))[0]
+                elif color_pallet_back_rect.collidepoint(*mouse_position):
+                    last_selected = "back"
+                    mouse_x_no_offset = mouse_position[0]-color_pallet_back_rect.left
+                    color_select_back = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset, 1))[0]
+
+        if color_select_back >= len(COLORS_PYGAME_LIST):
+            color_select_back -= len(COLORS_PYGAME_LIST)
+        if color_select_fore >= len(COLORS_PYGAME_LIST):
+            color_select_fore -= len(COLORS_PYGAME_LIST)
+        if color_select_fore < 0:
+            color_select_fore += len(COLORS_PYGAME_LIST)
+        if color_select_back < 0:
+            color_select_back += len(COLORS_PYGAME_LIST)
+
+        if style_select >= len(STYLE_PYGAME_LIST):
+            style_select -= len(STYLE_PYGAME_LIST)
+        if style_select < 0:
+            style_select += len(STYLE_PYGAME_LIST)
 
 
 if __name__ == '__main__':
