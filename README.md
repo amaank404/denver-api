@@ -9,6 +9,9 @@ have minimum Python 3.8
 this is a new package built into denver and now you can use every module inside it as a command line
 tool. You can type the following command `python denver.tools` to get a list of available tools.
 
+#### **WARNING**
+The tools.cpic_editor is still a work in progress
+
 
 ## colored text (denver.ctext)
 Colored console output have been a problem since long but here at denver API, we provide
@@ -54,3 +57,11 @@ you can edit any file (any file edited during `mkdocs serve` will be reflected o
 ## Community
 This is a community driven project and accepts pull requests
 of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), Thanks to all the contributors. Contributions are appreciated 
+
+## Fixed Bugs
+### 2.1.0
+* `denver.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
+
+## What's New
+### 2.1.0
+* `denver.tools` package is now added as a standard interface to many modules (Many tools are still work in progress)
