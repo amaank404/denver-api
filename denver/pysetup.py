@@ -23,7 +23,7 @@ def find_package_data(package: str, package_name):
         d = ".".join(d)
         root.setdefault(package_name + '.' + d, [])
         root[package_name + '.' + d].append(os.path.basename(x))
-    return root
+    return {k.strip('.'): v for k, v in root.items()}
 
 
 def exclude_files(filespath: list, exts: list):

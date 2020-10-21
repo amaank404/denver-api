@@ -16,5 +16,10 @@ setuptools.setup(
         "Operating System :: OS Independent"
     ],
     python_requires=">=3.8",
-    install_requires=open("requirements.txt").read().split("\n")
+    install_requires=[
+        "setuptools",
+        "requests",
+        "playsound",
+        "pygame"
+    ]
 )
