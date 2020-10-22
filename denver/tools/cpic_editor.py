@@ -13,35 +13,29 @@ CELL_WIDTH = 12
 # Colors  (R,  G,  B)
 GRAY = (250, 250, 250)
 BLACK = (0, 0, 0)
-BLUE = (0, 0, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-YELLOW = (255, 255, 0)
-MAGENTA = (255, 0, 255)
-CYAN = (0, 255, 255)
-WHITE = (255, 255, 255)
-LIGHT_BLACK = (169, 169, 169)
-LIGHT_RED = (255, 204, 203)
-LIGHT_GREEN = (144, 238, 144)
-LIGHT_YELLOW = (255, 237, 131)
-LIGHT_BLUE = (47, 141, 255)
-LIGHT_MAGENTA = (255, 128, 255)
-LIGHT_CYAN = (224, 255, 255)
-LIGHT_WHITE = (248, 248, 255)
-
-# Style Escape Sequence
-BRIGHT = (250, 250, 250)
-NORMAL = (240, 240, 240)
-DIM = (230, 230, 230,)
+BLUE = (0, 0, 128)
+RED = (128, 0, 0)
+GREEN = (0, 128, 0)
+YELLOW = (128, 128, 0)
+MAGENTA = (128, 0, 128)
+CYAN = (0, 128, 128)
+WHITE = (192, 192, 192)
+LIGHT_BLACK = (128, 128, 128)
+LIGHT_RED = (255, 0, 0)
+LIGHT_GREEN = (0, 255, 0)
+LIGHT_YELLOW = (255, 255, 0)
+LIGHT_BLUE = (0, 0, 255)
+LIGHT_MAGENTA = (255, 0, 255)
 
 COLORS = denver.ctext.ColoredText.cloredTextEscapeSequenceFore
 COLORS_PYGAME_LIST = [BLACK, BLUE, RED, GREEN, YELLOW, MAGENTA, CYAN, WHITE,
                       LIGHT_BLACK, LIGHT_RED, LIGHT_GREEN, LIGHT_YELLOW, LIGHT_BLUE,
-                      LIGHT_MAGENTA, LIGHT_CYAN, LIGHT_WHITE]
-STYLE_PYGAME_LIST = [DIM, NORMAL, BRIGHT]
+                      LIGHT_MAGENTA]
 color_select_fore = 0
 color_select_back = 0
-style_select = 1
+
+ORIGINAL_WHITE = (255, 255, 255)
+DARKISH_GREY = (46, 46, 46)
 
 
 def generate_color_pallet(colors: list, selected: int):
@@ -56,9 +50,9 @@ def draw_grid(surface: pygame.Surface):
     height = surface.get_height()
     width = surface.get_width()
     for x in range(0, height, CELL_HEIGHT):
-        pygame.draw.line(surface, BLACK, (0, x), (width, x))  # Horizontal lines
+        pygame.draw.line(surface, ORIGINAL_WHITE, (0, x), (width, x))  # Horizontal lines
     for x in range(0, width, CELL_WIDTH):
-        pygame.draw.line(surface, BLACK, (x, 0), (x, height))
+        pygame.draw.line(surface, ORIGINAL_WHITE, (x, 0), (x, height))
 
 
 def transform_surface_coordinates_to_grid_coordinates(surface_coordinates):
@@ -79,15 +73,16 @@ def main(args):
     if file_name is None:
         raise ValueError("Please specify either one of the options")
     font = pygame.font.Font("freesansbold.ttf", 10)
-    fore_color_label = font.render("Fore Color", True, BLACK)
+    fore_color_label = font.render("Fore Color", True, ORIGINAL_WHITE)
     fore_color_label_rect: pygame.Rect = fore_color_label.get_rect()
     fore_color_label_rect.midtop = (600, 2)
 
-    back_color_label = font.render("Back Color", True, BLACK)
+    back_color_label = font.render("Back Color", True, ORIGINAL_WHITE)
     back_color_label_rect: pygame.Rect = back_color_label.get_rect()
     back_color_label_rect.midtop = (600, 38)
 
     display = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("CPic Editor")
     grid_surface = pygame.Surface((720, 480))
     clock = pygame.time.Clock()
 
@@ -97,8 +92,8 @@ def main(args):
     last_selected = "fore"
     while True:
         clock.tick(FPS)
-        display.fill(WHITE)
-        grid_surface.fill(GRAY)
+        display.fill(DARKISH_GREY)
+        grid_surface.fill(BLACK)
         draw_grid(grid_surface)
 
         color_pallet_fore = generate_color_pallet(COLORS_PYGAME_LIST, color_select_fore)
@@ -154,11 +149,6 @@ def main(args):
             color_select_fore += len(COLORS_PYGAME_LIST)
         if color_select_back < 0:
             color_select_back += len(COLORS_PYGAME_LIST)
-
-        if style_select >= len(STYLE_PYGAME_LIST):
-            style_select -= len(STYLE_PYGAME_LIST)
-        if style_select < 0:
-            style_select += len(STYLE_PYGAME_LIST)
 
 
 if __name__ == '__main__':
