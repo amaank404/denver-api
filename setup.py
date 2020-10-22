@@ -5,7 +5,7 @@ with open("README.md") as f:
 
 setuptools.setup(
     name="pydenver",
-    packages=["denver", "denver.tools", "denver._colorama"],
+    packages=setuptools.find_packages(include=["denver.*"])+setuptools.find_namespace_packages(include=["denver.*"]),
     version="2.1.0",
     author="xcodz",
     description="Denver API for python full-stack development",

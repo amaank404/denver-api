@@ -37,6 +37,10 @@ color_select_back = 0
 ORIGINAL_WHITE = (255, 255, 255)
 DARKISH_GREY = (46, 46, 46)
 
+# grid data
+grid = [[None for _ in range(40)] for _ in range(80)]
+grid_render_font = pygame.font.Font(f"{__file__}/../cpic_editor/consola.ttf", 18)
+
 
 def generate_color_pallet(colors: list, selected: int):
     surface = pygame.Surface((len(colors)*CELL_WIDTH, CELL_HEIGHT))
@@ -44,6 +48,14 @@ def generate_color_pallet(colors: list, selected: int):
         pygame.draw.rect(surface, colors[index], pygame.Rect((position, 0), (CELL_WIDTH, CELL_HEIGHT)))
     pygame.draw.rect(surface, BLACK, pygame.Rect(selected*CELL_WIDTH, 0, CELL_WIDTH, CELL_HEIGHT), 2)
     return surface
+
+
+def render_grid(surface, data: list) -> None:
+    for x in range(len(data)):
+        for y in range(len(data[0])):
+            if data[x][y] is not None:
+                color_fore, color_back, cell_text = data[x][y]
+                rect = pygame.Rect()  # TODO Make the grid rendering system work
 
 
 def draw_grid(surface: pygame.Surface):
@@ -66,7 +78,7 @@ def grid_to_surface_coordinates(grid_coordinates):
 def main(args):
     global color_select_fore
     global color_select_back
-    global style_select
+    global grid
     file_name = args.store
     if file_name is None:
         file_name = args.file
@@ -95,6 +107,7 @@ def main(args):
         display.fill(DARKISH_GREY)
         grid_surface.fill(BLACK)
         draw_grid(grid_surface)
+        render_grid(grid_surface, grid)
 
         color_pallet_fore = generate_color_pallet(COLORS_PYGAME_LIST, color_select_fore)
         color_pallet_fore_rect: pygame.Rect = color_pallet_fore.get_rect()
@@ -121,15 +134,11 @@ def main(args):
                         color_select_fore -= 1
                     elif last_selected == "back":
                         color_select_back -= 1
-                    elif last_selected == "style":
-                        style_select -= 1
                 if event.key == pygame.K_RIGHT:
                     if last_selected == "fore":
                         color_select_fore += 1
                     elif last_selected == "back":
                         color_select_back += 1
-                    elif last_selected == "style":
-                        style_select += 1
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = event.pos
                 if color_pallet_fore_rect.collidepoint(*mouse_position):
@@ -140,7 +149,15 @@ def main(args):
                     last_selected = "back"
                     mouse_x_no_offset = mouse_position[0]-color_pallet_back_rect.left
                     color_select_back = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset, 1))[0]
-
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_position = event.pos
+                if grid_surface_rect.collidepoint(*mouse_position):
+                    mouse_x_no_offset = mouse_position[0]-grid_surface_rect.left
+                    mouse_y_no_offset = mouse_position[1]-grid_surface_rect.top
+                    grid_coordinates = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset,
+                                                                                          mouse_y_no_offset))
+                    grid[grid_coordinates[0]][grid_coordinates[1]] = (color_select_fore, color_select_back, " ")
+                    breakpoint()
         if color_select_back >= len(COLORS_PYGAME_LIST):
             color_select_back -= len(COLORS_PYGAME_LIST)
         if color_select_fore >= len(COLORS_PYGAME_LIST):
