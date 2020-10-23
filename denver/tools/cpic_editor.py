@@ -3,6 +3,7 @@ import argparse
 import denver
 
 pygame.init()
+pygame.key.start_text_input()
 
 WIDTH = 720
 HEIGHT = 580
@@ -30,12 +31,13 @@ LIGHT_MAGENTA = (255, 0, 255)
 COLORS = denver.ctext.ColoredText.cloredTextEscapeSequenceFore
 COLORS_PYGAME_LIST = [BLACK, BLUE, RED, GREEN, YELLOW, MAGENTA, CYAN, WHITE,
                       LIGHT_BLACK, LIGHT_RED, LIGHT_GREEN, LIGHT_YELLOW, LIGHT_BLUE,
-                      LIGHT_MAGENTA]
+                      LIGHT_MAGENTA, (0, 0, 0, 0)]
 color_select_fore = 0
 color_select_back = 0
 
 ORIGINAL_WHITE = (255, 255, 255)
-DARKISH_GREY = (46, 46, 46)
+DARKISH_GREY = (56, 56, 56)
+DARKER_GREY = (40, 40, 40)
 
 # grid data
 grid = [[None for _ in range(40)] for _ in range(80)]
@@ -56,10 +58,13 @@ def render_grid(surface, data: list) -> None:
             if data[x][y] is not None:
                 color_fore, color_back, cell_text = data[x][y]
                 surface_coordinates = grid_to_surface_coordinates((x, y))
-                rect = pygame.Rect(surface_coordinates, (CELL_WIDTH, CELL_HEIGHT))
+                rect = pygame.Rect(surface_coordinates[0]+1, surface_coordinates[1]+1, CELL_WIDTH-1, CELL_HEIGHT-1)
                 pygame.draw.rect(surface, COLORS_PYGAME_LIST[color_back], rect)
                 cell_text_rendered = grid_render_font.render(cell_text, True, COLORS_PYGAME_LIST[color_fore])
-                surface.blit(cell_text_rendered, surface_coordinates)
+                cell_text_rendered_rect: pygame.Rect = cell_text_rendered.get_rect()
+                cell_text_rendered_rect.centerx = surface_coordinates[0] + CELL_WIDTH // 2
+                cell_text_rendered_rect.centery = surface_coordinates[1] + CELL_HEIGHT // 2
+                surface.blit(cell_text_rendered, cell_text_rendered_rect)
 
 
 def draw_grid(surface: pygame.Surface):
@@ -88,7 +93,7 @@ def main(args):
         file_name = args.file
     if file_name is None:
         raise ValueError("Please specify either one of the options")
-    font = pygame.font.Font("freesansbold.ttf", 10)
+    font = pygame.font.Font(f"{__file__}/../cpic_editor/consola.ttf", 13)
     fore_color_label = font.render("Fore Color", True, ORIGINAL_WHITE)
     fore_color_label_rect: pygame.Rect = fore_color_label.get_rect()
     fore_color_label_rect.midtop = (600, 2)
@@ -109,7 +114,7 @@ def main(args):
     while True:
         clock.tick(FPS)
         display.fill(DARKISH_GREY)
-        grid_surface.fill(BLACK)
+        grid_surface.fill(DARKER_GREY)
         draw_grid(grid_surface)
         render_grid(grid_surface, grid)
 
@@ -151,8 +156,16 @@ def main(args):
                         color_select_fore += 1
                     elif last_selected == "back":
                         color_select_back += 1
-                else:
-                    print(event)
+            if event.type == pygame.KEYDOWN:
+                if event.unicode != "":
+                    mouse_position = pygame.mouse.get_pos()
+                    if grid_surface_rect.collidepoint(*mouse_position):
+                        mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
+                        mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
+                        grid_coordinates = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset,
+                                                                                              mouse_y_no_offset))
+                        grid[grid_coordinates[0]][grid_coordinates[1]] = (color_select_fore, color_select_back,
+                                                                          event.unicode)
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = event.pos
                 if color_pallet_fore_rect.collidepoint(*mouse_position):
