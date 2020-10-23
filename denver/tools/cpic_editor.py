@@ -55,7 +55,11 @@ def render_grid(surface, data: list) -> None:
         for y in range(len(data[0])):
             if data[x][y] is not None:
                 color_fore, color_back, cell_text = data[x][y]
-                rect = pygame.Rect()  # TODO Make the grid rendering system work
+                surface_coordinates = grid_to_surface_coordinates((x, y))
+                rect = pygame.Rect(surface_coordinates, (CELL_WIDTH, CELL_HEIGHT))
+                pygame.draw.rect(surface, COLORS_PYGAME_LIST[color_back], rect)
+                cell_text_rendered = grid_render_font.render(cell_text, True, COLORS_PYGAME_LIST[color_fore])
+                surface.blit(cell_text_rendered, surface_coordinates)
 
 
 def draw_grid(surface: pygame.Surface):
@@ -124,6 +128,14 @@ def main(args):
         display.blit(back_color_label, back_color_label_rect)
         pygame.display.update()
 
+        mouse_position = pygame.mouse.get_pos()
+        if grid_surface_rect.collidepoint(*mouse_position) and pygame.mouse.get_pressed()[0]:
+            mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
+            mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
+            grid_coordinates = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset,
+                                                                                  mouse_y_no_offset))
+            grid[grid_coordinates[0]][grid_coordinates[1]] = (color_select_fore, color_select_back, " ")
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -139,6 +151,8 @@ def main(args):
                         color_select_fore += 1
                     elif last_selected == "back":
                         color_select_back += 1
+                else:
+                    print(event)
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = event.pos
                 if color_pallet_fore_rect.collidepoint(*mouse_position):
@@ -149,15 +163,7 @@ def main(args):
                     last_selected = "back"
                     mouse_x_no_offset = mouse_position[0]-color_pallet_back_rect.left
                     color_select_back = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset, 1))[0]
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_position = event.pos
-                if grid_surface_rect.collidepoint(*mouse_position):
-                    mouse_x_no_offset = mouse_position[0]-grid_surface_rect.left
-                    mouse_y_no_offset = mouse_position[1]-grid_surface_rect.top
-                    grid_coordinates = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset,
-                                                                                          mouse_y_no_offset))
-                    grid[grid_coordinates[0]][grid_coordinates[1]] = (color_select_fore, color_select_back, " ")
-                    breakpoint()
+
         if color_select_back >= len(COLORS_PYGAME_LIST):
             color_select_back -= len(COLORS_PYGAME_LIST)
         if color_select_fore >= len(COLORS_PYGAME_LIST):
