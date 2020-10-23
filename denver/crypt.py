@@ -12,7 +12,7 @@ __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
 import math
-
+import cryptography.fernet
 
 class crypto_math:
     def gcd(a, b):
@@ -308,3 +308,13 @@ A '/' MEANS PARTITION BETWEEN WORDS"""
 
             def decrypt(m: str, k: str):
                 return cVig.translateMessage(k, m, 'd')
+
+
+def encrypt(data: bytes, key):
+    machine = cryptography.fernet.Fernet(key)
+    return machine.encrypt(data)
+
+
+def decrypt(data: bytes, key):
+    machine = cryptography.fernet.Fernet(key)
+    return machine.decrypt(data)

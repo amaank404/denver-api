@@ -2,3 +2,5 @@ setuptools
 requests
 playsound
 pygame
+getmac
+cryptography

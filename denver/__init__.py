@@ -4,10 +4,11 @@ with the modules provided within it.
 """
 
 __author__ = 'Xcodz'
-__version__ = '2020.6.4'
+__version__ = '2020.10.23'
 
 
-from . import (bdtp,
+from . import (bcli,
+               bdtp,
                bdtpfserv,
                bitmap,
                crypt,
@@ -16,6 +17,7 @@ from . import (bdtp,
                datp,
                get,
                graphics3d,
+               graphics2d,
                handypy,
                log,
                pysetup,
