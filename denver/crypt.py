@@ -13,6 +13,8 @@ __author__ = "Xcodz"
 
 import math
 import cryptography.fernet
+import base64
+
 
 class crypto_math:
     def gcd(a, b):
@@ -310,11 +312,14 @@ A '/' MEANS PARTITION BETWEEN WORDS"""
                 return cVig.translateMessage(k, m, 'd')
 
 
-def encrypt(data: bytes, key):
-    machine = cryptography.fernet.Fernet(key)
+def encrypt(data: bytes, key: bytes) -> bytes:
+    machine = cryptography.fernet.Fernet(base64.urlsafe_b64encode(key))
     return machine.encrypt(data)
 
 
-def decrypt(data: bytes, key):
-    machine = cryptography.fernet.Fernet(key)
-    return machine.decrypt(data)
+def decrypt(data: bytes, key: bytes) -> bytes:
+    machine = cryptography.fernet.Fernet(base64.urlsafe_b64encode(key))
+    try:
+        return machine.decrypt(data)
+    except cryptography.fernet.InvalidToken:
+        return b''
