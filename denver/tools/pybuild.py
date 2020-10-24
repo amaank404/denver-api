@@ -67,7 +67,8 @@ BUILD_TYPES = ["setup sdist",
 # pios requires a app.json and a build.json file inside the root directory of project
 
 # pyinstaller_exe
-# to configure pyinstaller you will need to create a pyinstaller.txt file under root directory of project
+# to configure pyinstaller you will need to create a pyinstaller.txt file under root directory of project and there you
+# command-line options
 
 # setup can be configured by the following variables
 # you can specify you variable by following syntax
@@ -78,6 +79,12 @@ SETUP_description = SHORT_DESCRIPTION
 SETUP_long_description = open("README.md").read()
 SETUP_long_description_content_type = "text/markdown"
 
+
+# This area contains automated code modifying at build time
+fix_pep8_errors_if_found = True
+add_shebang_lines = True
+include_denver_api_as_a_dependency = False
+byte_compile_before_building = True
 """
 
 

@@ -1,0 +1,11 @@
+{
+    "configuration": "app.json",
+    "data_directories": [],
+    "data_files": [],
+    "icon": "icon.cpg",
+    "installer": "d:\\xcodz\\denver\\denver\\pios_sdk\\_installer.py",
+    "main_package": "example_app",
+    "modules": [],
+    "packages": [],
+    "requirements": []
+}
