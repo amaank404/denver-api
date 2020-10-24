@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: pydenver-pios-sdk
+Version: 0.1
+Summary: Denver API for python full-stack development
+Home-page: UNKNOWN
+Author: xcodz
+License: UNKNOWN
+Description: # Denver PiOS SDK
+        
+        This is an extension to Denver for development of applications using PiOS SDK. This is not installed by default.
+        So, PiOS Developers have to install it manually.
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown

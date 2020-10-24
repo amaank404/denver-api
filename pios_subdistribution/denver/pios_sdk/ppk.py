@@ -24,6 +24,7 @@ class PPK:
         self.main_package = None
         self.icon = None
         self.requirement = []
+        self.sdk_packages = []
 
     def add_directory(self, directory):
         self.data_directories.append(directory)
@@ -38,6 +39,9 @@ class PPK:
 
     def add_package(self, package):
         self.packages.append(package)
+
+    def add_sdk_package(self, name):
+        self.sdk_packages.append(name)
 
     def add_file(self, file):
         self.data_files.append(file)
@@ -73,13 +77,15 @@ class PPK:
         shutil.copyfile(self.icon, "pios_build/icon.cpg")
         for x in self.packages:
             shutil.copytree(x, f"pios_build/packages/{os.path.basename(x)}")
+        for x in self.sdk_packages:
+            shutil.copytree(f"{__file__}/library/{x}", f"pios_build/packages/{os.path.basename(x)}")
         for x in self.py_modules:
             shutil.copyfile(x, f"pios_build/packages/{os.path.basename(x)}")
         shutil.copytree(self.main_package, "pios_build/main")
 
     @staticmethod
     def package():
-        if not "dist" in os.listdir():
+        if "dist" not in os.listdir():
             os.mkdir("dist")
         shutil.make_archive("pios_build/ppk", "zip", "pios_build")
         shutil.copyfile("pios_build/ppk.zip", "dist/app-main.ppk")
@@ -101,6 +107,8 @@ class PPK:
             self.add_package(x)
         for x in config["modules"]:
             self.add_module(x)
+        for x in config["sdk_packages"]:
+            self.add_sdk_package(x)
 
 
 def main(arguments):
@@ -109,6 +117,8 @@ def main(arguments):
     setup_modifier = options.add_argument_group()
     setup_modifier.add_argument("-p", "--package", help="add a python package to build list", action="append", 
                                 default=[])
+    setup_modifier.add_argument("-P", "--sdk-package", help="add a local copy of sdk library to packages",
+                                action="append", default=[])
     setup_modifier.add_argument("-m", "--module", help="add a python module to build list", action="append", default=[])
     setup_modifier.add_argument("-r", "--pypi-requirement", help="add a python pypi package to build list",
                                 action="append", default=[])
@@ -147,7 +157,8 @@ def main(arguments):
                   "data_files": args.add_file,
                   "data_directories": args.add_directory,
                   "packages": args.package,
-                  "modules": args.module}
+                  "modules": args.module,
+                  "sdk_packages": args.sdk_package}
         with open("build.json", "w") as file:
             json.dump(config, file, sort_keys=True, indent=4)
 

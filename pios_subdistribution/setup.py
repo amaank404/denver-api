@@ -5,10 +5,10 @@ with open("README.md") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="pydenver",
+    name="pydenver_pios_sdk",
     packages=setuptools.find_packages(include=["denver.*"])+setuptools.find_namespace_packages(include=["denver.*"]),
     package_data=pysetup.find_package_data("denver", "denver"),
-    version="2.1.0",
+    version="0.1",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -20,11 +20,7 @@ setuptools.setup(
     python_requires=">=3.8",
     install_requires=[
         "setuptools",
-        "requests",
-        "playsound",
-        "pygame",
-        "getmac",
-        "cryptography"
+        "pydenver"
     ],
     zip_safe=False
 )

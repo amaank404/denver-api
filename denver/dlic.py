@@ -8,8 +8,18 @@ from hashlib import sha256
 from base64 import urlsafe_b64encode as encodebytes
 
 
-def generate_license(name, date_of_expiry, device_binding = None, encryption_key = None):
-    pass
+def generate_license(name, date_of_expiry=None, device_binding=None, encryption_key=None):
+    if device_binding is not None:
+        device_binding = [hex() for x in device_binding]
+    licence_file = {
+        "name": name,
+        "device_binding": device_binding,
+        "date_of_expiry": date_of_expiry
+    }
+
+
+def generate_date_of_expiry(year, month=1, date=1, /):
+    return ''.join(year, month, date, )
 
 
 def generate_device_binding(device_information=None):
