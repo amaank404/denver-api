@@ -1,5 +1,5 @@
 import setuptools
-from denver import pysetup
+# from denver import pysetup
 
 with open("README.md") as f:
     long_description = f.read()
@@ -7,8 +7,8 @@ with open("README.md") as f:
 setuptools.setup(
     name="pydenver_pios_sdk",
     packages=setuptools.find_packages(include=["denver.*"])+setuptools.find_namespace_packages(include=["denver.*"]),
-    package_data=pysetup.find_package_data("denver", "denver"),
-    version="0.1",
+    # package_data=pysetup.find_package_data("denver", "denver"),
+    version="0.2",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -20,7 +20,7 @@ setuptools.setup(
     python_requires=">=3.8",
     install_requires=[
         "setuptools",
-        "pydenver"
+        # "pydenver"
     ],
     zip_safe=False
 )

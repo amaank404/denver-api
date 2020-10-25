@@ -5,7 +5,6 @@ pybuild allows users to generate and package projects using a single python writ
 import os
 import shutil
 import argparse
-from denver import dlic
 import configparser
 
 

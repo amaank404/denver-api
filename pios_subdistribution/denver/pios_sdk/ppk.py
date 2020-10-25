@@ -21,7 +21,7 @@ class PPK:
         self.py_modules = []
         self.data_directories = []
         self.data_files = []
-        self.main_package = None
+        self.main_package = "main"
         self.icon = None
         self.requirement = []
         self.sdk_packages = []
