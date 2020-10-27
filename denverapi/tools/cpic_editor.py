@@ -41,7 +41,7 @@ DARKER_GREY = (40, 40, 40)
 
 # grid data
 grid = [[None for _ in range(40)] for _ in range(80)]
-grid_render_font = pygame.font.Font(f"{__file__}/../cpic_editor/consola.ttf", 18)
+grid_render_font = pygame.font.Font(f"{__file__}/../_cpic_editor/consola.ttf", 18)
 
 
 def generate_color_pallet(colors: list, selected: int):
@@ -93,7 +93,7 @@ def main(args):
         file_name = args.file
     if file_name is None:
         raise ValueError("Please specify either one of the options")
-    font = pygame.font.Font(f"{__file__}/../cpic_editor/consola.ttf", 13)
+    font = pygame.font.Font(f"{__file__}/../_cpic_editor/consola.ttf", 13)
     fore_color_label = font.render("Fore Color", True, ORIGINAL_WHITE)
     fore_color_label_rect: pygame.Rect = fore_color_label.get_rect()
     fore_color_label_rect.midtop = (600, 2)

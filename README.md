@@ -32,11 +32,11 @@ print("Hello", "World in simple", "environment")
 ## Installation
 The package can be installed by
 ```commandline
-pip install denverapi
+pip install denver-api
 ```
 and upgraded by
 ```commandline
-pip install --upgrade denverapi
+pip install --upgrade denver-api
 ```
 
 ## Documentation

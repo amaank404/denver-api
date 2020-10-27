@@ -2,11 +2,11 @@
 
 The package can be installed by
 ```commandline
-pip install pydenver
+pip install denver-api
 ```
 and upgraded by
 ```commandline
-pip install --upgrade pydenver
+pip install --upgrade denver-api
 ```
 
 and can be used by

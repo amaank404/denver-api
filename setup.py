@@ -5,10 +5,10 @@ with open("README.md") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="denverapi",
-    packages=setuptools.find_packages(),
+    name="denver_api",
+    packages=setuptools.find_packages()+setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
     package_data=pysetup.find_package_data("denverapi", "denverapi"),
-    version="2.2.1",
+    version="2.2.2",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -23,12 +23,7 @@ setuptools.setup(
         "requests",
         "playsound",
         "pygame",
+        "cryptography"
     ],
-    entry_points={
-        "console_scripts": [
-            "denverapi-cpic-edit = denverapi.tools.cpic_editor",
-            "denverapi-bdtpserver = denverapi.tools.bdtpserver",
-        ]
-    },
     zip_safe=False
 )
