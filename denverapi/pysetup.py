@@ -11,7 +11,9 @@ __author__ = "Xcodz"
 import os
 
 
-def find_package_data(package: str, package_name):
+def find_package_data(package: str, package_name = None):
+    if package_name is None:
+        package_name=package
     files = []
     for r, d, f in os.walk(package):
         files.extend([os.path.join(r, x)[len(package) + 1:] for x in f])
