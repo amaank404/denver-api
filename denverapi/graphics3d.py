@@ -26,7 +26,10 @@ def model_rotate(model, axis, angle) -> list:
     d = copy.deepcopy(model)
     for x in range(len(d)):
         p1, p2 = d[x]
-        n = (rotate(p1[0], p1[1], p1[2], axis, angle), rotate(p2[0], p2[1], p2[2], axis, angle))
+        n = (
+            rotate(p1[0], p1[1], p1[2], axis, angle),
+            rotate(p2[0], p2[1], p2[2], axis, angle),
+        )
         d[x] = n
     return d
 
@@ -38,7 +41,10 @@ def model_flatten(model, scale, distance) -> list:
     d = copy.deepcopy(model)
     for x in range(len(d)):
         p1, p2 = d[x]
-        n = (flatten(p1[0], p1[1], p1[2], scale, distance), flatten(p2[0], p2[1], p2[2], scale, distance))
+        n = (
+            flatten(p1[0], p1[1], p1[2], scale, distance),
+            flatten(p2[0], p2[1], p2[2], scale, distance),
+        )
         d[x] = n
     return d
 
@@ -60,20 +66,20 @@ def rotate(x: int, y: int, z: int, axis: str, angle: int):
     if type(z) is not int:
         raise TypeError("z must be int")
     angle = angle / 450 * 180 / math.pi
-    if axis == 'z':
+    if axis == "z":
         newX = x * math.cos(angle) - y * math.sin(angle)
         newY = y * math.cos(angle) + x * math.sin(angle)
         newZ = z
-    elif axis == 'x':
+    elif axis == "x":
         newY = y * math.cos(angle) - z * math.sin(angle)
         newZ = z * math.cos(angle) + y * math.sin(angle)
         newX = x
-    elif axis == 'y':
+    elif axis == "y":
         newX = x * math.cos(angle) - z * math.sin(angle)
         newZ = z * math.cos(angle) + x * math.sin(angle)
         newY = y
     else:
-        raise ValueError('not a valid axis')
+        raise ValueError("not a valid axis")
     nx = newX
     ny = newY
     nz = newZ
@@ -82,35 +88,37 @@ def rotate(x: int, y: int, z: int, axis: str, angle: int):
 
 class ModelMake:
     def cube(x, y, z, s=1):
-        mcube = [((x, y, z), (x + s, y, z)),
-                 ((x, y, z), (x, y + s, z)),
-                 ((x, y, z), (x, y, z + s)),
-                 ((x, y, z + s), (x + s, y, z + s)),
-                 ((x, y, z + s), (x, y + s, z + s)),
-                 ((x + s, y, z + s), (x + s, y, z)),
-                 ((x + s, y, z + s), (x + s, y + s, z + s)),
-                 ((x + s, y, z), (x + s, y + s, z)),
-                 ((x, y + s, z + s), (x + s, y + s, z + s)),
-                 ((x + s, y + s, z + s), (x + s, y + s, z)),
-                 ((x, y + s, z + s), (x, y + s, z)),
-                 ((x, y + s, z), (x + s, y + s, z))]
+        mcube = [
+            ((x, y, z), (x + s, y, z)),
+            ((x, y, z), (x, y + s, z)),
+            ((x, y, z), (x, y, z + s)),
+            ((x, y, z + s), (x + s, y, z + s)),
+            ((x, y, z + s), (x, y + s, z + s)),
+            ((x + s, y, z + s), (x + s, y, z)),
+            ((x + s, y, z + s), (x + s, y + s, z + s)),
+            ((x + s, y, z), (x + s, y + s, z)),
+            ((x, y + s, z + s), (x + s, y + s, z + s)),
+            ((x + s, y + s, z + s), (x + s, y + s, z)),
+            ((x, y + s, z + s), (x, y + s, z)),
+            ((x, y + s, z), (x + s, y + s, z)),
+        ]
         return mcube
 
 
 def model_dump_to_file(model_file, model):
-    with open(model_file, 'w') as f:
+    with open(model_file, "w") as f:
         for segment in model:
             coord1, coord2 = segment
-            f.write( "{} {} {}:{} {} {}\n".format(*coord1, *coord2))
+            f.write("{} {} {}:{} {} {}\n".format(*coord1, *coord2))
 
 
 def model_load_from_file(model_file):
     f = open(model_file).readlines()
     model = []
     for x in f:
-        p1s, p2s = x.split(':', 1)
-        p11, p12, p13 = p1s.split(' ', 2)
-        p21, p22, p23 = p2s.split(' ', 2)
+        p1s, p2s = x.split(":", 1)
+        p11, p12, p13 = p1s.split(" ", 2)
+        p21, p22, p23 = p2s.split(" ", 2)
         p11, p12, p13 = float(p11), float(p12), float(p13)
         p21, p22, p23 = float(p21), float(p22), float(p23)
 
@@ -121,6 +129,7 @@ def model_load_from_file(model_file):
 
 def model_viewer(model):
     import pygame
+
     pygame.init()
     fpsclock = pygame.time.Clock()
     disp = pygame.display.set_mode((600, 400))
@@ -187,16 +196,18 @@ def model_viewer(model):
         if distance == 0:
             distance = 1
         for x, y in cube2:
-            pygame.draw.aaline(disp, (0, 0, 0), (x[0] + 300, x[1] + 200), (y[0] + 300, y[1] + 200))
+            pygame.draw.aaline(
+                disp, (0, 0, 0), (x[0] + 300, x[1] + 200), (y[0] + 300, y[1] + 200)
+            )
 
         pygame.display.update()
         fpsclock.tick(10)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser("graphics3d pygame veiw")
     parser.add_argument("model", metavar="PATH_TO_MODEL", help="PATH TO MODEL")
     args = parser.parse_args()
     model_viewer(args.model)
-

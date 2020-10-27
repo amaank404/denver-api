@@ -10,9 +10,9 @@ def tool(path):
     return p
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     directory = os.path.dirname(__file__)
     cli.info("Available Tools")
     for x in os.listdir(directory):
         if not x.startswith("_") and x.endswith(".py"):
-            cli.info("\t", tool(x), sep='')
+            cli.info("\t", tool(x), sep="")

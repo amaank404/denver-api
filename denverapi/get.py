@@ -10,7 +10,7 @@ __version__ = "2020.6.4"
 
 def clear():
     if os.name == "nt":
-        os.system('cls')
+        os.system("cls")
     else:
         os.system("clear")
 
@@ -26,11 +26,11 @@ def print_tree(path):
             fill.append(x)
     dirl.sort()
     fill.sort()
-    tp = f'[{path}]\n'
+    tp = f"[{path}]\n"
     for x in dirl:
-        tp += '\n# '+x
+        tp += "\n# " + x
     for x in fill:
-        tp += '\n@ '+x
+        tp += "\n@ " + x
     print(tp)
 
 
@@ -61,9 +61,9 @@ def is_ipv4(ip: str):
     return True
 
 
-def get_ipv4_port(default = ('127.0.0.1', '8000')):
-    ipv4 = input(f'IPV4 [{default[0]}] >')
-    port = input(f'Port [{default[1]}] >')
+def get_ipv4_port(default=("127.0.0.1", "8000")):
+    ipv4 = input(f"IPV4 [{default[0]}] >")
+    port = input(f"Port [{default[1]}] >")
     addr = []
     if is_ipv4(ipv4):
         addr.append(ipv4)
@@ -78,5 +78,5 @@ def get_ipv4_port(default = ('127.0.0.1', '8000')):
     return tuple(addr)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(get_ipv4_port())

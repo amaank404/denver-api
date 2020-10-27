@@ -11,21 +11,21 @@ __author__ = "Xcodz"
 import os
 
 
-def find_package_data(package: str, package_name = None):
+def find_package_data(package: str, package_name=None):
     if package_name is None:
-        package_name=package
+        package_name = package
     files = []
     for r, d, f in os.walk(package):
-        files.extend([os.path.join(r, x)[len(package) + 1:] for x in f])
-    exclude_files(files, ['.py'])
+        files.extend([os.path.join(r, x)[len(package) + 1 :] for x in f])
+    exclude_files(files, [".py"])
     root = {}
     for x in files:
         d = x.split(os.sep)
         d.pop(-1)
         d = ".".join(d)
-        root.setdefault(package_name + '.' + d, [])
-        root[package_name + '.' + d].append(os.path.basename(x))
-    return {k.strip('.'): v for k, v in root.items()}
+        root.setdefault(package_name + "." + d, [])
+        root[package_name + "." + d].append(os.path.basename(x))
+    return {k.strip("."): v for k, v in root.items()}
 
 
 def exclude_files(filespath: list, exts: list):
@@ -45,7 +45,7 @@ def concatenate_dictionaries(d1: dict, d2: dict, *d):
     return base
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from pprint import pprint
 
     os.chdir("..")

@@ -11,17 +11,17 @@ __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
 pack_format = {
-    "i8": 'b',
-    "iu8": 'B',
-    "i16": 'h',
+    "i8": "b",
+    "iu8": "B",
+    "i16": "h",
     "iu16": "H",
-    "i32": 'i',
+    "i32": "i",
     "iu32": "I",
-    "i64": 'l',
+    "i64": "l",
     "iu64": "L",
-    "i128": 'q',
+    "i128": "q",
     "iu128": "Q",
-    "f16": 'e',
+    "f16": "e",
     "f32": "f",
     "f64": "d",
     "c": "c",
@@ -40,7 +40,7 @@ def pack(fmt, *objs):
     return struct.pack(make_struct_format(fmt), *objs)
 
 
-def unpack(fmt, bytstr:bytes):
+def unpack(fmt, bytstr: bytes):
     return struct.unpack(make_struct_format(fmt), bytstr)
 
 
@@ -60,5 +60,5 @@ def main():
     print(fmt, obj, fmts, pf, d, sep="\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

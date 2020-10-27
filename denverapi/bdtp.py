@@ -47,8 +47,8 @@ class _BaseReceiver(abc.ABC):
 
 class DataSenderHost(_BaseSender):
     def __init__(self):
-        self.data: bytes = b''
-        self.address: tuple = ('', 0)
+        self.data: bytes = b""
+        self.address: tuple = ("", 0)
         self.data_send: int = 0
         self.buffer_size: int = default_buffer_size
         self.task = False
@@ -67,11 +67,11 @@ class DataSenderHost(_BaseSender):
         Mlog.debug("compressed data")
 
         for line in range(0, len(edata), self.buffer_size):
-            lts = edata[line:line + self.buffer_size]
+            lts = edata[line : line + self.buffer_size]
             connection.sendall(lts)
             self.data_send += self.buffer_size
 
-        connection.send(b'')
+        connection.send(b"")
         if connected_socket is None:
             connection.close()
             s.close()
@@ -80,8 +80,8 @@ class DataSenderHost(_BaseSender):
 
 class DataSenderPort(_BaseSender):
     def __init__(self):
-        self.data: bytes = b''
-        self.address: tuple = ('', 0)
+        self.data: bytes = b""
+        self.address: tuple = ("", 0)
         self.data_send: int = 0
         self.buffer_size: int = default_buffer_size
         self.task = False
@@ -95,11 +95,11 @@ class DataSenderPort(_BaseSender):
         else:
             s = connected_socket
         for x in range(0, len(edata), self.buffer_size):
-            lts = edata[x:x + self.buffer_size]
+            lts = edata[x : x + self.buffer_size]
             s.sendall(lts)
             self.data_send += self.buffer_size
 
-        s.send(b'')
+        s.send(b"")
         if connected_socket is None:
             s.close()
         self.task = True
@@ -107,10 +107,10 @@ class DataSenderPort(_BaseSender):
 
 class DataReceiverHost(_BaseReceiver):
     def __init__(self):
-        self.address: tuple = ('', 0)
+        self.address: tuple = ("", 0)
         self.data_recv: int = 0
         self.buffer_size: int = default_buffer_size
-        self.data = b''
+        self.data = b""
         self.task = False
 
     def recv(self, connected_socket: socket.socket = None):
@@ -121,9 +121,9 @@ class DataReceiverHost(_BaseReceiver):
             connection, _ = s.accept()
         else:
             connection = connected_socket
-        recv_bytes = b'\0'
+        recv_bytes = b"\0"
 
-        while recv_bytes != b'':
+        while recv_bytes != b"":
             recv_bytes = connection.recv(self.buffer_size)
             self.data += recv_bytes
             self.data_recv += self.buffer_size
@@ -139,10 +139,10 @@ class DataReceiverHost(_BaseReceiver):
 
 class DataReceiverPort(_BaseReceiver):
     def __init__(self):
-        self.address: tuple = ('', 0)
+        self.address: tuple = ("", 0)
         self.data_recv: int = 0
         self.buffer_size: int = default_buffer_size
-        self.data = b''
+        self.data = b""
         self.task = False
 
     def recv(self, connected_socket: socket.socket = None):
@@ -152,9 +152,9 @@ class DataReceiverPort(_BaseReceiver):
             connection = s
         else:
             connection = connected_socket
-        recv_bytes = b'\0'
+        recv_bytes = b"\0"
 
-        while recv_bytes != b'':
+        while recv_bytes != b"":
             recv_bytes = connection.recv(self.buffer_size)
             self.data += recv_bytes
             self.data_recv += self.buffer_size
@@ -213,7 +213,7 @@ def attach_speed_logger(data_object):
         while not d.task:
             time.sleep(0.01)
             new = d.data_send
-            spl.append(new-old)
+            spl.append(new - old)
             old = new
 
     def spr(spl, d: _BaseReceiver):
@@ -223,10 +223,14 @@ def attach_speed_logger(data_object):
         while not d.task:
             time.sleep(0.01)
             new = d.data_recv
-            spl.append(new-old)
+            spl.append(new - old)
             old = new
 
-    mt = threading.Thread(target=spr if isinstance(data_object, _BaseReceiver) else sps, args=(spl, data_object), daemon=True)
+    mt = threading.Thread(
+        target=spr if isinstance(data_object, _BaseReceiver) else sps,
+        args=(spl, data_object),
+        daemon=True,
+    )
     mt.start()
     return spl
 
@@ -243,23 +247,27 @@ def average_speed_log(spl: list):
         spl.pop(0)
     while spl[-1] == 0:
         spl.pop(-1)
-    return sum(spl)/len(spl)
+    return sum(spl) / len(spl)
 
 
 def main():
     print("Reading Data")
-    datats = open(input("File > "), 'r+b').read()
+    datats = open(input("File > "), "r+b").read()
     print("Read Data")
     print("Making Classes")
-    sc = new_send_data_port(datats, ('127.0.0.1', 4623))
-    rc = new_receive_data_host(('127.0.0.1', 4623))
+    sc = new_send_data_port(datats, ("127.0.0.1", 4623))
+    rc = new_receive_data_host(("127.0.0.1", 4623))
     spl = attach_speed_logger(rc)
     from threading import Thread
+
     Thread(target=launch, args=(sc,)).start()
     rc.recv()
     print(len(spl))
-    print(f"Data Send:\n\tlen: {len(sc.data)}\nData Received:\n\tlen: {len(rc.data)}\n\tis_equal: {rc.data == sc.data}")
+    print(
+        f"Data Send:\n\tlen: {len(sc.data)}\nData Received:\n\tlen: {len(rc.data)}\n\tis_equal: {rc.data == sc.data}"
+    )
     print(f"Average Speed: {average_speed_log(spl)} bytes per second")
+
 
 if __name__ == "__main__":
     main()

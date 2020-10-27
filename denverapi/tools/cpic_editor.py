@@ -29,9 +29,23 @@ LIGHT_BLUE = (0, 0, 255)
 LIGHT_MAGENTA = (255, 0, 255)
 
 COLORS = denverapi.ctext.ColoredText.cloredTextEscapeSequenceFore
-COLORS_PYGAME_LIST = [BLACK, BLUE, RED, GREEN, YELLOW, MAGENTA, CYAN, WHITE,
-                      LIGHT_BLACK, LIGHT_RED, LIGHT_GREEN, LIGHT_YELLOW, LIGHT_BLUE,
-                      LIGHT_MAGENTA, (0, 0, 0, 0)]
+COLORS_PYGAME_LIST = [
+    BLACK,
+    BLUE,
+    RED,
+    GREEN,
+    YELLOW,
+    MAGENTA,
+    CYAN,
+    WHITE,
+    LIGHT_BLACK,
+    LIGHT_RED,
+    LIGHT_GREEN,
+    LIGHT_YELLOW,
+    LIGHT_BLUE,
+    LIGHT_MAGENTA,
+    (0, 0, 0, 0),
+]
 color_select_fore = 0
 color_select_back = 0
 
@@ -45,10 +59,21 @@ grid_render_font = pygame.font.Font(f"{__file__}/../_cpic_editor/consola.ttf", 1
 
 
 def generate_color_pallet(colors: list, selected: int):
-    surface = pygame.Surface((len(colors)*CELL_WIDTH, CELL_HEIGHT))
-    for position, index in zip(range(0, len(colors)*CELL_WIDTH, CELL_WIDTH), range(len(colors))):
-        pygame.draw.rect(surface, colors[index], pygame.Rect((position, 0), (CELL_WIDTH, CELL_HEIGHT)))
-    pygame.draw.rect(surface, BLACK, pygame.Rect(selected*CELL_WIDTH, 0, CELL_WIDTH, CELL_HEIGHT), 2)
+    surface = pygame.Surface((len(colors) * CELL_WIDTH, CELL_HEIGHT))
+    for position, index in zip(
+        range(0, len(colors) * CELL_WIDTH, CELL_WIDTH), range(len(colors))
+    ):
+        pygame.draw.rect(
+            surface,
+            colors[index],
+            pygame.Rect((position, 0), (CELL_WIDTH, CELL_HEIGHT)),
+        )
+    pygame.draw.rect(
+        surface,
+        BLACK,
+        pygame.Rect(selected * CELL_WIDTH, 0, CELL_WIDTH, CELL_HEIGHT),
+        2,
+    )
     return surface
 
 
@@ -58,12 +83,23 @@ def render_grid(surface, data: list) -> None:
             if data[x][y] is not None:
                 color_fore, color_back, cell_text = data[x][y]
                 surface_coordinates = grid_to_surface_coordinates((x, y))
-                rect = pygame.Rect(surface_coordinates[0]+1, surface_coordinates[1]+1, CELL_WIDTH-1, CELL_HEIGHT-1)
+                rect = pygame.Rect(
+                    surface_coordinates[0] + 1,
+                    surface_coordinates[1] + 1,
+                    CELL_WIDTH - 1,
+                    CELL_HEIGHT - 1,
+                )
                 pygame.draw.rect(surface, COLORS_PYGAME_LIST[color_back], rect)
-                cell_text_rendered = grid_render_font.render(cell_text, True, COLORS_PYGAME_LIST[color_fore])
+                cell_text_rendered = grid_render_font.render(
+                    cell_text, True, COLORS_PYGAME_LIST[color_fore]
+                )
                 cell_text_rendered_rect: pygame.Rect = cell_text_rendered.get_rect()
-                cell_text_rendered_rect.centerx = surface_coordinates[0] + CELL_WIDTH // 2
-                cell_text_rendered_rect.centery = surface_coordinates[1] + CELL_HEIGHT // 2
+                cell_text_rendered_rect.centerx = (
+                    surface_coordinates[0] + CELL_WIDTH // 2
+                )
+                cell_text_rendered_rect.centery = (
+                    surface_coordinates[1] + CELL_HEIGHT // 2
+                )
                 surface.blit(cell_text_rendered, cell_text_rendered_rect)
 
 
@@ -71,7 +107,9 @@ def draw_grid(surface: pygame.Surface):
     height = surface.get_height()
     width = surface.get_width()
     for x in range(0, height, CELL_HEIGHT):
-        pygame.draw.line(surface, ORIGINAL_WHITE, (0, x), (width, x))  # Horizontal lines
+        pygame.draw.line(
+            surface, ORIGINAL_WHITE, (0, x), (width, x)
+        )  # Horizontal lines
     for x in range(0, width, CELL_WIDTH):
         pygame.draw.line(surface, ORIGINAL_WHITE, (x, 0), (x, height))
 
@@ -134,12 +172,20 @@ def main(args):
         pygame.display.update()
 
         mouse_position = pygame.mouse.get_pos()
-        if grid_surface_rect.collidepoint(*mouse_position) and pygame.mouse.get_pressed()[0]:
+        if (
+            grid_surface_rect.collidepoint(*mouse_position)
+            and pygame.mouse.get_pressed()[0]
+        ):
             mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
             mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
-            grid_coordinates = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset,
-                                                                                  mouse_y_no_offset))
-            grid[grid_coordinates[0]][grid_coordinates[1]] = (color_select_fore, color_select_back, " ")
+            grid_coordinates = transform_surface_coordinates_to_grid_coordinates(
+                (mouse_x_no_offset, mouse_y_no_offset)
+            )
+            grid[grid_coordinates[0]][grid_coordinates[1]] = (
+                color_select_fore,
+                color_select_back,
+                " ",
+            )
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -162,20 +208,34 @@ def main(args):
                     if grid_surface_rect.collidepoint(*mouse_position):
                         mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
                         mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
-                        grid_coordinates = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset,
-                                                                                              mouse_y_no_offset))
-                        grid[grid_coordinates[0]][grid_coordinates[1]] = (color_select_fore, color_select_back,
-                                                                          event.unicode)
+                        grid_coordinates = (
+                            transform_surface_coordinates_to_grid_coordinates(
+                                (mouse_x_no_offset, mouse_y_no_offset)
+                            )
+                        )
+                        grid[grid_coordinates[0]][grid_coordinates[1]] = (
+                            color_select_fore,
+                            color_select_back,
+                            event.unicode,
+                        )
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_position = event.pos
                 if color_pallet_fore_rect.collidepoint(*mouse_position):
                     last_selected = "fore"
-                    mouse_x_no_offset = mouse_position[0]-color_pallet_fore_rect.left
-                    color_select_fore = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset, 1))[0]
+                    mouse_x_no_offset = mouse_position[0] - color_pallet_fore_rect.left
+                    color_select_fore = (
+                        transform_surface_coordinates_to_grid_coordinates(
+                            (mouse_x_no_offset, 1)
+                        )[0]
+                    )
                 elif color_pallet_back_rect.collidepoint(*mouse_position):
                     last_selected = "back"
-                    mouse_x_no_offset = mouse_position[0]-color_pallet_back_rect.left
-                    color_select_back = transform_surface_coordinates_to_grid_coordinates((mouse_x_no_offset, 1))[0]
+                    mouse_x_no_offset = mouse_position[0] - color_pallet_back_rect.left
+                    color_select_back = (
+                        transform_surface_coordinates_to_grid_coordinates(
+                            (mouse_x_no_offset, 1)
+                        )[0]
+                    )
 
         if color_select_back >= len(COLORS_PYGAME_LIST):
             color_select_back -= len(COLORS_PYGAME_LIST)
@@ -187,10 +247,16 @@ def main(args):
             color_select_back += len(COLORS_PYGAME_LIST)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("file", help="File Name to open", nargs="?", default=None)
-    parser.add_argument("-s", "--store", help="Place to save the edited file", required=False, default=None)
+    parser.add_argument(
+        "-s",
+        "--store",
+        help="Place to save the edited file",
+        required=False,
+        default=None,
+    )
     arguments = parser.parse_args()
 
     main(arguments)

@@ -10,13 +10,13 @@ import textwrap
 
 class text:
     def wrap(p, w=70):
-        d = [textwrap.fill(x, w) for x in p.split('\n')]
+        d = [textwrap.fill(x, w) for x in p.split("\n")]
         r = []
         for x in d:
-            r.extend(x.split('\n'))
+            r.extend(x.split("\n"))
         return r
 
-    def join(p1, p2, *p, w=40, j=''):
+    def join(p1, p2, *p, w=40, j=""):
         s1 = text.wrap(p1, w - 1)
         s2 = text.wrap(p2, w - 1)
         s = [text.wrap(x, w - 1) for x in p]
@@ -29,14 +29,15 @@ class text:
                 s[x][y] = text.linefill(s[x][y], w)
         for y in range(len(s1)):
             s1[y] = text.linefill(s1[y], w)
-        for x in s: text.vfill(x, lenl)
+        for x in s:
+            text.vfill(x, lenl)
         for x in range(len(s)):
             for y in range(len(s[x])):
                 s1[y] += j + s[x][y]
-        return '\n'.join(s1)
+        return "\n".join(s1)
 
-    def linefill(l, width, fill=' '):
+    def linefill(l, width, fill=" "):
         return l + (fill * (width - len(l)))
 
-    def vfill(l, length, fill=''):
+    def vfill(l, length, fill=""):
         l.extend([fill for _ in range(length - len(l))])

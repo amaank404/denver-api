@@ -28,12 +28,14 @@ def parse_colors(ansi: bytes) -> list:
         fore_color_code = ansi[x]
         back_color_code = ansi[x + 1]
         style_code = ansi[x + 2]
-        code.append(f"{fore_color[fore_color_code]}{back_color[back_color_code]}{style[style_code]}{{a}}{reset}")
+        code.append(
+            f"{fore_color[fore_color_code]}{back_color[back_color_code]}{style[style_code]}{{a}}{reset}"
+        )
     return code
 
 
 def combine(image: CImage) -> str:
-    text_line = ''
+    text_line = ""
     ansi_code = parse_colors(image.image_c)
     for line in image.image.split("\n"):
         for character in line:
@@ -57,7 +59,7 @@ def read_image(file: str) -> CImage:
     return CImage(ascii_text, ansi_code)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     image_ascii = """+1
     234"""

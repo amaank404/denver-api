@@ -17,17 +17,10 @@ conf = {
     "warning": True,
 }
 
-formatables = [
-    "name",
-    "error",
-    "msg",
-    "asctime",
-    "pid",
-    "ppid",
-    "level"]
+formatables = ["name", "error", "msg", "asctime", "pid", "ppid", "level"]
 
 
-class Logger():
+class Logger:
     def __init__(self, name, conf=conf, file=sys.stderr):
         self.name = name
         self.conf = conf
@@ -37,20 +30,44 @@ class Logger():
     def debug(self, info, error=None):
         if self.conf["debug"]:
             self.file.write(
-                self.format.format(name=self.name, error=error, pid=os.getpid(), level="DEBUG", ppid=os.getppid(),
-                                   msg=info, asctime=time.asctime()))
+                self.format.format(
+                    name=self.name,
+                    error=error,
+                    pid=os.getpid(),
+                    level="DEBUG",
+                    ppid=os.getppid(),
+                    msg=info,
+                    asctime=time.asctime(),
+                )
+            )
             self.file.flush()
 
     def error(self, info, error=None):
         if self.conf["error"]:
             self.file.write(
-                self.format.format(name=self.name, error=error, pid=os.getpid(), level="ERROR", ppid=os.getppid(),
-                                   msg=info, asctime=time.asctime()))
+                self.format.format(
+                    name=self.name,
+                    error=error,
+                    pid=os.getpid(),
+                    level="ERROR",
+                    ppid=os.getppid(),
+                    msg=info,
+                    asctime=time.asctime(),
+                )
+            )
             self.file.flush()
 
     def warning(self, info, error=None):
         if self.conf["warning"]:
             self.file.write(
-                self.format.format(name=self.name, error=error, pid=os.getpid(), level="WARNING", ppid=os.getppid(),
-                                   msg=info, asctime=time.asctime()))
+                self.format.format(
+                    name=self.name,
+                    error=error,
+                    pid=os.getpid(),
+                    level="WARNING",
+                    ppid=os.getppid(),
+                    msg=info,
+                    asctime=time.asctime(),
+                )
+            )
             self.file.flush()

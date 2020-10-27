@@ -42,7 +42,7 @@ class Beauty_CLI:
         self.file = file
         self.fmt = fmt_function
 
-    def _print_mode(self, *obj, file=None, end='\n', sep=' ', flush=False, mode='n'):
+    def _print_mode(self, *obj, file=None, end="\n", sep=" ", flush=False, mode="n"):
         """
         emulates the default print function but with a different mode
         """
@@ -54,60 +54,62 @@ class Beauty_CLI:
                 ostr.append(x)
             else:
                 ostr.append(repr(x))
-        if mode == 'n':
+        if mode == "n":
             print(*ostr, sep=sep, flush=flush, file=file, end=end)
         else:
-            print(self.fmt(sep.join(ostr), mode), sep=sep, flush=flush, file=file, end=end)
+            print(
+                self.fmt(sep.join(ostr), mode), sep=sep, flush=flush, file=file, end=end
+            )
 
-    def good(self, *obj, file=None, end='\n', sep=' ', flush=False):
+    def good(self, *obj, file=None, end="\n", sep=" ", flush=False):
         """
         emulates the default print function for good mode
         """
-        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode='g')
+        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode="g")
 
-    def bad(self, *obj, file=None, end='\n', sep=' ', flush=False):
+    def bad(self, *obj, file=None, end="\n", sep=" ", flush=False):
         """
         emulates the default print function for bad mode
         """
-        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode='b')
+        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode="b")
 
-    def info(self, *obj, file=None, end='\n', sep=' ', flush=False):
+    def info(self, *obj, file=None, end="\n", sep=" ", flush=False):
         """
         emulates the default print function for info mode
         """
-        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode='i')
+        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode="i")
 
     def input(self, prompt=None):
         """
         emulates the default input function for query mode
         """
         if prompt is None:
-            prompt = ''
-        self._print_mode(prompt, end='', flush=True, mode='q')
+            prompt = ""
+        self._print_mode(prompt, end="", flush=True, mode="q")
         return input()
 
-    def run(self, *obj, file=None, end='\n', sep=' ', flush=False):
+    def run(self, *obj, file=None, end="\n", sep=" ", flush=False):
         """
         emulates the default print function for run mode
         """
-        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode='r')
+        self._print_mode(*obj, file=file, end=end, sep=sep, flush=flush, mode="r")
 
 
 def _fmt_bcli(text, m):
     if m == "i":
-        return '\033[93m[!] ' + text + ctext.ColoredText.resetEscapeSequence['all']
+        return "\033[93m[!] " + text + ctext.ColoredText.resetEscapeSequence["all"]
     if m == "q":
-        return '\033[94m[?] ' + text + ctext.ColoredText.resetEscapeSequence['all']
+        return "\033[94m[?] " + text + ctext.ColoredText.resetEscapeSequence["all"]
     if m == "b":
-        return '\033[91m[-] ' + text + ctext.ColoredText.resetEscapeSequence['all']
-    if m == 'g':
-        return '\033[92m[+] ' + text + ctext.ColoredText.resetEscapeSequence['all']
-    if m == 'r':
-        return '\033[97m[~] ' + text + ctext.ColoredText.resetEscapeSequence['all']
+        return "\033[91m[-] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+    if m == "g":
+        return "\033[92m[+] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+    if m == "r":
+        return "\033[97m[~] " + text + ctext.ColoredText.resetEscapeSequence["all"]
 
 
-def new_cli(file=sys.stdout, fmt='bcli') -> Beauty_CLI:
-    return Beauty_CLI(file, eval(f'_fmt_{fmt}'))
+def new_cli(file=sys.stdout, fmt="bcli") -> Beauty_CLI:
+    return Beauty_CLI(file, eval(f"_fmt_{fmt}"))
 
 
 def main():
@@ -119,5 +121,5 @@ def main():
     mcli.input("This is 'input'")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
