@@ -12,10 +12,7 @@ __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
 import math
-try:
-    import cryptography.fernet
-except ImportError:
-    pass  # This ocuurs only while installing the library from sources
+import cryptography.fernet
 import base64
 
 

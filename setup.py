@@ -1,13 +1,29 @@
 import setuptools
-from denverapi import pysetup
 
 with open("README.md") as f:
     long_description = f.read()
 
+
+def find_package_data(package: str, package_name = None):
+    if package_name is None:
+        package_name=package
+    files = []
+    for r, d, f in os.walk(package):
+        files.extend([os.path.join(r, x)[len(package) + 1:] for x in f])
+    exclude_files(files, ['.py'])
+    root = {}
+    for x in files:
+        d = x.split(os.sep)
+        d.pop(-1)
+        d = ".".join(d)
+        root.setdefault(package_name + '.' + d, [])
+        root[package_name + '.' + d].append(os.path.basename(x))
+    return {k.strip('.'): v for k, v in root.items()}
+
 setuptools.setup(
     name="denver_api",
     packages=setuptools.find_packages()+setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
-    package_data=pysetup.find_package_data("denverapi", "denverapi"),
+    package_data=find_package_data("denverapi", "denverapi"),
     version="2.2.2",
     author="xcodz",
     description="Denver API for python full-stack development",
