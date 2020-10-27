@@ -111,7 +111,7 @@ into a very nice unicode text which does not show ugly looking spaced between th
 
 You can probably try this example to know about an example
 ```python
-from denver import datau
+from denverapi import datau
 
 my_box = """
 /-------\\

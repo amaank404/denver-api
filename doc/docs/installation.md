@@ -11,7 +11,7 @@ pip install --upgrade pydenver
 
 and can be used by
 ```python
-from denver import something_that_you_want
+from denverapi import something_that_you_want
 
 # your code here
 ```

@@ -19,7 +19,7 @@ cross-platform colored console output in almost any console. we also provide emu
 print and input function with extra keyword arguments for coloring and customizing. the
 default print and input function of you code can be switched out to these one by
 ```python
-from denver import ctext
+from denverapi import ctext
 
 print = ctext.print
 input = ctext.input
@@ -32,11 +32,11 @@ print("Hello", "World in simple", "environment")
 ## Installation
 The package can be installed by
 ```commandline
-pip install pydenver
+pip install denverapi
 ```
 and upgraded by
 ```commandline
-pip install --upgrade pydenver
+pip install --upgrade denverapi
 ```
 
 ## Documentation
@@ -63,5 +63,8 @@ of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/mas
 * `denver.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
 
 ## What's New
+### 2.2.0
+* new indev tools
+* renamed to a new project
 ### 2.1.0
 * `denver.tools` package is now added as a standard interface to many modules (Many tools are still work in progress)

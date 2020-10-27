@@ -1,14 +1,14 @@
 import setuptools
-from denver import pysetup
+from denverapi import pysetup
 
 with open("README.md") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="pydenver",
-    packages=setuptools.find_packages(include=["denver.*"])+setuptools.find_namespace_packages(include=["denver.*"]),
-    package_data=pysetup.find_package_data("denver", "denver"),
-    version="2.2.0",
+    name="denverapi",
+    packages=setuptools.find_packages(),
+    package_data=pysetup.find_package_data("denverapi", "denverapi"),
+    version="2.2.1",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -23,20 +23,11 @@ setuptools.setup(
         "requests",
         "playsound",
         "pygame",
-        "getmac",
-        "cryptography"
     ],
-    extras_require={
-        "PiOS": ["pydenver_pios_sdk"]
-    },
     entry_points={
         "console_scripts": [
-            "pios-sdk-ppk = denver.pios_sdk.ppk [PiOS]",
-            "pios-sdk-app = denver.pios_sdk.app [PiOS]",
-            "pios-sdk-gensha256 = denver.pios_sdk.generate_sha256 [PiOS]",
-            "denver-cpic-edit = denver.tools.cpic_editor",
-            "denver-bdtpserver = denver.tools.bdtpserver",
-            "denver-pybuild = denver.tools.pybuild [PiOS]"
+            "denverapi-cpic-edit = denverapi.tools.cpic_editor",
+            "denverapi-bdtpserver = denverapi.tools.bdtpserver",
         ]
     },
     zip_safe=False
