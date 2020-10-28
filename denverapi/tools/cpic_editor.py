@@ -1,6 +1,6 @@
 import pygame
 import argparse
-import denverapi
+import denverapi.ctext
 
 pygame.init()
 pygame.key.start_text_input()

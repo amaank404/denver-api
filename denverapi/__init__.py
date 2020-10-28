@@ -8,26 +8,6 @@ __version__ = "2020.10.23"
 
 import sys
 import subprocess
-from . import (
-    bcli,
-    bdtp,
-    bdtpfserv,
-    bitmap,
-    crypt,
-    ctext,
-    datau,
-    datp,
-    get,
-    graphics3d,
-    graphics2d,
-    handypy,
-    log,
-    pysetup,
-    rawd,
-    sound,
-    text,
-    cpic,
-)
 
 
 def install_pip_package(package: str, pre=False, update=False) -> int:
