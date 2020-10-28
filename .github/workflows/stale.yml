@@ -1,0 +1,21 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: "30 1 * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/stale@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: 'Issue seems to be inactive, please reopen if you want to work on it'
+        stale-pr-message: 'Pull request seems to be inactive, please reopen if you want to work on it'
+        stale-issue-label: 'no-issue-activity'
+        stale-pr-label: 'no-pr-activity'
+        exempt-pr-labels: work-in-progress,bug,enhancement
+        exempt-issue-labels: enhancement,help wanted,bug,work-in-progress
