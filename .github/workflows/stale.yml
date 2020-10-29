@@ -17,5 +17,5 @@ jobs:
         stale-pr-message: 'Pull request seems to be inactive, please reopen if you want to work on it'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
-        exempt-pr-labels: work-in-progress,bug,enhancement
-        exempt-issue-labels: enhancement,help wanted,bug,work-in-progress
+        exempt-pr-label: work-in-progress,bug,enhancement
+        exempt-issue-label: enhancement,help wanted,bug,work-in-progress
