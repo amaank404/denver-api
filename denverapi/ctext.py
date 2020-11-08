@@ -25,6 +25,7 @@ import os, sys, shutil
 colorama.initialise.init()
 
 
+# noinspection PyCallByClass
 class ColoredText:
     def getTerminalSize():
         return shutil.get_terminal_size()
