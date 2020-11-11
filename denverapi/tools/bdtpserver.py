@@ -115,7 +115,7 @@ if __name__ == "__main__":
             file_to_write = args.store
             if file_to_write is None:
                 file_to_write = os.path.basename(args.file)
-            bdtpfserv.post(args.store, file_to_write, (args.ip_address, args.port))
+            bdtpfserv.post(file_to_write, data, (args.ip_address, args.port))
             if not args.no_log:
                 cli.good("Done Posting")
         elif args.command == "new_directory":
