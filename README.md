@@ -69,7 +69,7 @@ of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/mas
 ## What's New
 ### 2.4.1
 * Thread control
-* Split up the pygame into a seperate section (denverapi is sometimes required without pygame)
+* Split up the pygame into a separate section (denverapi is sometimes required without pygame)
 ### 2.2.0
 * new indev tools
 * renamed to a new project
