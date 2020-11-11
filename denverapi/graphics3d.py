@@ -128,7 +128,10 @@ def model_load_from_file(model_file):
 
 
 def model_viewer(model):
-    import pygame
+    try:
+        import pygame
+    except ImportError:
+        raise ImportError("Please install 'denver-api[gui-tools]' to use this")
 
     pygame.init()
     fpsclock = pygame.time.Clock()
