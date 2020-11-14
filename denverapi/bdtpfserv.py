@@ -24,6 +24,7 @@ def get(file: str, addr: tuple):
     data = bdtp.new_receive_data_port(("", 0))
     data.recv(s)
     data = data.data
+    s.close()
     return data
 
 
@@ -38,6 +39,7 @@ def post(file: str, data: bytes, addr: tuple):
     s.recv(1)
     data = bdtp.new_send_data_port(data, ("", 0))
     data.send(s)
+    s.close()
 
 
 def mkdir(name: str, addr: tuple):
@@ -78,12 +80,13 @@ def handle_request(connection: socket.socket, addr: tuple, hdir: str, shdir: str
     elif req[0] == "post":
         print(f'{addr} requested to post "{req[1]}"')
         try:
-            connection.sendall(b"")
+            connection.sendall(b" ")
             d = bdtp.new_receive_data_host(("", 0))
             d.recv(connection)
             f = open(os.path.join(hdir, shdir, req[1].replace("/", os.sep)), "w+b")
             f.write(d.data)
             f.close()
+            print(f"{addr} post request successful")
         except Exception as e:
             print(f"{addr} post request failed: {str(e)}")
     connection.close()
@@ -97,6 +100,7 @@ def listdir(dir_name: str, addr: tuple):
     s.sendall(pickle.dumps(["listdir", dir_name]))
     d = bdtp.new_receive_data_port(("", 0))
     d.recv(s)
+    s.close()
     return pickle.loads(d.data)
 
 

@@ -7,7 +7,7 @@ have minimum Python 3.8
 
 ## tools
 this is a new package built into denver and now you can use every module inside it as a command line
-tool. You can type the following command `python denver.tools` to get a list of available tools.
+tool. You can type the following command `python denverapi.tools` to get a list of available tools.
 
 #### **WARNING**
 The tools.cpic_editor is still a work in progress
@@ -59,10 +59,17 @@ This is a community driven project and accepts pull requests
 of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), Thanks to all the contributors. Contributions are appreciated 
 
 ## Fixed Bugs
+### 2.4.1
+* `denverapi.bdtpfserv.post` function is now fixes to work without pausing and making troubles
+* `denverapi.tools.bdtpserver` tool fixed for the post argument
+* `denverapi.tools.cpic_editor` tool fixes which produced file system errors on linux
 ### 2.1.0
-* `denver.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
+* `denverapi.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
 
 ## What's New
+### 2.4.1
+* Thread control
+* Split up the pygame into a separate section (denverapi is sometimes required without pygame)
 ### 2.2.0
 * new indev tools
 * renamed to a new project

@@ -19,7 +19,7 @@ def find_package_data(package: str, package_name=None):
         package_name = package
     files = []
     for r, d, f in os.walk(package):
-        files.extend([os.path.join(r, x)[len(package) + 1:] for x in f])
+        files.extend([os.path.join(r, x)[len(package) + 1 :] for x in f])
     exclude_files(files, [".py"])
     root = {}
     for x in files:
@@ -36,7 +36,7 @@ setuptools.setup(
     packages=setuptools.find_packages()
     + setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
     package_data=find_package_data("denverapi", "denverapi"),
-    version="2.5.0a0",
+    version="2.4.1",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -46,6 +46,9 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",
-    install_requires=["setuptools", "requests", "playsound", "pygame", "cryptography"],
+    install_requires=["setuptools", "requests", "playsound", "cryptography"],
+    extras_require={
+        "gui-tools": ["pygame"]
+    },
     zip_safe=False,
 )
