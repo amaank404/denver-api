@@ -88,13 +88,10 @@ class BuildTasks:
                         print(f"Running Task {x.__name__} (from {function.__name__})", fore="magenta")
                         if x not in self.ignored_tasks:
                             self.accomplished.append(x)
-                        if not uses_commandline:
-                            x()
-                        else:
-                            x(arguments)
+                        x(None)
                     else:
                         print(f"Skipped Task {x.__name__} (from {function.__name__})", fore="cyan")
-                function()
+                function(arguments)
                 print(ctext.ColoredText.escape(
                     f"{{fore_yellow}}----{{back_red}}end{{reset_all}}{{style_bright}}{{fore_yellow}}------{function.__name__}-------------"
                 ))
