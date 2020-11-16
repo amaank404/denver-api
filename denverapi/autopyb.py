@@ -19,7 +19,7 @@ __version__ = "1.0.0"
 
 
 def requires_version(version: str):
-    if Version(version) >= Version(__version__):
+    if Version(version) < Version(__version__):
         raise EnvironmentError(f"autopyb>={version} is required, install by installing latest version of 'denver-api'")
 
 
