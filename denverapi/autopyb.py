@@ -27,7 +27,7 @@ def run_command(command):
     if isinstance(command, str):
         return_code = os.system(command)
     else:
-        return_code = subprocess.run(command)
+        return_code = subprocess.run(command, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin)
     return return_code
 
 
