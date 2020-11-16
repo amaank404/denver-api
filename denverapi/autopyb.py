@@ -113,10 +113,10 @@ class BuildTasks:
         if arguments is None:
             arguments = sys.argv[1:]
         parser = argparse.ArgumentParser()
-        parser.add_argument("sub_arguments", nargs="*", default=[])
         command = parser.add_subparsers(dest="command_")
         for x in self.tasks:
-            command.add_parser(x.__name__, description=x.__doc__)
+            sub_parser = command.add_parser(x.__name__, description=x.__doc__)
+            sub_parser.add_argument("sub_arguments", nargs="*", default=[])
         args = parser.parse_args(arguments)
         for x in self.tasks:
             if args.command_ == x.__name__:
