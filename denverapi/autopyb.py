@@ -4,7 +4,9 @@ import sys
 import os
 import subprocess
 import pkgutil
+from packaging.version import Version
 from . import install_pip_package
+
 try:
     from . import ctext
 except ImportError:
@@ -12,6 +14,13 @@ except ImportError:
 
 print = ctext.print
 input = ctext.input
+
+__version__ = "1.0.0"
+
+
+def requires_version(version: str):
+    if Version(version) >= Version(__version__):
+        raise EnvironmentError(f"autopyb>={version} is required, install by installing latest version of 'denver-api'")
 
 
 def run_command(command):
@@ -112,4 +121,3 @@ class BuildTasks:
         for x in self.tasks:
             if args.command_ == x.__name__:
                 x(args.sub_arguments)
-
