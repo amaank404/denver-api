@@ -8,7 +8,9 @@ from denverapi.ctext import print
 
 def main():
     parser = argparse.ArgumentParser("rmrdir")
-    parser.add_argument("directory", help="the directory to recursivly remove (can be a glob pattern)")
+    parser.add_argument(
+        "directory", help="the directory to recursively remove (can be a glob pattern)"
+    )
     args = parser.parse_args()
     for x in glob.iglob(args.directory, recursive=False):
         try:

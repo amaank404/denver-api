@@ -25,11 +25,7 @@ else:
     import log
 
 default_buffer_size = 100000
-_logger_conf = {
-    "debug": False,
-    "error": False,
-    "warning": False,
-}
+_logger_conf = {"debug": False, "error": False, "warning": False}
 Mlog = log.Logger("test", _logger_conf)
 
 

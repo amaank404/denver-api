@@ -44,9 +44,7 @@ else:
             )
 
     _GetStdHandle = windll.kernel32.GetStdHandle
-    _GetStdHandle.argtypes = [
-        wintypes.DWORD,
-    ]
+    _GetStdHandle.argtypes = [wintypes.DWORD]
     _GetStdHandle.restype = wintypes.HANDLE
 
     _GetConsoleScreenBufferInfo = windll.kernel32.GetConsoleScreenBufferInfo
@@ -57,17 +55,11 @@ else:
     _GetConsoleScreenBufferInfo.restype = wintypes.BOOL
 
     _SetConsoleTextAttribute = windll.kernel32.SetConsoleTextAttribute
-    _SetConsoleTextAttribute.argtypes = [
-        wintypes.HANDLE,
-        wintypes.WORD,
-    ]
+    _SetConsoleTextAttribute.argtypes = [wintypes.HANDLE, wintypes.WORD]
     _SetConsoleTextAttribute.restype = wintypes.BOOL
 
     _SetConsoleCursorPosition = windll.kernel32.SetConsoleCursorPosition
-    _SetConsoleCursorPosition.argtypes = [
-        wintypes.HANDLE,
-        COORD,
-    ]
+    _SetConsoleCursorPosition.argtypes = [wintypes.HANDLE, COORD]
     _SetConsoleCursorPosition.restype = wintypes.BOOL
 
     _FillConsoleOutputCharacterA = windll.kernel32.FillConsoleOutputCharacterA

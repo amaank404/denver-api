@@ -62,7 +62,9 @@ DARKER_GREY = (40, 40, 40)
 
 # grid data
 grid = [[None for _ in range(40)] for _ in range(80)]
-grid_render_font = pygame.font.Font(os.path.abspath(f"{__file__}/../_cpic_editor/consola.ttf"), 18)
+grid_render_font = pygame.font.Font(
+    os.path.abspath(f"{__file__}/../_cpic_editor/consola.ttf"), 18
+)
 
 
 def generate_color_pallet(colors: list, selected: int):
@@ -138,7 +140,9 @@ def main(args):
         file_name = args.file
     if file_name is None:
         raise ValueError("Please specify either one of the options")
-    font = pygame.font.Font(os.path.abspath(f"{__file__}/../_cpic_editor/consola.ttf"), 13)
+    font = pygame.font.Font(
+        os.path.abspath(f"{__file__}/../_cpic_editor/consola.ttf"), 13
+    )
     fore_color_label = font.render("Fore Color", True, ORIGINAL_WHITE)
     fore_color_label_rect: pygame.Rect = fore_color_label.get_rect()
     fore_color_label_rect.midtop = (600, 2)
@@ -215,10 +219,8 @@ def main(args):
                     if grid_surface_rect.collidepoint(*mouse_position):
                         mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
                         mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
-                        grid_coordinates = (
-                            transform_surface_coordinates_to_grid_coordinates(
-                                (mouse_x_no_offset, mouse_y_no_offset)
-                            )
+                        grid_coordinates = transform_surface_coordinates_to_grid_coordinates(
+                            (mouse_x_no_offset, mouse_y_no_offset)
                         )
                         grid[grid_coordinates[0]][grid_coordinates[1]] = (
                             color_select_fore,
@@ -230,19 +232,19 @@ def main(args):
                 if color_pallet_fore_rect.collidepoint(*mouse_position):
                     last_selected = "fore"
                     mouse_x_no_offset = mouse_position[0] - color_pallet_fore_rect.left
-                    color_select_fore = (
-                        transform_surface_coordinates_to_grid_coordinates(
-                            (mouse_x_no_offset, 1)
-                        )[0]
-                    )
+                    color_select_fore = transform_surface_coordinates_to_grid_coordinates(
+                        (mouse_x_no_offset, 1)
+                    )[
+                        0
+                    ]
                 elif color_pallet_back_rect.collidepoint(*mouse_position):
                     last_selected = "back"
                     mouse_x_no_offset = mouse_position[0] - color_pallet_back_rect.left
-                    color_select_back = (
-                        transform_surface_coordinates_to_grid_coordinates(
-                            (mouse_x_no_offset, 1)
-                        )[0]
-                    )
+                    color_select_back = transform_surface_coordinates_to_grid_coordinates(
+                        (mouse_x_no_offset, 1)
+                    )[
+                        0
+                    ]
 
         if color_select_back >= len(COLORS_PYGAME_LIST):
             color_select_back -= len(COLORS_PYGAME_LIST)
@@ -269,5 +271,5 @@ def fromcmd():
     main(arguments)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fromcmd()

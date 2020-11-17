@@ -2,7 +2,7 @@
 Thread Control
 """
 
-__version__ = '2020.11.11'
+__version__ = "2020.11.11"
 __author__ = "Xcodz"
 
 from threading import Thread, Lock
@@ -15,9 +15,17 @@ def runs_parallel(_func=None, *, assure_finish=False):
     def wrap_around_decorator(function):
         @functools.wraps(function)
         def thread_func(*args, **kwargs):
-            thread = Thread(target=function, args=args, kwargs=kwargs, daemon=not assure_finish, name=function.__name__)
+            thread = Thread(
+                target=function,
+                args=args,
+                kwargs=kwargs,
+                daemon=not assure_finish,
+                name=function.__name__,
+            )
             thread.start()
+
         return thread_func
+
     if _func is None:
         return wrap_around_decorator
     else:
@@ -38,8 +46,13 @@ class ThreadManager:
         while len(self.thread_pool) > 0:
             if len(currently_executing) < maximum_thread_count:
                 function_to_use = self.thread_pool.pop(0)
-                new_thread = Thread(target=function_to_use[0], args=tuple(function_to_use[1]),
-                                    kwargs=function_to_use[2], name=function_to_use[0].__name__, daemon=False)
+                new_thread = Thread(
+                    target=function_to_use[0],
+                    args=tuple(function_to_use[1]),
+                    kwargs=function_to_use[2],
+                    name=function_to_use[0].__name__,
+                    daemon=False,
+                )
                 new_thread.start()
                 currently_executing.append(new_thread)
             for x in currently_executing:
@@ -47,7 +60,7 @@ class ThreadManager:
                     currently_executing.remove(x)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print_lock = Lock()
 
     def create_files(number):

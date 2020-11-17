@@ -46,16 +46,20 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.8",
-    install_requires=["setuptools", "requests", "playsound", "cryptography", "packaging"],
-    extras_require={
-        "gui-tools": ["pygame"]
-    },
+    install_requires=[
+        "setuptools",
+        "requests",
+        "playsound",
+        "cryptography",
+        "packaging",
+    ],
+    extras_require={"gui-tools": ["pygame"]},
     entry_points={
         "console_scripts": [
             "rmrdir = denverapi.clineutils.rmrdir:main",
             "rmr = denverapi.clineutils.rmr:main",
             "bdtpserver = denverapi.tools.bdtpserver:main",
-            "cpicedit = denverapi.tools.cpic_editor:fromcmd [gui-tools]"
+            "cpicedit = denverapi.tools.cpic_editor:fromcmd [gui-tools]",
         ]
     },
     zip_safe=False,

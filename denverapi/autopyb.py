@@ -20,14 +20,18 @@ __version__ = "1.0.1"
 
 def requires_version(version: str):
     if Version(version) >= Version(__version__):
-        raise EnvironmentError(f"autopyb>={version} is required, install by installing latest version of 'denver-api'")
+        raise EnvironmentError(
+            f"autopyb>={version} is required, install by installing latest version of 'denver-api'"
+        )
 
 
 def run_command(command):
     if isinstance(command, str):
         return_code = os.system(command)
     else:
-        return_code = subprocess.run(command, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin).returncode
+        return_code = subprocess.run(
+            command, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin
+        ).returncode
     return return_code
 
 
@@ -45,17 +49,22 @@ def ensure_pip_package(package, t="STABLE"):
     elif t.lower() == "pre-latest":
         install_pip_package(package, pre=True, update=True)
     else:
-        print(f"type '{t}' is not a valid option, skipping installation for '{package}'", fore="yellow")
+        print(
+            f"type '{t}' is not a valid option, skipping installation for '{package}'",
+            fore="yellow",
+        )
 
 
-def make_platform_executable(name: str, script: str, t="ONEFILE", extras=None, hidden=None, *aflags):
-    if 'pyinstaller' not in get_module_list():
+def make_platform_executable(
+    name: str, script: str, t="ONEFILE", extras=None, hidden=None, *aflags
+):
+    if "pyinstaller" not in get_module_list():
         install_pip_package("pyinstaller")
     if hidden is None:
         hidden = []
     if extras is None:
         extras = []
-    t = [x.lower() for x in t.split('-')]
+    t = [x.lower() for x in t.split("-")]
     print(f"Making platform executable '{name}'")
     flags: list = list(aflags)
     flags.extend(["-n", name])
@@ -84,24 +93,35 @@ class BuildTasks:
             def wrapper_function(arguments=None):
                 if arguments is None:
                     arguments = []
-                print(f'-------------{function.__name__}-------------', fore="green")
+                print(f"-------------{function.__name__}-------------", fore="green")
                 for x in dependencies:
                     if x not in self.accomplished:
-                        print(f"Running Task {x.__name__} (from {function.__name__})", fore="magenta")
+                        print(
+                            f"Running Task {x.__name__} (from {function.__name__})",
+                            fore="magenta",
+                        )
                         if x not in self.ignored_tasks:
                             self.accomplished.append(x)
                         try:
                             x(None)
                         except Exception as e:
-                            print(f"Encountered {e.__class__.__name__}: {str(e)} ({x.__name__})", fore="red")
+                            print(
+                                f"Encountered {e.__class__.__name__}: {str(e)} ({x.__name__})",
+                                fore="red",
+                            )
                             sys.exit(1)
                     else:
-                        print(f"Skipped Task {x.__name__} (from {function.__name__})", fore="cyan")
+                        print(
+                            f"Skipped Task {x.__name__} (from {function.__name__})",
+                            fore="cyan",
+                        )
                 function(arguments)
-                print(ctext.ColoredText.escape(
-                    f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
-                    + f"------{function.__name__}-------------"
-                ))
+                print(
+                    ctext.ColoredText.escape(
+                        f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                        + f"------{function.__name__}-------------"
+                    )
+                )
 
             if forced:
                 self.ignored_tasks.append(wrapper_function)
@@ -127,13 +147,20 @@ class BuildTasks:
                     x(arguments[1:])
                 except KeyboardInterrupt:
                     print("User aborted the process", fore="red")
-                    print(ctext.ColoredText.escape(
-                        f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
-                        + f"------{x.__name__}-------------"
-                    ))
+                    print(
+                        ctext.ColoredText.escape(
+                            f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                            + f"------{x.__name__}-------------"
+                        )
+                    )
                 except Exception as e:
-                    print(f"Process Failed with {e.__class__.__name__}: {str(e)}", fore="red")
-                    print(ctext.ColoredText.escape(
-                        f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
-                        + f"------{x.__name__}-------------"
-                    ))
+                    print(
+                        f"Process Failed with {e.__class__.__name__}: {str(e)}",
+                        fore="red",
+                    )
+                    print(
+                        ctext.ColoredText.escape(
+                            f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                            + f"------{x.__name__}-------------"
+                        )
+                    )

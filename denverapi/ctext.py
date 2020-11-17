@@ -143,7 +143,7 @@ d.update(
     **s("reset", ColoredText.resetEscapeSequence),
     **s("style", ColoredText.styleEscapeSequence),
     **s("fore", ColoredText.cloredTextEscapeSequenceFore),
-    **s("back", ColoredText.cloredTextEscapeSequenceBack)
+    **s("back", ColoredText.cloredTextEscapeSequenceBack),
 )
 
 ColoredText.escapeSequence = d
@@ -159,7 +159,7 @@ def print(
     sep=" ",
     end="\n",
     flush=False,
-    file=sys.stdout
+    file=sys.stdout,
 ):
     try:
         builtins.print(

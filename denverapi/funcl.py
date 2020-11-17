@@ -22,7 +22,7 @@ class FunctionLogger:
                 if self.echo:
                     nargs = [repr(x) for x in args]
                     nkwargs = {k: repr(v) for k, v in kwargs.items()}
-                    statement = func.__name__+"("
+                    statement = func.__name__ + "("
                     if len(nargs) != 0:
                         statement += ", ".join(nargs)
                     if len(nargs) != 0 and len(nkwargs) != 0:
@@ -32,7 +32,9 @@ class FunctionLogger:
                     statement += ")"
                     print(f"{action}: {statement}", file=self.file)
                 func(*args, **kwargs)
+
             return function
+
         if _func is None:
             return decor
         else:

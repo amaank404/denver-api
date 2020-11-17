@@ -11,11 +11,7 @@ __author__ = "Xcodz"
 
 import sys, os, time
 
-conf = {
-    "debug": True,
-    "error": True,
-    "warning": True,
-}
+conf = {"debug": True, "error": True, "warning": True}
 
 formatables = ["name", "error", "msg", "asctime", "pid", "ppid", "level"]
 

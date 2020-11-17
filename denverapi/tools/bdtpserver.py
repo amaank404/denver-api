@@ -6,6 +6,7 @@ import os
 __version__ = "1.0.0"
 __author__ = "Xcodz"
 
+
 def main():
     cli = bcli.new_cli()
 
@@ -141,5 +142,6 @@ def main():
     if not args.no_log:
         cli.good("Process Complete")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
