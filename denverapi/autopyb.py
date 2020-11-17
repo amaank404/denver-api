@@ -15,11 +15,11 @@ except ImportError:
 print = ctext.print
 input = ctext.input
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 def requires_version(version: str):
-    if Version(version) < Version(__version__):
+    if Version(version) >= Version(__version__):
         raise EnvironmentError(f"autopyb>={version} is required, install by installing latest version of 'denver-api'")
 
 
@@ -27,7 +27,7 @@ def run_command(command):
     if isinstance(command, str):
         return_code = os.system(command)
     else:
-        return_code = subprocess.run(command, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin)
+        return_code = subprocess.run(command, stderr=sys.stderr, stdout=sys.stdout, stdin=sys.stdin).returncode
     return return_code
 
 
@@ -82,18 +82,25 @@ class BuildTasks:
         def decorator(function):
             @functools.wraps(function)
             def wrapper_function(arguments=None):
+                if arguments is None:
+                    arguments = []
                 print(f'-------------{function.__name__}-------------', fore="green")
                 for x in dependencies:
                     if x not in self.accomplished:
                         print(f"Running Task {x.__name__} (from {function.__name__})", fore="magenta")
                         if x not in self.ignored_tasks:
                             self.accomplished.append(x)
-                        x(None)
+                        try:
+                            x(None)
+                        except Exception as e:
+                            print(f"Encountered {e.__class__.__name__}: {str(e)} ({x.__name__})", fore="red")
+                            sys.exit(1)
                     else:
                         print(f"Skipped Task {x.__name__} (from {function.__name__})", fore="cyan")
                 function(arguments)
                 print(ctext.ColoredText.escape(
-                    f"{{fore_yellow}}----{{back_red}}end{{reset_all}}{{style_bright}}{{fore_yellow}}------{function.__name__}-------------"
+                    f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                    + f"------{function.__name__}-------------"
                 ))
 
             if forced:
@@ -112,9 +119,21 @@ class BuildTasks:
         parser = argparse.ArgumentParser()
         command = parser.add_subparsers(dest="command_")
         for x in self.tasks:
-            sub_parser = command.add_parser(x.__name__, description=x.__doc__)
-            sub_parser.add_argument("sub_arguments", nargs="*", default=[])
-        args = parser.parse_args(arguments)
+            command.add_parser(x.__name__, description=x.__doc__)
+        args = parser.parse_args(arguments[0:1])
         for x in self.tasks:
             if args.command_ == x.__name__:
-                x(args.sub_arguments)
+                try:
+                    x(arguments[1:])
+                except KeyboardInterrupt:
+                    print("User aborted the process", fore="red")
+                    print(ctext.ColoredText.escape(
+                        f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                        + f"------{x.__name__}-------------"
+                    ))
+                except Exception as e:
+                    print(f"Process Failed with {e.__class__.__name__}: {str(e)}", fore="red")
+                    print(ctext.ColoredText.escape(
+                        f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                        + f"------{x.__name__}-------------"
+                    ))
