@@ -62,7 +62,7 @@ def read_image(file: str) -> CImage:
 if __name__ == "__main__":
 
     image_ascii = """+1
-    234"""
+234"""
 
     image_ansi = b"""\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"""
 

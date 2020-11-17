@@ -9,6 +9,7 @@ import argparse
 import os
 
 import denverapi.ctext
+import denverapi.cpic
 
 pygame.init()
 pygame.key.start_text_input()
@@ -54,6 +55,7 @@ COLORS_PYGAME_LIST = [
     LIGHT_MAGENTA,
     (0, 0, 0, 0),
 ]
+
 color_select_fore = 0
 color_select_back = 0
 
@@ -71,7 +73,7 @@ grid_render_font = pygame.font.Font(
 def generate_color_pallet(colors: list, selected: int):
     surface = pygame.Surface((len(colors) * CELL_WIDTH, CELL_HEIGHT))
     for position, index in zip(
-        range(0, len(colors) * CELL_WIDTH, CELL_WIDTH), range(len(colors))
+            range(0, len(colors) * CELL_WIDTH, CELL_WIDTH), range(len(colors))
     ):
         pygame.draw.rect(
             surface,
@@ -105,10 +107,10 @@ def render_grid(surface, data: list) -> None:
                 )
                 cell_text_rendered_rect: pygame.Rect = cell_text_rendered.get_rect()
                 cell_text_rendered_rect.centerx = (
-                    surface_coordinates[0] + CELL_WIDTH // 2
+                        surface_coordinates[0] + CELL_WIDTH // 2
                 )
                 cell_text_rendered_rect.centery = (
-                    surface_coordinates[1] + CELL_HEIGHT // 2
+                        surface_coordinates[1] + CELL_HEIGHT // 2
                 )
                 surface.blit(cell_text_rendered, cell_text_rendered_rect)
 
@@ -185,8 +187,8 @@ def main(args):
 
         mouse_position = pygame.mouse.get_pos()
         if (
-            grid_surface_rect.collidepoint(*mouse_position)
-            and pygame.mouse.get_pressed()[0]
+                grid_surface_rect.collidepoint(*mouse_position)
+                and pygame.mouse.get_pressed()[0]
         ):
             mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
             mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
@@ -202,7 +204,7 @@ def main(args):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                raise SystemExit(0)
+                exit_and_save(grid, file_name)
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     if last_selected == "fore":
@@ -255,6 +257,68 @@ def main(args):
             color_select_fore += len(COLORS_PYGAME_LIST)
         if color_select_back < 0:
             color_select_back += len(COLORS_PYGAME_LIST)
+
+
+def exit_and_save(data, file_to_write):
+    conversion_chart = list(COLORS.values())
+
+    # Trimming data
+    def get_max_height(data):
+        m = 0
+        for x in data:
+            for y in x:
+                m = max(m, len(y))
+        return m
+
+    def strip_x(data: list):
+        while len(data) != 0:
+            if all([y is None for y in data[-1]]):
+                data.pop(-1)
+            else:
+                break
+
+    def strip_y(data):
+        for x in data:
+            while len(x) != 0:
+                if x[-1] is None:
+                    x.pop(-1)
+                else:
+                    break
+
+    def pad_y(data, length):
+        for x in data:
+            if len(x) < length:
+                x.extend([None for _ in range(length - len(x))])
+
+    strip_x(data)
+    strip_y(data)
+    pad_y(data, get_max_height())
+
+    # Conversion
+    # We will need to convert all None to something default for now
+    default_value = (conversion_chart[-1], conversion_chart[-1], " ")
+    for x in range(len(data)):
+        for y in range(len(data[x])):
+            if data[x][y] is None:
+                data[x][y] = default_value
+    # Now we need to convert the values to a cpic format
+    ansi_code = b""
+    ascii_code = ""
+    l = [[None for x in range(len(data))] for y in range(len(data[0]))]
+    for x in range(len(data)):
+        for y in range(len(data[x])):
+            l[y][x] = data[x][y]
+    for y in range(len(l)):
+        for x in range(len(l[y])):
+            fore, back, char = l[y][x]
+            ascii_code += char
+            ansi_code += bytes([fore, back, 0])
+        ascii_code += "\n"
+
+    image = denverapi.cpic.CImage(ascii_code, ansi_code)
+    denverapi.cpic.write_image(image, file_to_write)
+
+    raise SystemExit(0)
 
 
 def fromcmd():
