@@ -53,7 +53,9 @@ setuptools.setup(
     entry_points={
         "console_scripts": [
             "rmrdir = denverapi.clineutils.rmrdir:main",
-            "rmr = denverapi.clineutils.rmr:main"
+            "rmr = denverapi.clineutils.rmr:main",
+            "bdtpserver = denverapi.tools.bdtpserver:main",
+            "cpicedit = denverapi.tools.cpic_editor:fromcmd [gui-tools]"
         ]
     },
     zip_safe=False,

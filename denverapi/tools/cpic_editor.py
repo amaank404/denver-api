@@ -254,7 +254,7 @@ def main(args):
             color_select_back += len(COLORS_PYGAME_LIST)
 
 
-if __name__ == "__main__":
+def fromcmd():
     parser = argparse.ArgumentParser()
     parser.add_argument("file", help="File Name to open", nargs="?", default=None)
     parser.add_argument(
@@ -267,3 +267,7 @@ if __name__ == "__main__":
     arguments = parser.parse_args()
 
     main(arguments)
+
+
+if __name__ == '__main__':
+    fromcmd()

@@ -6,7 +6,7 @@ import os
 __version__ = "1.0.0"
 __author__ = "Xcodz"
 
-if __name__ == "__main__":
+def main():
     cli = bcli.new_cli()
 
     parser = argparse.ArgumentParser()
@@ -140,3 +140,6 @@ if __name__ == "__main__":
             cli.bad("Exception", str(exception))
     if not args.no_log:
         cli.good("Process Complete")
+
+if __name__ == '__main__':
+    main()
