@@ -73,7 +73,7 @@ grid_render_font = pygame.font.Font(
 def generate_color_pallet(colors: list, selected: int):
     surface = pygame.Surface((len(colors) * CELL_WIDTH, CELL_HEIGHT))
     for position, index in zip(
-            range(0, len(colors) * CELL_WIDTH, CELL_WIDTH), range(len(colors))
+        range(0, len(colors) * CELL_WIDTH, CELL_WIDTH), range(len(colors))
     ):
         pygame.draw.rect(
             surface,
@@ -107,10 +107,10 @@ def render_grid(surface, data: list) -> None:
                 )
                 cell_text_rendered_rect: pygame.Rect = cell_text_rendered.get_rect()
                 cell_text_rendered_rect.centerx = (
-                        surface_coordinates[0] + CELL_WIDTH // 2
+                    surface_coordinates[0] + CELL_WIDTH // 2
                 )
                 cell_text_rendered_rect.centery = (
-                        surface_coordinates[1] + CELL_HEIGHT // 2
+                    surface_coordinates[1] + CELL_HEIGHT // 2
                 )
                 surface.blit(cell_text_rendered, cell_text_rendered_rect)
 
@@ -187,8 +187,8 @@ def main(args):
 
         mouse_position = pygame.mouse.get_pos()
         if (
-                grid_surface_rect.collidepoint(*mouse_position)
-                and pygame.mouse.get_pressed()[0]
+            grid_surface_rect.collidepoint(*mouse_position)
+            and pygame.mouse.get_pressed()[0]
         ):
             mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
             mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top

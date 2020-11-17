@@ -60,7 +60,6 @@ setuptools.setup(
             # clinetools
             "rmrdir = denverapi.clineutils.rmrdir:main",
             "rmr = denverapi.clineutils.rmr:main",
-
             # tools
             "bdtpserver = denverapi.tools.bdtpserver:main",
             "cpicview = denverapi.tools.cpicview:main",
