@@ -17,8 +17,8 @@ pygame.key.start_text_input()
 WIDTH = 720
 HEIGHT = 580
 FPS = 60
-CELL_HEIGHT = 20
-CELL_WIDTH = 12
+CELL_HEIGHT = 25
+CELL_WIDTH = 10
 
 # Colors  (R,  G,  B)
 GRAY = (250, 250, 250)
@@ -266,8 +266,7 @@ def exit_and_save(data, file_to_write):
     def get_max_height(data):
         m = 0
         for x in data:
-            for y in x:
-                m = max(m, len(y))
+            m = max(m, len(x))
         return m
 
     def strip_x(data: list):
@@ -292,11 +291,11 @@ def exit_and_save(data, file_to_write):
 
     strip_x(data)
     strip_y(data)
-    pad_y(data, get_max_height())
+    pad_y(data, get_max_height(data))
 
     # Conversion
     # We will need to convert all None to something default for now
-    default_value = (conversion_chart[-1], conversion_chart[-1], " ")
+    default_value = (len(conversion_chart) - 1, len(conversion_chart) - 1, " ")
     for x in range(len(data)):
         for y in range(len(data[x])):
             if data[x][y] is None:
