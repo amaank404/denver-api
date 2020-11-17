@@ -5,10 +5,10 @@ Thread Control
 __version__ = "2020.11.11"
 __author__ = "Xcodz"
 
-from threading import Thread, Lock
 import functools
 import random
 import time
+from threading import Lock, Thread
 
 
 def runs_parallel(_func=None, *, assure_finish=False):

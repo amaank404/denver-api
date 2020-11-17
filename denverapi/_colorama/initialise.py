@@ -4,7 +4,6 @@ import sys
 
 from .ansitowin32 import AnsiToWin32
 
-
 orig_stdout = None
 orig_stderr = None
 

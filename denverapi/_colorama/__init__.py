@@ -1,5 +1,5 @@
-from .initialise import init, deinit, reinit, colorama_text
-from .ansi import Fore, Back, Style, Cursor
+from .ansi import Back, Cursor, Fore, Style
 from .ansitowin32 import AnsiToWin32
+from .initialise import colorama_text, deinit, init, reinit
 
 __version__ = "0.4.3"

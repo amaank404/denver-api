@@ -1,7 +1,7 @@
-from denverapi import bdtpfserv
-from denverapi import bcli
 import argparse
 import os
+
+from denverapi import bcli, bdtpfserv
 
 __version__ = "1.0.0"
 __author__ = "Xcodz"

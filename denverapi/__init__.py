@@ -6,8 +6,8 @@ with the modules provided within it.
 __author__ = "Xcodz"
 __version__ = "2020.10.23"
 
-import sys
 import subprocess
+import sys
 
 
 def install_pip_package(package: str, pre=False, update=False) -> int:

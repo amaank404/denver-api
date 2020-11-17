@@ -13,11 +13,11 @@ even faster on slow networks and less data consumption.
 __author__ = "Xcodz"
 __version__ = "2020.6.4"
 
-import socket
-import gzip
 import abc
-import time
+import gzip
+import socket
 import threading
+import time
 
 if __name__ != "__main__":
     from . import log

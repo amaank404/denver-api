@@ -1,8 +1,9 @@
-import shutil
 import argparse
 import glob
+import shutil
 from os import path
 from sys import exit
+
 from denverapi.ctext import print
 
 

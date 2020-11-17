@@ -1,5 +1,6 @@
-from denverapi import bcli
 import os
+
+from denverapi import bcli
 
 cli = bcli.new_cli()
 

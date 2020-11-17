@@ -20,7 +20,9 @@ if __name__ != "__main__":
 else:
     import _colorama as colorama
 
-import os, sys, shutil
+import os
+import shutil
+import sys
 
 colorama.initialise.init()
 

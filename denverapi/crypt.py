@@ -11,9 +11,10 @@ break the code by using different techniques.
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
-import math
-import cryptography.fernet
 import base64
+import math
+
+import cryptography.fernet
 
 
 class crypto_math:

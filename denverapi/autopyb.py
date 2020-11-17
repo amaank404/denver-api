@@ -1,10 +1,12 @@
-import functools
 import argparse
-import sys
+import functools
 import os
-import subprocess
 import pkgutil
+import subprocess
+import sys
+
 from packaging.version import Version
+
 from . import install_pip_package
 
 try:

@@ -8,10 +8,11 @@ good powered CPU
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
+import os
+import pickle
 import socket
 import threading
-import pickle
-import os
+
 from . import bdtp
 
 

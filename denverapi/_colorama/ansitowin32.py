@@ -1,11 +1,10 @@
+import os
 import re
 import sys
-import os
 
-from .ansi import AnsiFore, AnsiBack, AnsiStyle, Style
-from .winterm import WinTerm, WinColor, WinStyle
-from .win32 import windll, winapi_test
-
+from .ansi import AnsiBack, AnsiFore, AnsiStyle, Style
+from .win32 import winapi_test, windll
+from .winterm import WinColor, WinStyle, WinTerm
 
 winterm = None
 if windll is not None:

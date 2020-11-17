@@ -5,8 +5,9 @@ try:
 except ImportError:
     print("Please install 'denver-api[gui-tools]' using pip to use this")
     exit(1)
-import os
 import argparse
+import os
+
 import denverapi.ctext
 
 pygame.init()

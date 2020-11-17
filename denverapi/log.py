@@ -9,7 +9,9 @@ the log.
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
-import sys, os, time
+import os
+import sys
+import time
 
 conf = {"debug": True, "error": True, "warning": True}
 

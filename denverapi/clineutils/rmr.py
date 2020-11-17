@@ -2,6 +2,7 @@ import argparse
 import glob
 from os import path, remove
 from sys import exit
+
 from denverapi.ctext import print
 
 
