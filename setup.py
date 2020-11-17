@@ -64,7 +64,7 @@ setuptools.setup(
             # tools
             "bdtpserver = denverapi.tools.bdtpserver:main",
             "cpicview = denverapi.tools.cpicview:main",
-            "cpicedit = denverapi.tools.cpic_editor:fromcmd [gui-tools]",
+            "cpic_editor = denverapi.tools.cpic_editor:fromcmd [gui-tools]",
         ]
     },
     zip_safe=False,
