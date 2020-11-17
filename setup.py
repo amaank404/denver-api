@@ -50,5 +50,11 @@ setuptools.setup(
     extras_require={
         "gui-tools": ["pygame"]
     },
+    entry_points={
+        "console_scripts": [
+            "rmrdir = denverapi.clineutils.rmrdir:main",
+            "rmr = denverapi.clineutils.rmr:main"
+        ]
+    },
     zip_safe=False,
 )
