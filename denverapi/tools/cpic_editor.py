@@ -222,8 +222,10 @@ def main(args):
                     if grid_surface_rect.collidepoint(*mouse_position):
                         mouse_x_no_offset = mouse_position[0] - grid_surface_rect.left
                         mouse_y_no_offset = mouse_position[1] - grid_surface_rect.top
-                        grid_coordinates = transform_surface_coordinates_to_grid_coordinates(
-                            (mouse_x_no_offset, mouse_y_no_offset)
+                        grid_coordinates = (
+                            transform_surface_coordinates_to_grid_coordinates(
+                                (mouse_x_no_offset, mouse_y_no_offset)
+                            )
                         )
                         grid[grid_coordinates[0]][grid_coordinates[1]] = (
                             color_select_fore,
@@ -235,19 +237,19 @@ def main(args):
                 if color_pallet_fore_rect.collidepoint(*mouse_position):
                     last_selected = "fore"
                     mouse_x_no_offset = mouse_position[0] - color_pallet_fore_rect.left
-                    color_select_fore = transform_surface_coordinates_to_grid_coordinates(
-                        (mouse_x_no_offset, 1)
-                    )[
-                        0
-                    ]
+                    color_select_fore = (
+                        transform_surface_coordinates_to_grid_coordinates(
+                            (mouse_x_no_offset, 1)
+                        )[0]
+                    )
                 elif color_pallet_back_rect.collidepoint(*mouse_position):
                     last_selected = "back"
                     mouse_x_no_offset = mouse_position[0] - color_pallet_back_rect.left
-                    color_select_back = transform_surface_coordinates_to_grid_coordinates(
-                        (mouse_x_no_offset, 1)
-                    )[
-                        0
-                    ]
+                    color_select_back = (
+                        transform_surface_coordinates_to_grid_coordinates(
+                            (mouse_x_no_offset, 1)
+                        )[0]
+                    )
 
         if color_select_back >= len(COLORS_PYGAME_LIST):
             color_select_back -= len(COLORS_PYGAME_LIST)
