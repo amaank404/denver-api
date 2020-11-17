@@ -1,5 +1,6 @@
-from denverapi import cpic
 import argparse
+
+from denverapi import cpic
 
 
 def main():

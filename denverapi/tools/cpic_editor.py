@@ -8,8 +8,8 @@ except ImportError:
 import argparse
 import os
 
-import denverapi.ctext
 import denverapi.cpic
+import denverapi.ctext
 
 pygame.init()
 pygame.key.start_text_input()
