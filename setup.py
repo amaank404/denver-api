@@ -57,9 +57,13 @@ setuptools.setup(
     extras_require={"gui-tools": ["pygame"]},
     entry_points={
         "console_scripts": [
+            # clinetools
             "rmrdir = denverapi.clineutils.rmrdir:main",
             "rmr = denverapi.clineutils.rmr:main",
+
+            # tools
             "bdtpserver = denverapi.tools.bdtpserver:main",
+            "cpicview = denverapi.tools.cpicview:main",
             "cpicedit = denverapi.tools.cpic_editor:fromcmd [gui-tools]",
         ]
     },
