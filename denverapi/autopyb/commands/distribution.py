@@ -1,7 +1,8 @@
-from .terminal import run_command
-from .pip import get_module_list
 import sys
+
 from ... import install_pip_package
+from .pip import get_module_list
+from .terminal import run_command
 
 
 def make_platform_executable(

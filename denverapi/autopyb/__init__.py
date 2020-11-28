@@ -2,6 +2,8 @@ import argparse
 import functools
 import sys
 
+from .commands import *
+
 try:
     from .. import ctext
 except ImportError:

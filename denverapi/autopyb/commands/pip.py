@@ -1,6 +1,7 @@
+import pkgutil
+
 from ... import install_pip_package
 from ...ctext import print
-import pkgutil
 
 
 def get_module_list():

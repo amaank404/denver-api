@@ -7,15 +7,20 @@ from denverapi.ctext import print
 
 
 def main():
-    parser = argparse.ArgumentParser("rmrdir")
-    parser.add_argument("file", help="the file to remove (can be a glob pattern)")
+    parser = argparse.ArgumentParser("rmr")
+    parser.add_argument(
+        "file", help="the file to remove (can be a glob pattern)", nargs="*", default=[]
+    )
     args = parser.parse_args()
-    for x in glob.iglob(args.file, recursive=False):
-        try:
-            if path.isfile(x):
-                remove(x)
-            else:
-                print(f"Directory: {x} is a directory", fore="red")
-        except PermissionError:
-            print(f"Permission Denied: {x}", fore="red")
-            exit(1)
+    if not isinstance(args.file, list):
+        args.file = [args.file]
+    for file in args.file:
+        for x in glob.iglob(file, recursive=False):
+            try:
+                if path.isfile(x):
+                    remove(x)
+                else:
+                    print(f"Directory: {x} is a directory", fore="red")
+            except PermissionError:
+                print(f"Permission Denied: {x}", fore="red")
+                exit(1)
