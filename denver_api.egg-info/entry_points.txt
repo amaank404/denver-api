@@ -1,0 +1,7 @@
+[console_scripts]
+bdtpserver = denverapi.tools.bdtpserver:main
+cpic_editor = denverapi.tools.cpic_editor:fromcmd [gui-tools]
+cpicview = denverapi.tools.cpicview:main
+rmr = denverapi.clineutils.rmr:main
+rmrdir = denverapi.clineutils.rmrdir:main
+

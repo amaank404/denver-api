@@ -1,0 +1,8 @@
+setuptools
+requests
+playsound
+cryptography
+packaging
+
+[gui-tools]
+pygame
