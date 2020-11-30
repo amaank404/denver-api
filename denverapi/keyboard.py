@@ -49,6 +49,8 @@ class _GetchWindows:
 
 _getch = _Getch()
 
+__init__
+
 
 def getch():
     """

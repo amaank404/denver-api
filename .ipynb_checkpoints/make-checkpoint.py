@@ -31,9 +31,11 @@ def develop():
 @auto.task(clean)
 def style():
     print("Checking Pip requirements")
-    pip.ensure_pip_package("black", ">=20.8.b1")
-    pip.ensure_pip_package("isort", ">=5.6.4")
-
+    modules = pip.get_module_list()
+    if "black" not in modules:
+        pip.ensure_pip_package("black")
+    if "isort" not in modules:
+        pip.ensure_pip_package("isort")
     print("\nCode Formatting using black")
     terminal.run_command([executable, "-m", "black", "."])
     print("\nCode Formatting using isort")

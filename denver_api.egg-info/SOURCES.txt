@@ -1,5 +1,6 @@
 README.md
 setup.py
+__pye__/__init__.py
 denver_api.egg-info/PKG-INFO
 denver_api.egg-info/SOURCES.txt
 denver_api.egg-info/dependency_links.txt
@@ -22,7 +23,9 @@ denverapi/get.py
 denverapi/graphics2d.py
 denverapi/graphics3d.py
 denverapi/handypy.py
+denverapi/keyboard.py
 denverapi/log.py
+denverapi/pyelib.py
 denverapi/pysetup.py
 denverapi/rawd.py
 denverapi/sound.py

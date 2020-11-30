@@ -1,0 +1,1 @@
+rmrdir __pycache__ **/__pycache__

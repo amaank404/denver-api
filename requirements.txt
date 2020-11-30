@@ -4,3 +4,4 @@ playsound
 pygame
 cryptography
 packaging
+dill

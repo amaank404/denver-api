@@ -3,6 +3,10 @@ requests
 playsound
 cryptography
 packaging
+dill
+
+[all]
+denver-api[gui-tools]
 
 [gui-tools]
 pygame

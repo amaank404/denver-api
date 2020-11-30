@@ -37,7 +37,7 @@ setuptools.setup(
     packages=setuptools.find_packages()
     + setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
     package_data=find_package_data("denverapi", "denverapi"),
-    version="2.5.5b0",
+    version="2.5.5b1",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -53,8 +53,9 @@ setuptools.setup(
         "playsound",
         "cryptography",
         "packaging",
+        "dill",
     ],
-    extras_require={"gui-tools": ["pygame"]},
+    extras_require={"gui-tools": ["pygame"], "all": ["denver-api[gui-tools]"]},
     entry_points={
         "console_scripts": [
             # clinetools

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: denver-api
-Version: 2.5.5b0
+Version: 2.5.5b1
 Summary: Denver API for python full-stack development
 Home-page: UNKNOWN
 Author: xcodz
@@ -102,3 +102,4 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
 Provides-Extra: gui-tools
+Provides-Extra: all
