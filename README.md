@@ -59,7 +59,7 @@ This is a community driven project and accepts pull requests
 of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), Thanks to all the contributors. Contributions are appreciated 
 
 ## Fixed Bugs
-### 2.5.5b0
+### 2.6.0b0
 * `denverapi.tools.cpic_editor` cell height to width ratio is 25:10 now for better compatibility with terminal
 ### 2.5.2, 2.5.3, 2.5.4
 * `denverapi.autopyb` fixes
@@ -73,7 +73,7 @@ of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/mas
 * `denverapi.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
 
 ## What's New
-### 2.5.5b0
+### 2.6.0b0
 * added new command line utilities
 * added `denverapi.tools.cpicview` to view cpic type images from commandline
 * added `entrypoints` to all tools as scripts
