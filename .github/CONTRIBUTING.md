@@ -14,6 +14,26 @@ Your code must comply with the requirements mentioned below.
 * Your code should contain doctests (recommended)
 * Your code should be optimized to work fast (recommended)
 
+### Code Formatting Automation (black, isort automation)
+You can completly forget about the code styling requirements and follow the following instructions to
+automatically format it everytime.
+
+#### Install The Denver Api in development mode
+This process is only required once. (You might need to do it again every time you install denver-api from pip)
+
+```bash
+pip uninstall denver-api # Make sure you do not have any installed version
+python setup.py develop
+```
+
+#### Format code using builtin automation script
+The script named `make.py` contains code to fix things up just run the following commands every time
+you encounter errors regarding code format
+
+```bash
+python make.py style
+```
+
 ## Things You should know before you submit your code
 * After submission of your code, your code will be open-source and will be distributed with MIT-License.
 * You will not be able to delete it until your request is passed.
