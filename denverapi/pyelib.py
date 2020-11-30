@@ -1,5 +1,5 @@
 """
-Utilities to genrate a library out of python source
+Utilities to generate a library out of python source
 """
 
 import os
