@@ -56,7 +56,8 @@ you can edit any file (any file edited during `mkdocs serve` will be reflected o
 
 ## Community
 This is a community driven project and accepts pull requests
-of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), Thanks to all the contributors. Contributions are appreciated 
+of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), 
+Thanks to all the contributors. Contributions are appreciated 
 
 ## Fixed Bugs
 ### 2.6.0b0
@@ -74,10 +75,12 @@ of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/mas
 
 ## What's New
 ### 2.6.0b0
-* added new command line utilities
-* added `denverapi.tools.cpicview` to view cpic type images from commandline
-* added `entrypoints` to all tools as scripts
-* added ability to `denverapi.tools.cpic_editor` to save cpic images to file
+* added new command line utilities.
+* added `denverapi.tools.cpicview` to view cpic type images from commandline.
+* added `entrypoints` to all tools as scripts.
+* added `pyelib` which makes libraries from caching funtions so they do not compile everytime they run.
+* added ability to `denverapi.autopyb.commands.pip` to be able to detect dependecies and do not run pip for no reason
+* added ability to `denverapi.tools.cpic_editor` to save cpic images to file.
 ### 2.5.0
 * autopyb is added as a new auto building manager
 ### 2.4.1
