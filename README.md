@@ -78,8 +78,8 @@ Thanks to all the contributors. Contributions are appreciated
 * added new command line utilities.
 * added `denverapi.tools.cpicview` to view cpic type images from commandline.
 * added `entrypoints` to all tools as scripts.
-* added `pyelib` which makes libraries from caching funtions so they do not compile everytime they run.
-* added ability to `denverapi.autopyb.commands.pip` to be able to detect dependecies and do not run pip for no reason
+* added `pyelib` which makes libraries from caching functions so they do not compile every time they run.
+* added ability to `denverapi.autopyb.commands.pip` to be able to detect dependencies and do not run pip for no reason
 * added ability to `denverapi.tools.cpic_editor` to save cpic images to file.
 ### 2.5.0
 * autopyb is added as a new auto building manager
