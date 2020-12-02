@@ -1,0 +1,6 @@
+*.egg-info
+*.whl
+*.tar.gz
+*.zip
+__pycache__
+__pye__
