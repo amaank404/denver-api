@@ -3,4 +3,4 @@
 *.tar.gz
 *.zip
 __pycache__
-__pye__
+**/__pycache__
