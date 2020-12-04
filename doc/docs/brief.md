@@ -285,7 +285,7 @@ Denver also comes bundled with some handy command line utilities
 
 ### [rmr](util/rmr.md)
 
-This tool removes files recursivly using multiple glob patterns
+This tool removes files recursively using multiple glob patterns
 
 ### [rmrdir](util/rmrdir.md)
 
