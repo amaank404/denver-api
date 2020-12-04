@@ -46,14 +46,15 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.6",
     install_requires=[
-        "setuptools",
+        "setuptools>50",
         "requests",
         "playsound",
         "cryptography",
         "packaging",
         "dill",
+        "pip~=20.3"
     ],
     extras_require={"gui-tools": ["pygame"], "all": ["denver-api[gui-tools]"]},
     entry_points={

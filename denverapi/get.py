@@ -41,10 +41,11 @@ def get_file_path(mdir=None):
     while True:
         print_tree(mpath)
         f = input(">")
-        if os.path.isfile(m := os.path.join(mpath, f)):
+        m = os.path.join(mpath, f)
+        if os.path.isfile(m):
             clear()
             return m
-        elif os.path.isdir(m := os.path.join(mpath, f)):
+        elif os.path.isdir(m):
             mpath = os.path.abspath(m)
             clear()
 

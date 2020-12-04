@@ -1,7 +1,6 @@
 import pkgutil
 
 import pkg_resources
-from packaging.markers import Marker
 from packaging.requirements import Requirement
 from packaging.version import Version
 

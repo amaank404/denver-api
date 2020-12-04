@@ -37,5 +37,5 @@ def load_pye(name: str, environment=None):
     file = "lib" + os.path.basename(name) + ".pye"
     file_dir = os.path.dirname(name)
 
-    dill.load_sessios(os.path.join(file_dir, file), module)
+    dill.load_session(os.path.join(file_dir, file), module)
     return module

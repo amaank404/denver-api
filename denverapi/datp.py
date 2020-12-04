@@ -10,7 +10,7 @@ __author__ = "Xcodz"
 
 
 import os
-import pickle as achar  # achar is pickle in HINDI (India)
+import pickle as achar  # achar is pickle in HINDI (India) ;)
 
 
 # tree printers

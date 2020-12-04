@@ -1,7 +1,8 @@
-setuptools
+setuptools>=50
 requests
 playsound
 pygame
 cryptography
 packaging
 dill
+pip>=20.3
