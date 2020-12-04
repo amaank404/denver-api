@@ -8,17 +8,29 @@ nav:
       - bdtp: modules/bdtp.md
       - bdtpfserv: modules/bdtpfserv.md
       - bitmap: modules/bitmap.md
+      - cpic: modules/cpic.md
       - crypt: modules/crypt.md
       - ctext: modules/ctext.md
       - datau: modules/datau.md
       - datp: modules/datp.md
+      - funcl: modules/funcl.md
       - get: modules/get.md
+      - graphics2d: modules/graphics2d.md
       - graphics3d: modules/graphics3d.md
       - handypy: modules/handypy.md
       - log: modules/log.md
+      - pyelib: modules/pyelib.md
       - pysetup: modules/pysetup.md
       - rawd: modules/rawd.md
       - sound: modules/sound.md
+      - tctrl: modules/tctrl.md
       - text: modules/text.md
+  - Tools:
+      - bdtpserver: bdtpserver.md
+      - cpic_editor: cpic_editor.md
+      - cpicview: cpicview.md
+  - Utilities:
+      - rmr: util/rmr.md
+      - rmrdir: util/rmrdir.md
 theme:
   name: material
