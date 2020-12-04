@@ -3,7 +3,7 @@ Denver API for Python
 
 This API is specifically designed for python developers who want to use
 advanced utilities but without coding much. The API requires you to
-have minimum Python 3.8
+have minimum Python 3.6
 
 ## tools
 this is a new package built into denver and now you can use every module inside it as a command line
@@ -60,8 +60,9 @@ of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/mas
 Thanks to all the contributors. Contributions are appreciated 
 
 ## Fixed Bugs
-### 2.6.0b0
+### 2.6.0b1 (the upcoming stable release)
 * `denverapi.tools.cpic_editor` cell height to width ratio is 25:10 now for better compatibility with terminal
+* `denverapi.pyelib` error in load library
 ### 2.5.2, 2.5.3, 2.5.4
 * `denverapi.autopyb` fixes
 ### 2.5.1
@@ -74,7 +75,8 @@ Thanks to all the contributors. Contributions are appreciated
 * `denverapi.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
 
 ## What's New
-### 2.6.0b0
+### 2.6.0b1 (the upcoming stable release)
+* added support for Python 3.6
 * added new command line utilities.
 * added `denverapi.tools.cpicview` to view cpic type images from commandline.
 * added `entrypoints` to all tools as scripts.
