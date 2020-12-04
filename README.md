@@ -45,11 +45,11 @@ and may not be visible for some time*).
 Also Documentation provided with this project can be used but you will have to install mkdocs
 by the following command
 ```commandline
-pip install mkdocs mkdocs-material
+pip install mkdocs mkdocs-bootswatch
 ```
 or if you already have then you can upgrade it by following command
 ```commandline
-pip install --upgrade mkdocs mkdocs-material
+pip install --upgrade mkdocs mkdocs-bootswatch
 ```
 After installation cd to `./docs/` and run this command `mkdocs build` or if you want to edit `mkdocs serve` and then 
 you can edit any file (any file edited during `mkdocs serve` will be reflected on server every time you save a file)

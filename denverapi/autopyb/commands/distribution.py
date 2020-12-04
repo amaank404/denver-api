@@ -1,3 +1,5 @@
+import os
+import shutil
 import sys
 
 from ... import install_pip_package
@@ -15,6 +17,9 @@ def make_platform_executable(
     if extras is None:
         extras = []
     t = [x.lower() for x in t.split("-")]
+    if os.path.isdir("dist"):
+        shutil.rmtree("dist")
+
     print(f"Making platform executable '{name}'")
     flags: list = list(aflags)
     flags.extend(["-n", name])

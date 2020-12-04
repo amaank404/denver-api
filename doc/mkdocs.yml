@@ -1,8 +1,16 @@
 site_name: Denver Docs
+site_url: https://xcodz-dot.github.io/
+repo_url: https://github.com/xcodz-dot/denver
+edit_uri: edit/master/doc/docs
+site_description: Denver API, makes your python proggramming easier
+site_author: Xcodz
+copyright: Copyright (c) 2020 Xcodz.
 nav:
   - Home: index.md
   - Installation: installation.md
   - Brief: brief.md
+  - Packages:
+      - autopyb: packages/autopyb.md
   - Modules:
       - bcli: modules/bcli.md
       - bdtp: modules/bdtp.md
@@ -18,6 +26,7 @@ nav:
       - graphics2d: modules/graphics2d.md
       - graphics3d: modules/graphics3d.md
       - handypy: modules/handypy.md
+      - keyboard: modules/keyboard.md
       - log: modules/log.md
       - pyelib: modules/pyelib.md
       - pysetup: modules/pysetup.md
@@ -26,11 +35,11 @@ nav:
       - tctrl: modules/tctrl.md
       - text: modules/text.md
   - Tools:
-      - bdtpserver: bdtpserver.md
-      - cpic_editor: cpic_editor.md
-      - cpicview: cpicview.md
+      - bdtpserver: tools/bdtpserver.md
+      - cpic_editor: tools/cpic_editor.md
+      - cpicview: tools/cpicview.md
   - Utilities:
       - rmr: util/rmr.md
       - rmrdir: util/rmrdir.md
 theme:
-  name: material
+  name: flatly

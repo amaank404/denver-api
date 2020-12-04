@@ -1,6 +1,16 @@
 # Brief
 This page contains information about every module in the project.
 
+## Packages
+### [autopyb](packages/autopyb.md)
+This is the master of our automation tools. This tool provides the following
+
+* colored cross-platform interface
+* dependency management
+* native executable creation with pyinstaller
+* pip package installer
+* terminal command run
+
 ## Modules
 ### [bcli](modules/bcli.md)
 This module is usually useful for beautiful command line interface
@@ -276,3 +286,7 @@ Denver also comes bundled with some handy command line utilities
 ### [rmr](util/rmr.md)
 
 This tool removes files recursivly using multiple glob patterns
+
+### [rmrdir](util/rmrdir.md)
+
+This tool is similar to rmr but it provides the utility for directories instead

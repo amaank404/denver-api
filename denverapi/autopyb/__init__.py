@@ -37,7 +37,9 @@ class BuildTasks:
                         x = depend[0]
                         is_list = True
                     else:
-                        raise TypeError("dependencies must be a function or a tuple[function: callable, [...]]")
+                        raise TypeError(
+                            "dependencies must be a function or a tuple[function: callable, [...]]"
+                        )
                     if x not in self.accomplished:
                         print(
                             f"Running Task {x.__name__} (from {function.__name__})",
