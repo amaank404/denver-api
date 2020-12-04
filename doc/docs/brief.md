@@ -230,9 +230,22 @@ but if you use this module you can always expect this
     abcd abcd fgf | And this is second line
     abcd a        |
 
-and also you can use `denver.datau` to make it look a little more beautiful in between
+and also you can use `denverapi.datau` to make it look a little more beautiful in between
 
 ## Tools
+
+To get a list of tools simply use this command
+
+```bash
+python -m denverapi.tools
+```
+
+To get help about any tool (Replace `sometool` with the tool you want)
+
+```bash
+python -m denverapi.tools.sometool --help
+```
+
 ### [bdtpserver](tools/bdtpserver.md)
 
 There might be many people who are not interested in modules and implementing themselves so here we are with our tools
@@ -244,10 +257,22 @@ for bdtpfserv. this tool can easily do your work with complete command line impl
 * Listing
 * Directory Creation
 
-you can also know more about it using the following command `python -m denver.tools.bdtpserver --help`
+you can also know more about it using the following command `python -m denverapi.tools.bdtpserver --help`
 
 ### [cpic_editor](tools/cpic_editor.md)
 
 You got your hands on cpic, now what, how can you really make images. Here we are with the new
 tool cpic_editor which packs the ability of creating cpic images using a graphics user interface
 implemented from scratch.
+
+### [cpic_editor](tools/cpicview.md)
+
+It is also handy to use the viewer for viewing cpic files within the commandline.
+
+## Utilities
+
+Denver also comes bundled with some handy command line utilities
+
+### [rmr](util/rmr.md)
+
+This tool removes files recursivly using multiple glob patterns
