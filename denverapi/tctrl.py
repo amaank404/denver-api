@@ -69,6 +69,6 @@ if __name__ == "__main__":
             print(f"Created File {number}")
 
     manager = ThreadManager()
-    for x in range(1000):
+    for x in range(100):
         manager.add(create_files, x)
-    manager.start_execution(1000)
+    manager.start_execution(10)

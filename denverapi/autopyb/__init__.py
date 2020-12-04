@@ -29,7 +29,15 @@ class BuildTasks:
                 if arguments is None:
                     arguments = []
                 print(f"-------------{function.__name__}-------------", fore="green")
-                for x in dependencies:
+                for depend in dependencies:
+                    is_list = False
+                    if callable(depend):
+                        x = depend
+                    elif isinstance(depend, (tuple, list)):
+                        x = depend[0]
+                        is_list = True
+                    else:
+                        raise TypeError("dependencies must be a function or a tuple[function: callable, [...]]")
                     if x not in self.accomplished:
                         print(
                             f"Running Task {x.__name__} (from {function.__name__})",
@@ -38,7 +46,10 @@ class BuildTasks:
                         if x not in self.ignored_tasks:
                             self.accomplished.append(x)
                         try:
-                            x(None)
+                            if is_list:
+                                x(depend[1])
+                            else:
+                                x(None)
                         except Exception as e:
                             print(
                                 f"Encountered {e.__class__.__name__}: {str(e)} ({x.__name__})",

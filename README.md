@@ -40,16 +40,16 @@ pip install --upgrade denver-api
 ```
 
 ## Documentation
-Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denverdocs) (*currently in progress
+Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denver) (*currently in progress
 and may not be visible for some time*).
 Also Documentation provided with this project can be used but you will have to install mkdocs
 by the following command
 ```commandline
-pip install mkdocs
+pip install mkdocs mkdocs-material
 ```
 or if you already have then you can upgrade it by following command
 ```commandline
-pip install --upgrade mkdocs
+pip install --upgrade mkdocs mkdocs-material
 ```
 After installation cd to `./docs/` and run this command `mkdocs build` or if you want to edit `mkdocs serve` and then 
 you can edit any file (any file edited during `mkdocs serve` will be reflected on server every time you save a file)

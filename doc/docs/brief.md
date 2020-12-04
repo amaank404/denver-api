@@ -63,6 +63,14 @@ out the features below
   if you edit something in bitmap portion, they will be directly reflected over bitmap.
   Also, your image would not be overwritten after a certain limit of height and width.
   
+### [cpic](modules/cpic.md)
+
+Cpic is all about printing images to command line but with a twist. The images printed
+are not the standard images but are the special cpic format images. These images are
+basically consist of 3 numbers which define background, foreground, style and a character
+which defines the foreground text. There is also a dedicated tool for it named 
+[`cpic_editor`](tools/cpic_editor.md) 
+
 ### [crypt](modules/crypt.md)
 
 It is very sure that you might have encountered security issues with your program and
@@ -113,11 +121,12 @@ You can probably try this example to know about an example
 ```python
 from denverapi import datau
 
-my_box = """
-/-------\\
+my_box = r"""
+/-------\
 | Hello |
-\\-------/
+\-------/
 """ # you might need to escape back slashes, we recommend using files for storing and retrieving data
+    # r strings are also a good option
 
 my_smooth_box = datau.convert(my_box, datau.box['soft box'])
 print(my_smooth_box)
@@ -129,6 +138,11 @@ we provide some of the good methods like List printing using indentation or tree
 and tree3 for representation of dictionaries. we also provide StorageTree to extract files
 under a folder into VSD (Virtual Storage Dictionary).
 
+### [funcl](modules/funcl.md)
+This module provides great logging features which are useful in both release and debugging applications.
+This module provides the ability to switch between debug mode and release mode. Although debug mode uses
+more resources, it should be disabled in release mode.
+
 ### [get](modules/get.md)
 this module is just awesome for anyone not good at taking input from user or may be validating it, you can use its
 print tree method to print directories or you can simply use get file path to get a
@@ -139,6 +153,12 @@ path to file from user input. there are tons of features
 * path input
 * ipv4 validator
 * (ipv4, port) input
+
+### [graphics2d](modules/graphics2d.md)
+Now as you have seen the power of 3d graphics, you might also want to use 2d graphics. 2d graphics include:
+
+* get angle (get the angle of a line provided)
+* get end (get the endpoint of a line with length, start point, angle provided)
 
 ### [graphics3d](modules/graphics3d.md)
 Well this module is loaded with a few algorithms and a fully featured model viewer by which you can view models very
@@ -161,13 +181,23 @@ features
 
 that's all for this small module
 
-### [log](modules/log.md) \[Depreciated]
+### [keyboard](modules/keyboard.md)
+Ever wondered about creating terminal games. Or ever wondered of creating your own
+terminal user interface library. You might have got into the problem of getting input
+without printing the characters to screen. Well here we are, we provide cross-platform
+solution to that problem.
+
+### [log](modules/log.md) \[Depreciated, getting removed in next major release]
 This module provides you with basic logging facilities which
 can be used by your programs to get developed easily. while
 debugging you can keep the configurations on and while
 releasing you can switch of error, warnings, debug or you
 can also change the file to a new file which can contain
 the log.
+
+### [pyelib](modules/pyelib.md)
+This module provides caching or basically storing all you functions in a dream like
+dynamic linked library.
 
 ### [pysetup](modules/pysetup.md)
 Utilities for `setuptools.setup`, this module basically finds the extra non python data
@@ -181,6 +211,10 @@ much more.
 ### [sound](modules/sound.md)
 Sound is simple implementation for cross platform integration of playsound module you can simply
 call `play_sound` function to simply use it to play sound files.
+
+### [tctrl](modules/tctrl.md)
+Thread control provides a very easy and beginner friendly solution to threading.
+It comes packed with awesome features and very straight forward solution to thread pool.
 
 ### [text](modules/text.md)
 Well, text might have been a long time with you, you might have also faced the problems with text like wrap arounds,
@@ -211,3 +245,9 @@ for bdtpfserv. this tool can easily do your work with complete command line impl
 * Directory Creation
 
 you can also know more about it using the following command `python -m denver.tools.bdtpserver --help`
+
+### [cpic_editor](tools/cpic_editor.md)
+
+You got your hands on cpic, now what, how can you really make images. Here we are with the new
+tool cpic_editor which packs the ability of creating cpic images using a graphics user interface
+implemented from scratch.

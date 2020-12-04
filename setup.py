@@ -54,7 +54,7 @@ setuptools.setup(
         "cryptography",
         "packaging",
         "dill",
-        "pip~=20.3"
+        "pip~=20.3",
     ],
     extras_require={"gui-tools": ["pygame"], "all": ["denver-api[gui-tools]"]},
     entry_points={
