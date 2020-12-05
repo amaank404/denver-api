@@ -130,8 +130,20 @@ def main():
                 args.directory, (args.ip_address, args.port)
             )
             cli.info('Directory listing of "', args.directory, '":', sep="")
-            for x in directory_list:
-                cli.info("\t", x)
+            dirl = []
+            fill = []
+            ldir = directory_list
+            for x, t in ldir:
+                if not t:
+                    dirl.append(x)
+                else:
+                    fill.append(x)
+            dirl.sort()
+            fill.sort()
+            for x in dirl:
+                cli.info(" # " + x)
+            for x in fill:
+                cli.info(" @ " + x)
     except KeyboardInterrupt:
         if not args.no_log:
             cli.bad("Process aborted by user")
