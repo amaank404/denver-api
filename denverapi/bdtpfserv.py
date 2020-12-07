@@ -63,13 +63,19 @@ def handle_request(connection: socket.socket, addr: tuple, hdir: str, shdir: str
         except Exception as e:
             print(f"{addr} get request failed: {str(e)}")
     elif req[0] == "typelistdir":
-        print(f"{addr} requested to typelistdir \"{req[1]}\"")
+        print(f'{addr} requested to typelistdir "{req[1]}"')
         try:
             d = os.listdir(os.path.join(hdir, req[1].replace("/", os.sep)))
-            s = [(x, 0 if os.path.isdir(os.path.join(hdir, req[1].replace("/", os.sep), x)) else 1) for x in d]
-            r = pickle.dumps(
-                s
-            )
+            s = [
+                (
+                    x,
+                    0
+                    if os.path.isdir(os.path.join(hdir, req[1].replace("/", os.sep), x))
+                    else 1,
+                )
+                for x in d
+            ]
+            r = pickle.dumps(s)
             d = bdtp.new_send_data_host(r, ("", 0))
             d.send(connection)
         except Exception as e:
