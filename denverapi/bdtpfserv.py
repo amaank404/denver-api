@@ -62,6 +62,24 @@ def handle_request(connection: socket.socket, addr: tuple, hdir: str, shdir: str
             d.send(connection)
         except Exception as e:
             print(f"{addr} get request failed: {str(e)}")
+    elif req[0] == "typelistdir":
+        print(f'{addr} requested to typelistdir "{req[1]}"')
+        try:
+            d = os.listdir(os.path.join(hdir, req[1].replace("/", os.sep)))
+            s = [
+                (
+                    x,
+                    0
+                    if os.path.isdir(os.path.join(hdir, req[1].replace("/", os.sep), x))
+                    else 1,
+                )
+                for x in d
+            ]
+            r = pickle.dumps(s)
+            d = bdtp.new_send_data_host(r, ("", 0))
+            d.send(connection)
+        except Exception as e:
+            print(f"{addr} typelistdir request failed: {str(e)}")
     elif req[0] == "mkdir":
         print(f'{addr} requested to mkdir "{req[1]}"')
         try:
@@ -99,6 +117,18 @@ def listdir(dir_name: str, addr: tuple):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect(addr)
     s.sendall(pickle.dumps(["listdir", dir_name]))
+    d = bdtp.new_receive_data_port(("", 0))
+    d.recv(s)
+    s.close()
+    return pickle.loads(d.data)
+
+
+def typelistdir(dir_name: str, addr: tuple):
+    if dir_name == "":
+        dir_name = "."
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(addr)
+    s.sendall(pickle.dumps(["typelistdir", dir_name]))
     d = bdtp.new_receive_data_port(("", 0))
     d.recv(s)
     s.close()

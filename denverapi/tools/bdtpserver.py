@@ -126,19 +126,31 @@ def main():
             if not args.no_log:
                 cli.good("Directory Made")
         elif args.command == "list":
-            directory_list = bdtpfserv.listdir(
+            directory_list = bdtpfserv.typelistdir(
                 args.directory, (args.ip_address, args.port)
             )
             cli.info('Directory listing of "', args.directory, '":', sep="")
-            for x in directory_list:
-                cli.info("\t", x)
+            dirl = []
+            fill = []
+            ldir = directory_list
+            for x, t in ldir:
+                if not t:
+                    dirl.append(x)
+                else:
+                    fill.append(x)
+            dirl.sort()
+            fill.sort()
+            for x in dirl:
+                cli.info(" # " + x)
+            for x in fill:
+                cli.info(" @ " + x)
     except KeyboardInterrupt:
         if not args.no_log:
             cli.bad("Process aborted by user")
         raise SystemExit(1)
     except Exception as exception:
         if not args.no_log:
-            cli.bad("Exception", str(exception))
+            cli.bad(f"{exception.__class__.__name__}:", str(exception))
     if not args.no_log:
         cli.good("Process Complete")
 
