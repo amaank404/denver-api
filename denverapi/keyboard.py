@@ -54,7 +54,8 @@ def getch():
     """
     Cross platform getch (Warning: is doesn't print the character it takes as input, returns bytes)
     """
-    return _getch()
+    d = _getch()
+    return d if isinstance(d, bytes) else d.encode()
 
 
 def getline(print_new_line=True, *args, **kwargs):
@@ -70,4 +71,18 @@ def getline(print_new_line=True, *args, **kwargs):
             string += s
     kwargs["end"] = ""
     print("\n" if print_new_line else "", *args, **kwargs)
+    return string
+
+
+def getuntil(char=b"\r"):
+    """
+    Cross platform input but it doesn't print the line entered (returns bytes)
+    """
+    string = b""
+    while True:
+        s = getch()
+        if s == char:
+            break
+        else:
+            string += s
     return string
