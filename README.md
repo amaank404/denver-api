@@ -75,7 +75,8 @@ Thanks to all the contributors. Contributions are appreciated
 * `denverapi.pysetup.find_package_data` function is now fixed so it can include files at root level of a module
 
 ## What's New
-### 2.6.0b1 (the upcoming stable release)
+### 2.6.0b4 (the upcoming stable release)
+* better cli for `denverapi.autopyb`
 * added support for Python 3.6
 * added new command line utilities.
 * added `denverapi.tools.cpicview` to view cpic type images from commandline.
