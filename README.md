@@ -60,7 +60,7 @@ of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/mas
 Thanks to all the contributors. Contributions are appreciated 
 
 ## Fixed Bugs
-### 2.6.0b1 (the upcoming stable release)
+### 2.6.0b4 (the upcoming stable release)
 * `denverapi.tools.cpic_editor` cell height to width ratio is 25:10 now for better compatibility with terminal
 * `denverapi.pyelib` error in load library
 ### 2.5.2, 2.5.3, 2.5.4

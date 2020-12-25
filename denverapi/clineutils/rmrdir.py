@@ -28,3 +28,7 @@ def main():
             except PermissionError:
                 print(f"Permission Denied: {x}", fore="red")
                 exit(1)
+
+
+if __name__ == "__main__":
+    main()

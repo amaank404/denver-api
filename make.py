@@ -11,6 +11,9 @@ requires_version("1.1.0")
 
 @auto.task()
 def clean():
+    """
+    Try Removing All Cache Files
+    """
     print("Removing all __pycache__ directories")
     terminal.run_command(
         [
@@ -23,13 +26,55 @@ def clean():
     )
 
 
+@auto.task()
+def clean_build():
+    """
+    Remove all unnecessary data which was produced after make.py build
+    """
+    print("Removing all unnecessary files")
+    terminal.run_command(
+        [
+            executable,
+            "-m",
+            "denverapi.clineutils.rmrdir",
+            "build",
+            "dist",
+            "*.dist-info",
+            "*.egg-info",
+        ]
+    )
+
+
 @auto.task(clean)
 def develop():
+    """
+    Install Package in Development mode
+    """
     terminal.run_command([executable, "setup.py", "develop"])
+
+
+@auto.task(clean_build, clean)
+def clean_all():
+    """
+    Clean Everything
+    """
+
+
+@auto.task(clean_all)
+def build():
+    """
+    Make Two types of distribution
+    """
+    pip.ensure_pip_package("wheel")
+    pip.ensure_pip_package("setuptools")
+    terminal.run_command([executable, "setup.py", "sdist", "bdist_wheel"])
 
 
 @auto.task(clean)
 def style():
+    """
+    Format code for meeting our repository guidelines
+    """
     print("Checking Pip requirements")
     pip.ensure_pip_package("black", ">=20.8.b1")
     pip.ensure_pip_package("isort", ">=5.6.4")
@@ -55,6 +100,41 @@ def style():
             file.write(data)
     print("  Done")
     clean()
+
+
+@auto.task()
+def check():
+    """
+    Check if code matches our code contribution guidelines
+    """
+    pip.ensure_pip_package("black", ">=20.8b1")
+    pip.ensure_pip_package("codespell", ">=2.0.0")
+    pip.ensure_pip_package("flake8", ">=3.8.4")
+    pip.ensure_pip_package("isort", ">=5.6.4")
+    print("\nChecking code")
+    print(" BLACK")
+    if terminal.run_command([sys.executable, "-m", "black", "--check", "."]):
+        raise Exception("black Failed")
+    print("\n\n ISORT")
+    if terminal.run_command([sys.executable, "-m", "isort", "--profile", "black", "."]):
+        raise Exception("isort Failed")
+    print("\n\n FLAKE8")
+    if terminal.run_command(
+        [
+            sys.executable,
+            "-m",
+            "flake8",
+            ".",
+            "--count",
+            "--select=E9,F63,F7,F82",
+            "--show-source",
+            "--statistics",
+        ]
+    ):
+        raise Exception("flake8 Failed")
+    print("\n\n CODESPELL")
+    terminal.run_command([sys.executable, "-m", "codespell_lib", "-q", "2"])
+    print("check codespell carefully (if it finds problem in '.git', then ignore this)")
 
 
 if __name__ == "__main__":
