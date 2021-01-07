@@ -41,7 +41,7 @@ class ThreadManager:
     def add(self, function, *args, **kwargs):
         self.thread_pool.append((function, args, kwargs))
 
-    def start_execution(self, maximum_thread_count=20):
+    def start_execution(self, maximum_thread_count=10):
         currently_executing = []
         while len(self.thread_pool) > 0:
             if len(currently_executing) < maximum_thread_count:

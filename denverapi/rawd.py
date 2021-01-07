@@ -1,7 +1,7 @@
 """
 Raw Data
 
-A Module for struct module for making formats
+A wrapper over struct module for making formats
 and use them directly or by conversion
 """
 

@@ -3,6 +3,8 @@ Colored picture
 ===============
 
 You can use this module to read, write or print images onto screen, or get printable image.
+
+use combine function to get printable cpic image text
 """
 
 try:

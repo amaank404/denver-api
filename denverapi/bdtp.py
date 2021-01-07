@@ -19,10 +19,9 @@ import socket
 import threading
 import time
 
-if __name__ != "__main__":
-    from . import log
-else:
-    import log
+from . import log
+from . import tctrl
+
 
 default_buffer_size = 100000
 _logger_conf = {"debug": False, "error": False, "warning": False}
@@ -202,6 +201,7 @@ def new_receive_data_port(addr: tuple, buffer_size=None):
 def attach_speed_logger(data_object):
     spl = []
 
+    @tctrl.runs_parallel
     def sps(spl, d: _BaseSender):
         old = 0
         new = 0
@@ -212,6 +212,7 @@ def attach_speed_logger(data_object):
             spl.append(new - old)
             old = new
 
+    @tctrl.runs_parallel
     def spr(spl, d: _BaseReceiver):
         old = 0
         new = 0
@@ -222,12 +223,7 @@ def attach_speed_logger(data_object):
             spl.append(new - old)
             old = new
 
-    mt = threading.Thread(
-        target=spr if isinstance(data_object, _BaseReceiver) else sps,
-        args=(spl, data_object),
-        daemon=True,
-    )
-    mt.start()
+    (spr if isinstance(data_object, _BaseReceiver) else sps)(spl, data_object)
     return spl
 
 
@@ -242,8 +238,8 @@ def average_speed_log(spl: list):
     while spl[0] == 0:
         spl.pop(0)
     while spl[-1] == 0:
-        spl.pop(-1)
-    return sum(spl) / len(spl)
+        spl.pop()
+    return (sum(spl) / len(spl)) * 100
 
 
 def main():

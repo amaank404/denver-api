@@ -9,6 +9,7 @@ import textwrap
 
 
 class text:
+    @staticmethod
     def wrap(p, w=70):
         d = [textwrap.fill(x, w) for x in p.split("\n")]
         r = []
@@ -16,6 +17,7 @@ class text:
             r.extend(x.split("\n"))
         return r
 
+    @staticmethod
     def join(p1, p2, *p, w=40, j=""):
         s1 = text.wrap(p1, w - 1)
         s2 = text.wrap(p2, w - 1)
@@ -36,8 +38,10 @@ class text:
                 s1[y] += j + s[x][y]
         return "\n".join(s1)
 
+    @staticmethod
     def linefill(l, width, fill=" "):
         return l + (fill * (width - len(l)))
 
+    @staticmethod
     def vfill(l, length, fill=""):
         l.extend([fill for _ in range(length - len(l))])

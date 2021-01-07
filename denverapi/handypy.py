@@ -41,7 +41,6 @@ def analise_src_imports(src: str) -> list:
 
 def main():
     import os
-    import sys
 
     src = [
         open(os.path.dirname(__file__) + "/" + x).read()

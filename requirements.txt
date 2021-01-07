@@ -6,3 +6,5 @@ cryptography
 packaging
 dill
 pip>=20.3
+prompt-toolkit
+wcwidth

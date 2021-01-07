@@ -5,6 +5,11 @@ Also Colorama is present here by default. and
 is used. This Module is tested with windows and
 is perfect for cross-platform applications
 which target *nix, Windows, etc.
+
+You can try advanced color with ctext2 module which uses prompt toolkit
+for 4-bit (8 colors), 8-bit (256 colors), 24-bit truecolor.
+
+ctext2 is recommended
 """
 
 __version__ = "2020.6.4"
@@ -29,15 +34,19 @@ colorama.initialise.init()
 
 # noinspection PyCallByClass
 class ColoredText:
+    @staticmethod
     def getTerminalSize():
         return shutil.get_terminal_size()
 
+    @staticmethod
     def clearLine(mode=2):
         print(colorama.ansi.clear_line(mode), end="", flush=True)
 
+    @staticmethod
     def clearScreen(mode=2):
         print(colorama.ansi.clear_screen(mode), end="", flush=True)
 
+    @staticmethod
     def styleText(text: str = " ", fore="none", style="none", back="none"):
         return ColoredText.escape(
             "{fore_"
@@ -51,36 +60,46 @@ class ColoredText:
             + "{reset_all}"
         )
 
+    @staticmethod
     def codeToChars(code):
         return colorama.ansi.code_to_chars(code)
 
+    @staticmethod
     def setTitle(title):
         print(colorama.ansi.set_title(title))
 
+    @staticmethod
     class Cursor:
+        @staticmethod
         def printat(x=1, y=1, text: str = " ", fore="none", style="none", back="none"):
             print(
                 ColoredText.Cursor.pos(x, y)
                 + ColoredText.styleText(text, fore=fore, back=back, style=style)
             )
 
+        @staticmethod
         def pos(x=1, y=1):
             print(colorama.ansi.Cursor.POS(x, y))
 
+        @staticmethod
         def up(n=1):
             print(colorama.ansi.Cursor.UP(n))
 
+        @staticmethod
         def down(n=1):
             print(colorama.ansi.Cursor.DOWN(n))
 
+        @staticmethod
         def left(n=1):
             print(colorama.ansi.Cursor.BACK(n))
 
+        @staticmethod
         def right(n=1):
             print(colorama.ansi.Cursor.FORWARD(n))
 
-    def escape(Text: str):
-        return Text.format(**ColoredText.escapeSequence)
+    @staticmethod
+    def escape(text: str):
+        return text.format(**ColoredText.escapeSequence)
 
     cloredTextEscapeSequenceBack = {
         "black": colorama.Back.BLACK,
@@ -176,7 +195,7 @@ def print(
             file=file,
             end=end,
         )
-    except Exception as e:
+    except Exception:
         builtins.print(*text, sep=sep, flush=flush, file=file, end=end)
 
 
