@@ -1,20 +1,17 @@
 """
-================================
-Beautiful Command Line Interface
-================================
-........
-2020.6.5
-........
 
-What does it do?
-================
+# Beautiful Command Line Interface
+
+
+## What does it do?
+
 
 It helps in making of beautiful
 CLI with different level print
-functions. Also it supports
+functions. it also supports input function
 """
 
-__version__ = "2020.6.5"
+__version__ = "2021.1.7"
 __author__ = "Xcodz"
 
 import sys
@@ -99,7 +96,7 @@ def _fmt_bcli(text, m):
     if m == "i":
         return "\033[93m[!] " + text + ctext.ColoredText.resetEscapeSequence["all"]
     if m == "q":
-        return "\033[94m[?] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+        return "\033[94m[?] " + text + ctext.ColoredText.resetEscapeSequence["all"] + "\n>"
     if m == "b":
         return "\033[91m[-] " + text + ctext.ColoredText.resetEscapeSequence["all"]
     if m == "g":
