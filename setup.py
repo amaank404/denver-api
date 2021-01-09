@@ -51,12 +51,18 @@ setuptools.setup(
         "setuptools>50",
         "requests",
         "playsound",
-        "cryptography",
         "packaging",
         "dill",
         "pip~=20.3",
     ],
-    extras_require={"gui-tools": ["pygame"], "all": ["denver-api[gui-tools]"]},
+    extras_require={
+        "gui-tools": [
+            "pygame"
+        ],
+        "all": [
+            "pygame"
+        ]
+    },
     entry_points={
         "console_scripts": [
             # clinetools

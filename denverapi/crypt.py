@@ -321,16 +321,3 @@ class crypt:
 
             def decrypt(m: str, k: str):
                 return cVig.translateMessage(k, m, "d")
-
-
-def encrypt(data: bytes, key: bytes) -> bytes:
-    machine = cryptography.fernet.Fernet(base64.urlsafe_b64encode(key))
-    return machine.encrypt(data)
-
-
-def decrypt(data: bytes, key: bytes) -> bytes:
-    machine = cryptography.fernet.Fernet(base64.urlsafe_b64encode(key))
-    try:
-        return machine.decrypt(data)
-    except cryptography.fernet.InvalidToken:
-        return b""
