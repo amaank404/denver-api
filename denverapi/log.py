@@ -5,6 +5,8 @@ debugging you can keep the configurations on and while
 releasing you can switch of error, warnings, debug or you
 can also change the file to a new file which can contain
 the log.
+
+Warning: **Depriciated**
 """
 __version__ = "2020.6.4"
 __author__ = "Xcodz"

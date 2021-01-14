@@ -89,33 +89,17 @@ class BuildTasks:
         if arguments is None:
             arguments = sys.argv[1:]
         parser = argparse.ArgumentParser()
-        parser.add_argument(
-            "-l",
-            "--list",
-            help="List all available sub commands",
-            action="store_true",
-            dest="list_",
-        )
         task_list = []
         command = parser.add_subparsers(dest="command_")
-        help_group = parser.add_mutually_exclusive_group()
         for x in self.tasks:
             task_list.append(x.__name__)
-            command.add_parser(x.__name__)
-            help_group.add_argument(
-                f"--help-{x.__name__}",
-                dest="help_",
-                action="store_const",
-                const=x.__name__,
-                help=f"Print help on task '{x.__name__}'",
-            )
+            doc_help = (
+                x.__doc__ if x.__doc__ is not None else "Help Not Provided"
+            ).strip("\n")
+            command.add_parser(x.__name__, help=textwrap.dedent(doc_help))
         args = parser.parse_args(arguments[0:1])
-        if args.list_:
-            print("Available Sub Commands:")
-            for x in task_list:
-                print(" " * 3, x)
         for x in self.tasks:
-            if args.command_ == x.__name__ and args.help_ == None:
+            if args.command_ == x.__name__ and args.help_ is None:
                 try:
                     x(arguments[1:])
                 except KeyboardInterrupt:
@@ -134,13 +118,8 @@ class BuildTasks:
                     )
                     print(
                         ctext.ColoredText.escape(
-                            f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
+                            f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{"
+                            "fore_green}"
                             + f"------{x.__name__}-------------"
                         )
                     )
-            elif args.help_ == x.__name__:
-                print(f"help on task '{args.help_}'\n")
-                doc_help = (
-                    x.__doc__ if x.__doc__ != None else "Help Not Provided"
-                ).strip("\n")
-                print(textwrap.dedent(doc_help))

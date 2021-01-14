@@ -12,7 +12,7 @@ import sys
 
 class FunctionLogger:
     def __init__(self, echo=True, file=sys.stdout):
-        self.echo = True
+        self.echo = echo
         self.file = file
 
     def debug(self, _func=None, *, action="Running"):

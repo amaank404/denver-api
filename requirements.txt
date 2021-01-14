@@ -2,6 +2,7 @@ setuptools>=50
 requests
 playsound
 pygame
+pyglet
 packaging
 dill
 pip>=20.3

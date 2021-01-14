@@ -1,6 +1,7 @@
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
+import abc
 
 Text_To_RgbGrayScale = {
     "0": (0, 0, 0),
@@ -16,7 +17,11 @@ Text_To_RgbGrayScale = {
 }
 
 
-class BitMap:
+class BitMapBase(metaclass=abc.ABCMeta):
+    pass
+
+
+class BitMap(BitMapBase):
     def __init__(self, x, y):
         self.buffer = [[(255, 255, 255) for _ in range(x)] for _ in range(y)]
 
@@ -36,7 +41,7 @@ class BitMap:
                     pass
 
 
-class BitMapPortion(BitMap):
+class BitMapPortion(BitMapBase):
     def __init__(self, bitmap, x, y, w, h):
         self.bmap = bitmap
         self.x = x

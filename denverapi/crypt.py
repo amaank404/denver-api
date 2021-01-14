@@ -14,8 +14,6 @@ __author__ = "Xcodz"
 import base64
 import math
 
-import cryptography.fernet
-
 
 class crypto_math:
     def gcd(a, b):

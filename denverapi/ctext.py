@@ -25,7 +25,7 @@ if __name__ != "__main__":
 else:
     import _colorama as colorama
 
-import os
+
 import shutil
 import sys
 
@@ -72,10 +72,8 @@ class ColoredText:
     class Cursor:
         @staticmethod
         def printat(x=1, y=1, text: str = " ", fore="none", style="none", back="none"):
-            print(
-                ColoredText.Cursor.pos(x, y)
-                + ColoredText.styleText(text, fore=fore, back=back, style=style)
-            )
+            ColoredText.Cursor.pos(x, y)
+            print(ColoredText.styleText(text, fore=fore, back=back, style=style))
 
         @staticmethod
         def pos(x=1, y=1):

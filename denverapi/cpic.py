@@ -63,10 +63,10 @@ def read_image(file: str) -> CImage:
 
 if __name__ == "__main__":
 
-    image_ascii = """+1
+    image_ascii_ = """+1
 234"""
 
-    image_ansi = b"""\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"""
+    image_ansi_ = b"""\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"""
 
-    mi = CImage(image_ascii, image_ansi)
+    mi = CImage(image_ascii_, image_ansi_)
     print(combine(mi))

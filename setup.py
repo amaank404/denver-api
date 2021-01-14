@@ -57,10 +57,11 @@ setuptools.setup(
     ],
     extras_require={
         "gui-tools": [
+            "pyglet",
             "pygame"
         ],
         "all": [
-            "pygame"
+            "pyglet"
         ]
     },
     entry_points={
