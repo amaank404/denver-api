@@ -46,7 +46,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.6",
     install_requires=[
         "setuptools>50",
         "requests",
