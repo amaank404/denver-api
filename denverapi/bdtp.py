@@ -6,18 +6,16 @@ What does it do
 ---------------
 
 This protocol sends big data on a address (IPv4,port)
-compressing data with gzip module to make the transfer
-even faster on slow networks and less data consumption.
+without worrying about pipe errors
 """
 
 __author__ = "Xcodz"
 __version__ = "2020.6.4"
 
 import abc
-import gzip
 import socket
-import threading
 import time
+import typing
 
 from . import log
 from . import tctrl
@@ -42,7 +40,7 @@ class _BaseReceiver(abc.ABC):
 
 class DataSenderHost(_BaseSender):
     def __init__(self):
-        self.data: bytes = b""
+        self.data = b""
         self.address: tuple = ("", 0)
         self.data_send: int = 0
         self.buffer_size: int = default_buffer_size
@@ -56,15 +54,19 @@ class DataSenderHost(_BaseSender):
             connection, _ = s.accept()
         else:
             connection = connected_socket
-        edata = gzip.compress(self.data, 9)
 
-        # Data Ready
-        Mlog.debug("compressed data")
-
-        for line in range(0, len(edata), self.buffer_size):
-            lts = edata[line : line + self.buffer_size]
-            connection.sendall(lts)
-            self.data_send += self.buffer_size
+        if isinstance(self.data, bytes):
+            for line in range(0, len(self.data), self.buffer_size):
+                lts = self.data[line : line + self.buffer_size]
+                connection.sendall(lts)
+                self.data_send += self.buffer_size
+        elif isinstance(self.data, typing.BinaryIO):
+            while True:
+                line = self.data.read(self.buffer_size)
+                if line == b"":
+                    break
+                connection.sendall(line)
+                self.data_send += self.buffer_size
 
         connection.send(b"")
         if connected_socket is None:
@@ -82,17 +84,24 @@ class DataSenderPort(_BaseSender):
         self.task = False
 
     def send(self, connected_socket: socket.socket = None):
-        edata = gzip.compress(self.data, 9)
-        Mlog.debug("compressed data")
         if connected_socket is None:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect(self.address)
         else:
             s = connected_socket
-        for x in range(0, len(edata), self.buffer_size):
-            lts = edata[x : x + self.buffer_size]
-            s.sendall(lts)
-            self.data_send += self.buffer_size
+
+        if isinstance(self.data, bytes):
+            for x in range(0, len(self.data), self.buffer_size):
+                lts = self.data[x : x + self.buffer_size]
+                s.sendall(lts)
+                self.data_send += self.buffer_size
+        elif isinstance(self.data, typing.BinaryIO):
+            while True:
+                line = self.data.read(self.buffer_size)
+                if line == b"":
+                    break
+                s.sendall(line)
+                self.data_send += self.buffer_size
 
         s.send(b"")
         if connected_socket is None:
@@ -124,8 +133,6 @@ class DataReceiverHost(_BaseReceiver):
             self.data_recv += self.buffer_size
 
         Mlog.debug("Received data")
-        self.data = gzip.decompress(self.data)
-        Mlog.debug("Decompressed")
         if connected_socket is None:
             connection.close()
             s.close()
@@ -155,9 +162,6 @@ class DataReceiverPort(_BaseReceiver):
             self.data_recv += self.buffer_size
 
         Mlog.debug("Received data")
-
-        self.data = gzip.decompress(self.data)
-        Mlog.debug("Decompressed")
 
         if connected_socket is None:
             connection.close()
