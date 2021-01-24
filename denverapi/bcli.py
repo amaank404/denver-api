@@ -96,7 +96,9 @@ def _fmt_bcli(text, m):
     if m == "i":
         return "\033[93m[!] " + text + ctext.ColoredText.resetEscapeSequence["all"]
     if m == "q":
-        return "\033[94m[?] " + text + ctext.ColoredText.resetEscapeSequence["all"] + "\n>"
+        return (
+            "\033[94m[?] " + text + ctext.ColoredText.resetEscapeSequence["all"] + "\n>"
+        )
     if m == "b":
         return "\033[91m[-] " + text + ctext.ColoredText.resetEscapeSequence["all"]
     if m == "g":

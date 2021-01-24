@@ -55,15 +55,7 @@ setuptools.setup(
         "dill",
         "pip~=20.3",
     ],
-    extras_require={
-        "gui-tools": [
-            "pyglet",
-            "pygame"
-        ],
-        "all": [
-            "pyglet"
-        ]
-    },
+    extras_require={"gui-tools": ["pyglet", "pygame"], "all": ["pyglet"]},
     entry_points={
         "console_scripts": [
             # clinetools

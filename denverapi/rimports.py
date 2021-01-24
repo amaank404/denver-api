@@ -24,4 +24,5 @@ def recursive_reload(module):
             if type(attribute) is ModuleType:
                 visit(attribute)
         reload(m)
+
     visit(module)

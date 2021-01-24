@@ -17,9 +17,7 @@ import socket
 import time
 import typing
 
-from . import log
-from . import tctrl
-
+from . import log, tctrl
 
 default_buffer_size = 100000
 _logger_conf = {"debug": False, "error": False, "warning": False}

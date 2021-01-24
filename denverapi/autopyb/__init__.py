@@ -99,7 +99,7 @@ class BuildTasks:
             command.add_parser(x.__name__, help=textwrap.dedent(doc_help))
         args = parser.parse_args(arguments[0:1])
         for x in self.tasks:
-            if args.command_ == x.__name__ and args.help_ is None:
+            if args.command_ == x.__name__:
                 try:
                     x(arguments[1:])
                 except KeyboardInterrupt:
@@ -119,7 +119,6 @@ class BuildTasks:
                     print(
                         ctext.ColoredText.escape(
                             f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{"
-                            "fore_green}"
-                            + f"------{x.__name__}-------------"
+                            "fore_green}" + f"------{x.__name__}-------------"
                         )
                     )
