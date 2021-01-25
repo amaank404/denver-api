@@ -53,7 +53,7 @@ setuptools.setup(
         "playsound",
         "packaging",
         "dill",
-        "pip~=20.3",
+        "pip>=20.3,<22.0",
     ],
     extras_require={"gui-tools": ["pyglet", "pygame"], "all": ["pyglet"]},
     entry_points={
