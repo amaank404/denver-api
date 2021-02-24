@@ -90,28 +90,15 @@ class Beauty_CLI:
 
 def _fmt_bcli(text, m):
     if m == "i":
-        return (
-            "\033[93m[!] " + text + colored_text.reset_escape_sequence["all"]
-        )
+        return "\033[93m[!] " + text + colored_text.reset_escape_sequence["all"]
     if m == "q":
-        return (
-            "\033[94m[?] "
-            + text
-            + colored_text.reset_escape_sequence["all"]
-            + "\n>"
-        )
+        return "\033[94m[?] " + text + colored_text.reset_escape_sequence["all"] + "\n>"
     if m == "b":
-        return (
-            "\033[91m[-] " + text + colored_text.reset_escape_sequence["all"]
-        )
+        return "\033[91m[-] " + text + colored_text.reset_escape_sequence["all"]
     if m == "g":
-        return (
-            "\033[92m[+] " + text + colored_text.reset_escape_sequence["all"]
-        )
+        return "\033[92m[+] " + text + colored_text.reset_escape_sequence["all"]
     if m == "r":
-        return (
-            "\033[97m[~] " + text + colored_text.reset_escape_sequence["all"]
-        )
+        return "\033[97m[~] " + text + colored_text.reset_escape_sequence["all"]
 
 
 def new_cli(file=sys.stdout, fmt="bcli") -> Beauty_CLI:
