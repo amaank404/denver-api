@@ -1,38 +1,33 @@
 """
-Big Data Transfer Protocol
-==========================
-
-What does it do
----------------
+#Big Data Transfer Protocol
+##What does it do
 
 This protocol sends big data on a address (IPv4,port)
 without worrying about pipe errors
 """
 
 __author__ = "Xcodz"
-__version__ = "2020.6.4"
+__version__ = "2021.2.24"
 
 import abc
 import socket
 import time
 import typing
 
-from . import log, tctrl
+from . import thread_control
 
 default_buffer_size = 100000
-_logger_conf = {"debug": False, "error": False, "warning": False}
-Mlog = log.Logger("test", _logger_conf)
 
 
 class _BaseSender(abc.ABC):
     @abc.abstractmethod
-    def send(self):
+    def send(self, c):
         pass
 
 
 class _BaseReceiver(abc.ABC):
     @abc.abstractmethod
-    def recv(self):
+    def recv(self, c):
         pass
 
 
@@ -130,7 +125,6 @@ class DataReceiverHost(_BaseReceiver):
             self.data += recv_bytes
             self.data_recv += self.buffer_size
 
-        Mlog.debug("Received data")
         if connected_socket is None:
             connection.close()
             s.close()
@@ -158,8 +152,6 @@ class DataReceiverPort(_BaseReceiver):
             recv_bytes = connection.recv(self.buffer_size)
             self.data += recv_bytes
             self.data_recv += self.buffer_size
-
-        Mlog.debug("Received data")
 
         if connected_socket is None:
             connection.close()
@@ -203,7 +195,7 @@ def new_receive_data_port(addr: tuple, buffer_size=None):
 def attach_speed_logger(data_object):
     spl = []
 
-    @tctrl.runs_parallel
+    @thread_control.runs_parallel
     def sps(spl, d: _BaseSender):
         old = 0
         new = 0
@@ -214,7 +206,7 @@ def attach_speed_logger(data_object):
             spl.append(new - old)
             old = new
 
-    @tctrl.runs_parallel
+    @thread_control.runs_parallel
     def spr(spl, d: _BaseReceiver):
         old = 0
         new = 0

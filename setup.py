@@ -20,7 +20,7 @@ def find_package_data(package: str, package_name=None):
         package_name = package
     files = []
     for r, d, f in os.walk(package):
-        files.extend([os.path.join(r, x)[len(package) + 1 :] for x in f])
+        files.extend([os.path.join(r, x)[len(package) + 1:] for x in f])
     exclude_files(files, [".py"])
     root = {}
     for x in files:
@@ -37,7 +37,7 @@ setuptools.setup(
     packages=setuptools.find_packages()
     + setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
     package_data=find_package_data("denverapi", "denverapi"),
-    version="2.6.0b5",
+    version="3.0.0b",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -55,7 +55,11 @@ setuptools.setup(
         "dill",
         "pip>=20.3",
     ],
-    extras_require={"gui-tools": ["pyglet", "pygame"], "all": ["pyglet"]},
+    extras_require={
+        "gui-tools": ["pygame"],
+        "all": ["pygame", "pycryptodomex"],
+        "crypt2": ["pycryptodomex"],
+    },
     entry_points={
         "console_scripts": [
             # clinetools

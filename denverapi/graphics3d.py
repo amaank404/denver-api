@@ -67,26 +67,27 @@ def rotate(x: int, y: int, z: int, axis: str, angle: int):
         raise TypeError("z must be int")
     angle = angle / 450 * 180 / math.pi
     if axis == "z":
-        newX = x * math.cos(angle) - y * math.sin(angle)
-        newY = y * math.cos(angle) + x * math.sin(angle)
-        newZ = z
+        new_x = x * math.cos(angle) - y * math.sin(angle)
+        new_y = y * math.cos(angle) + x * math.sin(angle)
+        new_z = z
     elif axis == "x":
-        newY = y * math.cos(angle) - z * math.sin(angle)
-        newZ = z * math.cos(angle) + y * math.sin(angle)
-        newX = x
+        new_y = y * math.cos(angle) - z * math.sin(angle)
+        new_z = z * math.cos(angle) + y * math.sin(angle)
+        new_x = x
     elif axis == "y":
-        newX = x * math.cos(angle) - z * math.sin(angle)
-        newZ = z * math.cos(angle) + x * math.sin(angle)
-        newY = y
+        new_x = x * math.cos(angle) - z * math.sin(angle)
+        new_z = z * math.cos(angle) + x * math.sin(angle)
+        new_y = y
     else:
         raise ValueError("not a valid axis")
-    nx = newX
-    ny = newY
-    nz = newZ
+    nx = new_x
+    ny = new_y
+    nz = new_z
     return nx, ny, nz
 
 
 class ModelMake:
+    @staticmethod
     def cube(x, y, z, s=1):
         mcube = [
             ((x, y, z), (x + s, y, z)),

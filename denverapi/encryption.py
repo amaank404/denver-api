@@ -4,33 +4,39 @@ from typing import Union
 from Cryptodome.Cipher import AES
 from Cryptodome.Random import get_random_bytes
 
-
 __author__ = "xcodz-dot"
 __version__ = "2021.2.24"
 
 
 def _encode_entries(salt: bytes, nonce: bytes, tag: bytes, cipher_text: bytes):
     salt_len = str(len(salt)).encode("utf-8")
-    nonce_len = str(len(nonce)+len(salt)).encode("utf-8")
-    tag_len = str(len(tag)+len(nonce)+len(salt)).encode("utf-8")
-    return b";".join([salt_len, nonce_len, tag_len])+b"/"+salt+nonce+tag+cipher_text
+    nonce_len = str(len(nonce) + len(salt)).encode("utf-8")
+    tag_len = str(len(tag) + len(nonce) + len(salt)).encode("utf-8")
+    return (
+        b";".join([salt_len, nonce_len, tag_len])
+        + b"/"
+        + salt
+        + nonce
+        + tag
+        + cipher_text
+    )
 
 
 def _decode_entries(data: bytes):
     len_sector, data_sector = data.split(b"/", 1)
     salt_len, nonce_len, tag_len = map(int, len_sector.split(b";"))
-    salt = data_sector[0: salt_len]
-    nonce = data_sector[salt_len: nonce_len]
-    tag = data_sector[nonce_len: tag_len]
+    salt = data_sector[0:salt_len]
+    nonce = data_sector[salt_len:nonce_len]
+    tag = data_sector[nonce_len:tag_len]
     data = data_sector[tag_len:]
     return (salt, nonce, tag), data
 
 
 def encrypt(message: Union[bytes, str], password: Union[bytes, str]):
     if isinstance(message, str):
-        message = message.encode('utf-8')
+        message = message.encode("utf-8")
     if isinstance(password, str):
-        password = password.encode('utf-8')
+        password = password.encode("utf-8")
 
     # generate a random salt
 
@@ -45,7 +51,7 @@ def encrypt(message: Union[bytes, str], password: Union[bytes, str]):
         r=8,
         p=1,
         dklen=32,
-        )
+    )
 
     # create cipher config
 
@@ -72,7 +78,7 @@ def decrypt(encrypted_data: bytes, password: Union[str, bytes]):
         r=8,
         p=1,
         dklen=32,
-        )
+    )
 
     # create the cipher config
 

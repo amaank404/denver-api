@@ -5,7 +5,7 @@ from packaging.requirements import Requirement
 from packaging.version import Version
 
 from ... import install_pip_package
-from ...ctext import print
+from ...colored_text import print
 
 
 def get_module_list():

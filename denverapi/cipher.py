@@ -201,7 +201,7 @@ class basic:
 class reverse_cipher:
     @staticmethod
     def crypt(s: str):
-        return ''.join(reversed(s))
+        return "".join(reversed(s))
 
 
 class caesar_cipher:
@@ -271,8 +271,8 @@ class transposition_cipher:
             plaintext[column] += symbol
             column += 1
             if (column == num_of_columns) or (
-                    column == num_of_columns - 1
-                    and row >= num_of_rows - num_of_shaded_boxes
+                column == num_of_columns - 1
+                and row >= num_of_rows - num_of_shaded_boxes
             ):
                 column = 0
                 row += 1

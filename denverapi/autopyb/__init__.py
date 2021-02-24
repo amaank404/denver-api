@@ -6,12 +6,12 @@ import textwrap
 from .commands import *
 
 try:
-    from .. import ctext
+    from .. import colored_text
 except ImportError:
-    import denverapi.ctext
+    import denverapi.colored_text
 
-print = ctext.print
-input = ctext.input
+print = colored_text.print
+input = colored_text.input
 
 __version__ = "1.1.0"
 
@@ -69,7 +69,7 @@ class BuildTasks:
                 else:
                     function()
                 print(
-                    ctext.ColoredText.escape(
+                    colored_text.escape(
                         f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{fore_green}}"
                         + f"------{function.__name__}-------------"
                     )
@@ -105,7 +105,7 @@ class BuildTasks:
                 except KeyboardInterrupt:
                     print("User aborted the process", fore="red")
                     print(
-                        ctext.ColoredText.escape(
+                        colored_text.escape(
                             f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}"
                             f"{{fore_green}} "
                             f"------{x.__name__}-------------"
@@ -117,7 +117,7 @@ class BuildTasks:
                         fore="red",
                     )
                     print(
-                        ctext.ColoredText.escape(
+                        colored_text.escape(
                             f"{{fore_green}}----{{back_red}}{{fore_yellow}}end{{reset_all}}{{style_bright}}{{"
                             "fore_green}" + f"------{x.__name__}-------------"
                         )

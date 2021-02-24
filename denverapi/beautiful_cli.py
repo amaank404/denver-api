@@ -1,25 +1,21 @@
 """
-
 # Beautiful Command Line Interface
-
-
 ## What does it do?
-
 
 It helps in making of beautiful
 CLI with different level print
 functions. it also supports input function
 """
 
-__version__ = "2021.1.7"
+__version__ = "2021.2.24"
 __author__ = "Xcodz"
 
 import sys
 
 try:
-    from . import ctext
+    from . import colored_text
 except ImportError:
-    import ctext
+    import colored_text
 
 
 class Beauty_CLI:
@@ -94,17 +90,28 @@ class Beauty_CLI:
 
 def _fmt_bcli(text, m):
     if m == "i":
-        return "\033[93m[!] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+        return (
+            "\033[93m[!] " + text + colored_text.reset_escape_sequence["all"]
+        )
     if m == "q":
         return (
-            "\033[94m[?] " + text + ctext.ColoredText.resetEscapeSequence["all"] + "\n>"
+            "\033[94m[?] "
+            + text
+            + colored_text.reset_escape_sequence["all"]
+            + "\n>"
         )
     if m == "b":
-        return "\033[91m[-] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+        return (
+            "\033[91m[-] " + text + colored_text.reset_escape_sequence["all"]
+        )
     if m == "g":
-        return "\033[92m[+] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+        return (
+            "\033[92m[+] " + text + colored_text.reset_escape_sequence["all"]
+        )
     if m == "r":
-        return "\033[97m[~] " + text + ctext.ColoredText.resetEscapeSequence["all"]
+        return (
+            "\033[97m[~] " + text + colored_text.reset_escape_sequence["all"]
+        )
 
 
 def new_cli(file=sys.stdout, fmt="bcli") -> Beauty_CLI:

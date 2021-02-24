@@ -1,14 +1,14 @@
 import argparse
 import os
 
-from denverapi import bcli, bdtpfserv
+from denverapi import bdtp_file_server, beautiful_cli
 
 __version__ = "1.0.0"
 __author__ = "Xcodz"
 
 
 def main():
-    cli = bcli.new_cli()
+    cli = beautiful_cli.new_cli()
 
     parser = argparse.ArgumentParser()
 
@@ -88,13 +88,13 @@ def main():
                 cli.info("Hosting Process Started")
                 cli.info("IP Address :", args.ip_address)
                 cli.info("Port       :", args.port)
-            bdtpfserv.host(
+            bdtp_file_server.host(
                 args.directory, (args.ip_address, args.port), args.post_directory
             )
         elif args.command == "get":
             if not args.no_log:
                 cli.info("Getting file", args.file)
-            data = bdtpfserv.get(args.file, (args.ip_address, args.port))
+            data = bdtp_file_server.get(args.file, (args.ip_address, args.port))
             if not args.no_log:
                 cli.good(f"Download Complete ({len(data) // 1024} Kb)")
                 cli.info("Writing File")
@@ -116,17 +116,17 @@ def main():
             file_to_write = args.store
             if file_to_write is None:
                 file_to_write = os.path.basename(args.file)
-            bdtpfserv.post(file_to_write, data, (args.ip_address, args.port))
+            bdtp_file_server.post(file_to_write, data, (args.ip_address, args.port))
             if not args.no_log:
                 cli.good("Done Posting")
         elif args.command == "new_directory":
             if not args.no_log:
                 cli.info("Making Directory")
-            bdtpfserv.mkdir(args.directory, (args.ip_address, args.port))
+            bdtp_file_server.mkdir(args.directory, (args.ip_address, args.port))
             if not args.no_log:
                 cli.good("Directory Made")
         elif args.command == "list":
-            directory_list = bdtpfserv.typelistdir(
+            directory_list = bdtp_file_server.typelistdir(
                 args.directory, (args.ip_address, args.port)
             )
             cli.info('Directory listing of "', args.directory, '":', sep="")

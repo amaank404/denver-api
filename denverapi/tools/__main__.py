@@ -1,8 +1,8 @@
 import os
 
-from denverapi import bcli
+from denverapi import beautiful_cli
 
-cli = bcli.new_cli()
+cli = beautiful_cli.new_cli()
 
 
 def tool(path):

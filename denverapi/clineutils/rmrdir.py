@@ -4,7 +4,7 @@ import shutil
 from os import path
 from sys import exit
 
-from denverapi.ctext import print
+from denverapi.colored_text import print
 
 
 def main():

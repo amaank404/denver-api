@@ -29,9 +29,9 @@ pack_format = {
 }
 
 
-def make_struct_format(format: list):
+def make_struct_format(fmt: list):
     d = "<"
-    for x in format:
+    for x in fmt:
         d += pack_format[x]
     return d
 

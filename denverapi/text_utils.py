@@ -39,9 +39,9 @@ class text:
         return "\n".join(s1)
 
     @staticmethod
-    def linefill(l, width, fill=" "):
-        return l + (fill * (width - len(l)))
+    def linefill(line, width, fill=" "):
+        return line + (fill * (width - len(line)))
 
     @staticmethod
-    def vfill(l, length, fill=""):
-        l.extend([fill for _ in range(length - len(l))])
+    def vfill(line, length, fill=""):
+        line.extend([fill for _ in range(length - len(line))])
