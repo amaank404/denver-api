@@ -9,7 +9,7 @@ def _strip_comment(line: str):
     if line.find("#") == -1:
         return line
     else:
-        return line[0: line.index("#")]
+        return line[0 : line.index("#")]
 
 
 def analise_src_imports(src: str) -> list:
