@@ -52,7 +52,8 @@ or if you already have then you can upgrade it by following command
 ```commandline
 pip install --upgrade pdoc3
 ```
-After installation cd to root of this repository and run this command `pdoc3 /denverapi -o docs --html`.
+After installation cd to root of this repository and run this command
+ `pdoc denverapi -o docs --html --config show_source_code=False --template-dir pdoc`.
 This will generate documentation and save it under the folder `docs`.
 
 ## Community
