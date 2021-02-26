@@ -444,7 +444,7 @@ p {
         font-size: 90%;
     }
     /* Internal, documentation links, recognized by having a title,
-       don't need the URL explicity stated. */
+       don't need the URL explicitly stated. */
     a[href][title]:after {
         content: none;
     }
