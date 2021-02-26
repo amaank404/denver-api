@@ -38,6 +38,7 @@ class DataSenderHost(_BaseSender):
 
     to create a new DataSenderHost please use function implementation for it
     """
+
     def __init__(self):
         self.data = b""
         self.address: tuple = ("", 0)
@@ -85,6 +86,7 @@ class DataSenderPort(_BaseSender):
 
     to create a new DataSenderPort please use function implementation for it
     """
+
     def __init__(self):
         self.data: bytes = b""
         self.address: tuple = ("", 0)
@@ -129,6 +131,7 @@ class DataReceiverHost(_BaseReceiver):
 
     to create a new DataReceiverHost please use function implementation for it
     """
+
     def __init__(self):
         self.address: tuple = ("", 0)
         self.data_recv: int = 0
@@ -168,6 +171,7 @@ class DataReceiverPort(_BaseReceiver):
 
     to create a new DataReceiverPort please use function implementation for it
     """
+
     def __init__(self):
         self.address: tuple = ("", 0)
         self.data_recv: int = 0
@@ -239,7 +243,7 @@ def new_send_data_host(data: bytes, addr: tuple = None, buffer_size=None):
     return sender_object
 
 
-def new_send_data_port(data: bytes, addr: tuple=None, buffer_size=None):
+def new_send_data_port(data: bytes, addr: tuple = None, buffer_size=None):
     """
     Make a new `DataSenderPort` with provided arguments. It's better to not supply `addr` if you
     are going to use the object on existing connection. It is also not recommended to change
