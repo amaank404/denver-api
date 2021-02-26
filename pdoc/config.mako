@@ -13,7 +13,7 @@
     show_type_annotations = True
     # Show collapsed source code block next to each item.
     # Disabling this can improve rendering speed of large modules.
-    show_source_code = False
+    show_source_code = True
     # If set, format links to objects in online source code repository
     # according to this template. Supported keywords for interpolation
     # are: commit, path, start_line, end_line.
