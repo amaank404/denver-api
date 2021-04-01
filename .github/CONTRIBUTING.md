@@ -8,7 +8,7 @@ Your code must comply with the requirements mentioned below.
 ### Must
 * Your code must be PEP8 compliant (test will be conducted automatically when you submit a pull request)
 * Your code must contain version, description, instructions in (classes, function, methods)
-* Your code must be compatible with Python 3.8+
+* Your code must be compatible with Python 3.6+
 
 ### Optional
 * Your code should contain doctests (recommended)
@@ -34,6 +34,12 @@ you encounter errors regarding code format
 python make.py style
 ```
 
+You can also run the below to check for errors
+
+```bash
+python make.py check
+```
+
 ## Things You should know before you submit your code
 * After submission of your code, your code will be open-source and will be distributed with MIT-License.
 * You will not be able to delete it until your request is passed.
@@ -43,4 +49,4 @@ python make.py style
 After you are ready and you are willing to contribute just feel free to checkout the issues tab. There you
 will finds label with community, those are the issues which are excepting community contribution. Also
 you can add your own custom modules which function to provide user easy methods of hard tasks. The new modules
-can be named and placed under `./denver/`, do remember to import it inside the `./denver/__init__.py` file
+can be named and placed under `./denver/`.
