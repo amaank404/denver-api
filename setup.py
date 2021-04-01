@@ -43,7 +43,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
-        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.6",
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
@@ -53,12 +53,12 @@ setuptools.setup(
         "playsound",
         "packaging",
         "dill",
-        "pip>=20.3",
+        "pip>=21",
     ],
     extras_require={
         "gui-tools": ["pygame"],
         "all": ["pygame", "pycryptodomex"],
-        "crypt2": ["pycryptodomex"],
+        "encryption": ["pycryptodomex"],
     },
     entry_points={
         "console_scripts": [

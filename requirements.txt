@@ -4,7 +4,5 @@ playsound
 pygame
 packaging
 dill
-pip>=20.3
-prompt-toolkit
-wcwidth
+pip>=21
 pycryptodomex
