@@ -13,7 +13,7 @@ progress, documentation is also in progress. Major changes are here to comply wi
 this is a new package built into denver and now you can use every module inside it as a command line
 tool. You can type the following command `python denverapi.tools` to get a list of available tools.
 
-## colored text (denver.ctext)
+## colored text (denver.colored_text)
 Colored console output have been a problem since long but here at denver API, we provide
 cross-platform colored console output in almost any console. we also provide emulated
 print and input function with extra keyword arguments for coloring and customizing. the
