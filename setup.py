@@ -37,7 +37,7 @@ setuptools.setup(
     packages=setuptools.find_packages()
     + setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
     package_data=find_package_data("denverapi", "denverapi"),
-    version="3.0.1b",
+    version="3.0.0",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
