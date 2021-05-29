@@ -13,21 +13,12 @@ progress, documentation is also in progress. Major changes are here to comply wi
 this is a new package built into denver and now you can use every module inside it as a command line
 tool. You can type the following command `python denverapi.tools` to get a list of available tools.
 
-## colored text (denver.colored_text)
-Colored console output have been a problem since long but here at denver API, we provide
-cross-platform colored console output in almost any console. we also provide emulated
-print and input function with extra keyword arguments for coloring and customizing. the
-default print and input function of you code can be switched out to these one by
+## Features
 
-```python
-from denverapi import colored_text
+There are a lot of modules and libraries in denverapi and here is a good list of them
 
-print = colored_text.print
-input = colored_text.input
+* autopyb (A library to write scripts that automate stuff, build proggress, etc. For example look at [this script](https://github.com/xcodz-dot/denver/blob/master/make.py))
 
-# You can do the same with input
-print("Hello", "World in colored", "text", fore="green", back="white", style="bright")
-print("Hello", "World in simple", "environment")
 ```
 
 ## Installation
@@ -41,8 +32,7 @@ pip install --upgrade denver-api
 ```
 
 ## Documentation
-Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denver) (*currently in progress
-and may not be visible for some time*).
+Documentation for denver can be found out at [this page](https://xcodz-dot.github.io/denver).
 Also Documentation can be generated
 by the following command
 ```commandline
@@ -59,13 +49,14 @@ This will generate documentation and save it under the folder `docs`.
 ## Community
 This is a community driven project and accepts pull requests
 of any kind (read [CONTRIBUTING.md](https://github.com/xcodz-dot/denver/blob/master/.github/CONTRIBUTING.md)), 
-Thanks to all the contributors. Contributions are appreciated 
+Thanks to all the contributors. Contributions are appreciated.
+It will be really helpful if you raise a issue on finding bugs, documentation issues and typos.
 
 ## Fixed Bugs
 ### 3.0.0b (the upcoming stable release)
-* `denverapi.tools.cpic_editor` cell height to width ratio is 25:10 now for better compatibility with terminal
-* `denverapi.pyelib` error in load library
+
 ### 2.5.2, 2.5.3, 2.5.4
+* `denverapi.function_logger` fixed wrapped function not returning anything.
 * `denverapi.autopyb` fixes
 ### 2.5.1
 * `denverapi.autopyb` minimum version fix
@@ -78,6 +69,8 @@ Thanks to all the contributors. Contributions are appreciated
 
 ## What's New
 ### 3.0.0b (the upcoming stable release)
+* removed `pyelib` because I realised how useless it it.
+* added documentation for major part of codebase
 * added `denverapi.tools.cryptify` to encrypt files and decrypt files
 * added `encryption` to encrypt and decrypt data
 * removed `cpic` due to complexity and incompatibility with existing modules.
@@ -85,9 +78,7 @@ Thanks to all the contributors. Contributions are appreciated
 * better cli for `denverapi.autopyb`
 * added support for Python 3.6
 * added new command line utilities.
-* added `denverapi.tools.cpicview` to view cpic type images from commandline.
 * added `entrypoints` to all tools as scripts.
-* added `pyelib` which makes libraries from caching functions, so they do not compile every time they run.
 * added ability to `denverapi.autopyb.commands.pip` to be able to detect dependencies and do not run pip for no reason
 * added ability to `denverapi.tools.cpic_editor` to save cpic images to file.
 ### 2.5.0

@@ -1,3 +1,7 @@
+"""
+Command line utility to remove directories recursively.
+"""
+
 import argparse
 import glob
 import shutil

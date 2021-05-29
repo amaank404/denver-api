@@ -1,3 +1,11 @@
+"""
+Provides functions for encryption of data using AES encryption.
+
+The data returned after encryption is in this format:
+
+`{len(salt)};{len(nonce)};{len(tag)}/{salt}{nonce}{tag}{encrypted_text}`
+"""
+
 import hashlib
 from typing import Union
 
@@ -32,17 +40,16 @@ def _decode_entries(data: bytes):
     return (salt, nonce, tag), data
 
 
-def encrypt(message: Union[bytes, str], password: Union[bytes, str]):
+def encrypt(message: Union[bytes, str], password: Union[bytes, str]) -> bytes:
+    """
+    Encrypts the provided `message` using `password` with randomly generated salt and returns it
+    """
     if isinstance(message, str):
         message = message.encode("utf-8")
     if isinstance(password, str):
         password = password.encode("utf-8")
 
-    # generate a random salt
-
     salt = get_random_bytes(AES.block_size)
-
-    # use the SCrypt KDF to get a private key from the password
 
     private_key = hashlib.scrypt(
         password,
@@ -53,23 +60,18 @@ def encrypt(message: Union[bytes, str], password: Union[bytes, str]):
         dklen=32,
     )
 
-    # create cipher config
-
     cipher_config = AES.new(private_key, AES.MODE_GCM)
-
-    # return a dictionary with the encrypted text
-
     (cipher_text, tag) = cipher_config.encrypt_and_digest(message)
 
     encrypted_string = _encode_entries(salt, cipher_config.nonce, tag, cipher_text)
     return encrypted_string
 
 
-def decrypt(encrypted_data: bytes, password: Union[str, bytes]):
-    # decode the dictionary entries from base64
-
+def decrypt(encrypted_data: bytes, password: Union[str, bytes]) -> bytes:
+    """
+    Decrypts the provided `encrypted_data` using `password` and returns it
+    """
     (salt, nonce, tag), cipher_text = _decode_entries(encrypted_data)
-    # generate the private key from the password and salt
 
     private_key = hashlib.scrypt(
         password.encode() if isinstance(password, str) else password,
@@ -80,12 +82,7 @@ def decrypt(encrypted_data: bytes, password: Union[str, bytes]):
         dklen=32,
     )
 
-    # create the cipher config
-
     cipher = AES.new(private_key, AES.MODE_GCM, nonce=nonce)
-
-    # decrypt the cipher text
-
     decrypted = cipher.decrypt_and_verify(cipher_text, tag)
 
     return decrypted

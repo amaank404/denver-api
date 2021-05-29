@@ -1,3 +1,7 @@
+"""
+Prints a list of all available tools
+"""
+
 import os
 
 from denverapi import beautiful_cli

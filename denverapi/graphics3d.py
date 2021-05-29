@@ -1,3 +1,9 @@
+"""
+Utilities for working with 3d graphics.
+
+for reference model is a List[line: Tuple[start: Tuple(int, int, int), end: Tuple(int, int, int)]].
+"""
+
 from __future__ import annotations
 
 import copy
@@ -11,8 +17,10 @@ def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple:
     """
     Converts 3d point to a 2d drawable point
 
+    ```python
     >>> flatten(1, 2, 3, 10, 10)
     (7.6923076923076925, 15.384615384615385)
+    ```
     """
     projected_x = ((x * distance) / (z + distance)) * scale
     projected_y = ((y * distance) / (z + distance)) * scale
@@ -21,7 +29,7 @@ def flatten(x: float, y: float, z: float, scale: int, distance: int) -> tuple:
 
 def model_rotate(model, axis, angle) -> list:
     """
-    Rotate a model
+    Rotate a model.
     """
     d = copy.deepcopy(model)
     for x in range(len(d)):
@@ -36,7 +44,7 @@ def model_rotate(model, axis, angle) -> list:
 
 def model_flatten(model, scale, distance) -> list:
     """
-    flatten complete model
+    Flatten a complete model
     """
     d = copy.deepcopy(model)
     for x in range(len(d)):
@@ -51,19 +59,20 @@ def model_flatten(model, scale, distance) -> list:
 
 def rotate(x: int, y: int, z: int, axis: str, angle: int):
     """
-    rotate a point around a certain axis with a certain angle
-    angler can be any integer between 1, 360
+    Rotate a point around a certain axis with a certain angle
+    angle can be any integer between 1, 360
 
+    ```python
     >>> rotate(1, 2, 3, 'y', 90)
     (3.130524675073759, 2, 0.4470070007889556)
+    ```
     """
-    if angle > 360 or angle < 0:
-        raise ValueError("Angle is supposed to be in between 0, 360")
-    if type(x) is not int:
+    angle = angle
+    if not isinstance(x, (int, float)):
         raise TypeError("x must be int")
-    if type(y) is not int:
+    if not isinstance(y, (int, float)):
         raise TypeError("y must be int")
-    if type(z) is not int:
+    if not isinstance(z, (int, float)):
         raise TypeError("z must be int")
     angle = angle / 450 * 180 / math.pi
     if axis == "z":
@@ -87,8 +96,15 @@ def rotate(x: int, y: int, z: int, axis: str, angle: int):
 
 
 class ModelMake:
+    """
+    Provides static methods for creating models of different types of object.
+    """
+
     @staticmethod
     def cube(x, y, z, s=1):
+        """
+        Create a cube at position `x`, `y`, `z` with size as `s`
+        """
         mcube = [
             ((x, y, z), (x + s, y, z)),
             ((x, y, z), (x, y + s, z)),
@@ -107,6 +123,9 @@ class ModelMake:
 
 
 def model_dump_to_file(model_file, model):
+    """
+    Write a model to file
+    """
     with open(model_file, "w") as f:
         for segment in model:
             coord1, coord2 = segment
@@ -114,9 +133,15 @@ def model_dump_to_file(model_file, model):
 
 
 def model_load_from_file(model_file):
+    """
+    Load a model from file
+    """
     f = open(model_file).readlines()
     model = []
     for x in f:
+        if x.strip() == "" or x.startswith("#"):
+            continue
+        x = x.strip()
         p1s, p2s = x.split(":", 1)
         p11, p12, p13 = p1s.split(" ", 2)
         p21, p22, p23 = p2s.split(" ", 2)
@@ -126,92 +151,3 @@ def model_load_from_file(model_file):
         n = ((p11, p12, p13), (p21, p22, p23))
         model.append(n)
     return model
-
-
-def model_viewer(model):
-    try:
-        import pygame
-    except ImportError:
-        raise ImportError("Please install 'denver-api[gui-tools]' to use this")
-
-    pygame.init()
-    fpsclock = pygame.time.Clock()
-    disp = pygame.display.set_mode((600, 400))
-    cube3 = model_load_from_file(model)
-    rotate = False
-    rotate2 = False
-    scale = 1
-    distance = 10
-    r = 1
-    r2 = 1
-    a = 1
-    iskd = False
-    gevent = None
-    while True:
-        if rotate:
-            cube3 = model_rotate(cube3, "y", r * a)
-            rotate = False
-        if rotate2:
-            cube3 = model_rotate(cube3, "x", r2 * a)
-            rotate2 = False
-        cube2 = model_flatten(cube3, scale, distance)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                raise SystemExit(0)
-            if event.type == pygame.KEYUP:
-                iskd = False
-            if event.type == pygame.KEYDOWN or iskd:
-                iskd = True
-                gevent = event
-        if iskd and gevent != None:
-            if gevent.type == pygame.KEYDOWN:
-                event = gevent
-                if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                    rotate2 = True
-                    if event.key != pygame.K_UP:
-                        r2 = 0.2
-                    else:
-                        r2 = -0.2
-                elif event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                    rotate = True
-                    if event.key != pygame.K_LEFT:
-                        r = 0.2
-                    else:
-                        r = -0.2
-                elif event.key == pygame.K_a:
-                    scale -= 1
-                elif event.key == pygame.K_d:
-                    scale += 1
-                elif event.key == pygame.K_w:
-                    distance -= 1
-                elif event.key == pygame.K_s:
-                    distance += 1
-                elif event.key == pygame.K_z:
-                    cube3 = model_rotate(cube3, "z", 0.2 * a)
-                elif event.key == pygame.K_x:
-                    cube3 = model_rotate(cube3, "z", -0.2 * a)
-                elif event.key == pygame.K_q:
-                    a -= 1
-                elif event.key == pygame.K_e:
-                    a += 1
-        disp.fill((255, 255, 255))
-
-        if distance == 0:
-            distance = 1
-        for x, y in cube2:
-            pygame.draw.aaline(
-                disp, (0, 0, 0), (x[0] + 300, x[1] + 200), (y[0] + 300, y[1] + 200)
-            )
-
-        pygame.display.update()
-        fpsclock.tick(10)
-
-
-if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser("graphics3d pygame veiw")
-    parser.add_argument("model", metavar="PATH_TO_MODEL", help="PATH TO MODEL")
-    args = parser.parse_args()
-    model_viewer(args.model)

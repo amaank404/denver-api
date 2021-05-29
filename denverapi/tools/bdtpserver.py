@@ -1,3 +1,7 @@
+"""
+A utility to communicate and make changes to bdtp file servers.
+"""
+
 import argparse
 import os
 

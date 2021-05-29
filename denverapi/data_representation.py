@@ -1,44 +1,71 @@
 """
 Data parse
 
-This module provides enough functionalities for visual
-presentation of data such as dictionaries and lists
+This module provides functionalities for visual
+presentation of different data structures.
 """
 
-__version__ = "2021.2.24"
-__author__ = "Xcodz"
+import csv
+import io
+from functools import partial
+from typing import Callable
+
+ALIGN_CENTER = str.center
+ALIGN_RIGHT = str.rjust
+ALIGN_LEFT = str.ljust
 
 
-# tree printers
-def tree(lis: list, level=0, indent="\t"):
-    cx = ""
-    for x in lis:
-        if type(x) == list:
-            cx += tree(x, level + 1, indent)
-        else:
-            cx += (indent * level) + x + "\n"
-    return cx
+def format_csv(data: str, align: Callable[[str, int], str] = ALIGN_CENTER) -> str:
+    """
+    return table formatted csv
 
+    You can also provide `alignment` which should be a function which accepts two arguments,
+    one being the string data and the second being the width. for your convenience
+    you can use the constants named `ALIGN_CENTER`, `ALIGN_RIGHT`, `ALIGN_LEFT`.
 
-def tree2(lis: list, level=0, indent="  "):
-    cx = ""
-    for x in lis:
-        if type(x) == list:
-            cx += tree2(x, level + 1, indent)
-        else:
-            cx += (("|" + indent) * level) + "+--" + x + "\n"
-    return cx
+    Example Input:
 
+    ```csv
+    Header Name 1,Header Name 2,DataField
+    2,ahjf8m,397
+    93741,hba,917238
+    813u,7634,udd
+    ```
 
-def tree3(d: dict, level=0, indent="  "):
-    cx = ""
-    for k, v in d.items():
-        if type(v) == dict:
-            if v != {}:
-                cx += (("|" + indent) * level) + "+--" + k + "\n"
-                cx += tree3(v, level + 1, indent)
-            else:
-                cx += (("|" + indent) * level) + "+--" + k + " (EMPTY)\n"
-        else:
-            cx += (("|" + indent) * level) + "+--" + k + "\n"
-    return cx
+    Example output:
+
+    ```
+    +===============+===============+===========+
+    | Header Name 1 | Header Name 2 | DataField |
+    +===============+===============+===========+
+    |       2       |     ahjf8m    |    397    |
+    +---------------+---------------+-----------+
+    |     93741     |      hba      |   917238  |
+    +---------------+---------------+-----------+
+    |      813u     |      7634     |    udd    |
+    +---------------+---------------+-----------+
+    ```
+    """
+    output = io.StringIO()
+    print_output = partial(print, file=output)
+    reader = csv.reader(data.splitlines())
+    rows = list(reader)
+    w_cols = [0 for _ in range(len(rows[0]))]
+    for row in rows:
+        for i in range(len(row)):
+            w_cols[i] = max(w_cols[i], len(row[i]))
+    headers = rows.pop(0)
+    spl_line = "".join([f"+{'='*(x+2)}" for x in w_cols]) + "+"
+    print_output(spl_line)
+    print_output(
+        "| " + (" | ".join([align(x, w) for x, w in zip(headers, w_cols)])) + " |"
+    )
+    print_output(spl_line)
+    spl_line = spl_line.replace("=", "-")
+    for row in rows:
+        print_output(
+            "| " + (" | ".join([align(x, w) for x, w in zip(row, w_cols)])) + " |"
+        )
+        print_output(spl_line)
+    output.seek(0)
+    return output.read()[:-1]

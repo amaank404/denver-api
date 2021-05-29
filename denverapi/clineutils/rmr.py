@@ -1,3 +1,7 @@
+"""
+Command line utility to remove files through glob patterns.
+"""
+
 import argparse
 import glob
 from os import path, remove

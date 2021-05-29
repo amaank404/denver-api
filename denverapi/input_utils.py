@@ -1,5 +1,7 @@
 """
-Get User input to get file, selection, etc
+Get User input to get file, selection, etc.
+
+This provides some input utilities so you do not need to write them.
 """
 
 import os
@@ -8,14 +10,14 @@ __author__ = "Xcodz"
 __version__ = "2020.6.4"
 
 
-def clear():
+def _clear():
     if os.name == "nt":
         os.system("cls")
     else:
         os.system("clear")
 
 
-def print_tree(path):
+def _print_tree(path):
     dirl = []
     fill = []
     ldir = [x for x in os.listdir(path)]
@@ -34,23 +36,31 @@ def print_tree(path):
     print(tp)
 
 
-def get_file_path(mdir=None):
+def get_file_path(mdir=None) -> str:
+    """
+    makes user select a file using a TUI. `mdir` is the main starting directory which defaults to current
+    working directory.
+
+    .. note::
+        This clears screen a lot of times and might make your app ugly but
+        provides user with a easy way to choose files.
+    """
     if mdir is None:
         mdir = os.getcwd()
     mpath = os.path.abspath(mdir)
     while True:
-        print_tree(mpath)
+        _print_tree(mpath)
         f = input(">")
         m = os.path.join(mpath, f)
         if os.path.isfile(m):
-            clear()
+            _clear()
             return m
         elif os.path.isdir(m):
             mpath = os.path.abspath(m)
-            clear()
+            _clear()
 
 
-def is_ipv4(ip: str):
+def _is_ipv4(ip: str):
     ipp = ip.split(".")
     if len(ipp) != 4:
         return False
@@ -63,10 +73,14 @@ def is_ipv4(ip: str):
 
 
 def get_ipv4_port(default=("127.0.0.1", "8000")):
+    """
+    Get a IPv4, port pair. If the user enters invalid info,
+    then the defaults are used.
+    """
     ipv4 = input(f"IPV4 [{default[0]}] >")
     port = input(f"Port [{default[1]}] >")
     addr = []
-    if is_ipv4(ipv4):
+    if _is_ipv4(ipv4):
         addr.append(ipv4)
     else:
         print("Invalid IPV4, using default")

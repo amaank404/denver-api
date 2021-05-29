@@ -2,7 +2,7 @@
 This module uses bdtp for files hosting
 using a single connection method with speed
 ranging up to 2.0 MB/s or more if computer have
-good powered CPU
+good powered CPU.
 """
 
 __version__ = "2020.6.4"
@@ -12,11 +12,15 @@ import os
 import pickle
 import socket
 import threading
+from typing import List, Tuple
 
 from . import bdtp
 
 
-def get(file: str, addr: tuple):
+def get(file: str, addr: tuple) -> bytes:
+    """
+    get `file` from the server at the provided `addr`. Returns bytes.
+    """
     assert type(file) == str or type(addr) == tuple, "Invalid Parameter Types"
     request = pickle.dumps(["get", file])
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -30,6 +34,9 @@ def get(file: str, addr: tuple):
 
 
 def post(file: str, data: bytes, addr: tuple):
+    """
+    post a `data` as `file` on the server at the provided `addr`. Might raise errors.
+    """
     assert (
         type(file) == str or type(addr) == tuple or type(data) == bytes
     ), "Invalid Parameter Types"
@@ -44,6 +51,9 @@ def post(file: str, data: bytes, addr: tuple):
 
 
 def mkdir(name: str, addr: tuple):
+    """
+    make a directory named `name` on the server at the provided `addr`
+    """
     assert type(name) == str or type(addr) == tuple
     request = pickle.dumps(["mkdir", name])
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -52,7 +62,7 @@ def mkdir(name: str, addr: tuple):
     s.close()
 
 
-def handle_request(connection: socket.socket, addr: tuple, hdir: str, shdir: str):
+def _handle_request(connection: socket.socket, addr: tuple, hdir: str, shdir: str):
     req = pickle.loads(connection.recv(1000))
     if req[0] == "get":
         print(f'{addr} requested to get "{req[1]}"')
@@ -111,7 +121,10 @@ def handle_request(connection: socket.socket, addr: tuple, hdir: str, shdir: str
     connection.close()
 
 
-def listdir(dir_name: str, addr: tuple):
+def listdir(dir_name: str, addr: tuple) -> List[str]:
+    """
+    return a list of names inside a directory `dir_name` on the server at the provided `addr`
+    """
     if dir_name == "":
         dir_name = "."
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -123,7 +136,11 @@ def listdir(dir_name: str, addr: tuple):
     return pickle.loads(d.data)
 
 
-def typelistdir(dir_name: str, addr: tuple):
+def typelistdir(dir_name: str, addr: tuple) -> List[Tuple[str, int]]:
+    """
+    return a list of Tuple[name: str, type: int] inside a directory `dir_name` on the server at the provided `addr`.
+    The type can be either 0 (directory) or 1 (file).
+    """
     if dir_name == "":
         dir_name = "."
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -136,6 +153,10 @@ def typelistdir(dir_name: str, addr: tuple):
 
 
 def host(home_dir: str, addr: tuple, subdir_post: str = None):
+    """
+    host a bdtp file server with `home_dir` as main directory on the server at the provided `addr`.
+    Optionally `subdir_post` can be provided to set the directory where the posted files go (defaults to: `home_dir`).
+    """
     if subdir_post is None:
         subdir_post = home_dir
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -144,5 +165,5 @@ def host(home_dir: str, addr: tuple, subdir_post: str = None):
     while True:
         c, addr = s.accept()
         threading.Thread(
-            target=handle_request, args=(c, addr, home_dir, subdir_post)
+            target=_handle_request, args=(c, addr, home_dir, subdir_post)
         ).start()

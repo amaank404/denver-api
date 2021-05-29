@@ -3,6 +3,6 @@ requests
 playsound
 pygame
 packaging
-dill
 pip>=21
 pycryptodomex
+ansiwrap

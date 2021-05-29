@@ -1,3 +1,8 @@
+"""
+A simple utility to encrypt and decrypt files using the encryption module. The files encrypted through
+this tool can be decrypted with `denverapi.encryption` module only.
+"""
+
 import argparse
 
 from denverapi import encryption

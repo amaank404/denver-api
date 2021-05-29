@@ -1,11 +1,11 @@
 """
-This is very useful module in-case of cipher encrypting and decrypting of data.
-This contains many cipher methods. The Best of all is the vigenere cipher.
+This module provides cipher encrypting and decrypting of data.
+This contains many cipher methods. The Best of all is the vigenere cipher (but not better than AES Encryption provided by encryption module).
 
 The Source code is taken from the book "Cracking Codes with Python". Although
 hacking methods for all the ciphers are not created, the hackers can still
 break the code by using different techniques, so it is recommended you should
-go for crypt2.
+go for `denverapi.encryption`.
 """
 
 __version__ = "2021.2.24"
@@ -68,13 +68,6 @@ def _cvig_translate_message(key, message, mode):
 _csub_l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def _csub_key_is_valid(key):
-    key_list = list(key)
-    letters_list = list(_csub_l)
-    key_list.sort()
-    return key_list == letters_list
-
-
 def _csub_translate_message(key: str, message: str, mode):
     t = ""
     ca = _csub_l
@@ -110,51 +103,59 @@ def _caffine_check_keys(key_a, key_b):
 
 
 class morse:
-    table = {
-        ".-": "A",
-        "-...": "B",
-        "-.-.": "C",
-        "-..": "D",
-        ".": "E",
-        "..-.": "F",
-        "--.": "G",
-        "....": "H",
-        "..": "I",
-        ".---": "J",
-        "-.-": "K",
-        ".-..": "L",
-        "--": "M",
-        "-.": "N",
-        "---": "O",
-        ".--.": "P",
-        "--.-": "Q",
-        ".-.": "R",
-        "...": "S",
-        "-": "T",
-        "..-": "U",
-        "...-": "V",
-        ".--": "W",
-        "-..-": "X",
-        "-.--": "Y",
-        "--..": "Z",
-        ".----": "1",
-        "..---": "2",
-        "...--": "3",
-        "....-": "4",
-        ".....": "5",
-        "-....": "6",
-        "--...": "7",
-        "---..": "8",
-        "----.": "9",
-        "-----": "0",
-    }
+    """
+    Provides static methods for morse code.
+    """
+
+    table = (
+        {  # If you find more morse code stuff to include, Please start a Pull Request
+            ".-": "A",
+            "-...": "B",
+            "-.-.": "C",
+            "-..": "D",
+            ".": "E",
+            "..-.": "F",
+            "--.": "G",
+            "....": "H",
+            "..": "I",
+            ".---": "J",
+            "-.-": "K",
+            ".-..": "L",
+            "--": "M",
+            "-.": "N",
+            "---": "O",
+            ".--.": "P",
+            "--.-": "Q",
+            ".-.": "R",
+            "...": "S",
+            "-": "T",
+            "..-": "U",
+            "...-": "V",
+            ".--": "W",
+            "-..-": "X",
+            "-.--": "Y",
+            "--..": "Z",
+            ".----": "1",
+            "..---": "2",
+            "...--": "3",
+            "....-": "4",
+            ".....": "5",
+            "-....": "6",
+            "--...": "7",
+            "---..": "8",
+            "----.": "9",
+            "-----": "0",
+        }
+    )
 
     @staticmethod
     def encode(st: str):
-        """MORSE CODE ENCODER
+        """
+        A Function to encode with morse code
 
-        A ' ' MEANS PARTITION BETWEEN LETTERS
-        A '/' MEANS PARTITION BETWEEN WORDS"""
+        A ' ' means partition between letters
+        A '/' means partition between words
+        """
         t = ""
         tb = {v: k for k, v in morse.table.items()}
         s = list(st.upper())
@@ -173,6 +174,9 @@ class morse:
 
     @staticmethod
     def decode(s: str):
+        """
+        A Function to decode data encoded in morse code.
+        """
         tb = morse.table.copy()
         d = [x.split() for x in s.split("/")]
         t = ""
@@ -186,7 +190,7 @@ class morse:
 class basic:
     @staticmethod
     def encode(b: bytes = b""):
-        """Encode Bytes to String"""
+        """Encode Bytes to Hexadecimal String"""
         d = [hex(x)[2:] for x in list(b)]
         for x in range(len(d)):
             if len(d[x]) == 1:
@@ -195,19 +199,27 @@ class basic:
 
     @staticmethod
     def decode(s: str):
+        """
+        Decode Bytes from Hexadecimal String
+        """
         return bytes([int("0x" + s[x] + s[x + 1], 0) for x in range(0, len(s), 2)])
 
 
 class reverse_cipher:
     @staticmethod
     def crypt(s: str):
+        """
+        Reverses the provided string
+        """
         return "".join(reversed(s))
 
 
 class caesar_cipher:
     @staticmethod
     def encrypt(s: str, k: int):
-        """Encrypts with Caesar cipher"""
+        """
+        Encrypts with Caesar cipher
+        """
         a = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?."
         t = ""
         for x in s:
@@ -245,6 +257,9 @@ class caesar_cipher:
 class transposition_cipher:
     @staticmethod
     def encrypt(message: str, key: int):
+        """
+        Encrypt using transposition cipher
+        """
         # Each string in ciphertext represents a column in the grid:
         ciphertext = [""] * key
         # Loop through each column in ciphertext:
@@ -262,6 +277,9 @@ class transposition_cipher:
 
     @staticmethod
     def decrypt(message: str, key: int):
+        """
+        decrypt using transpositon cipher
+        """
         num_of_columns = int(math.ceil(len(message) / float(key)))
         num_of_rows = key
         num_of_shaded_boxes = (num_of_columns * num_of_rows) - len(message)
@@ -282,6 +300,9 @@ class transposition_cipher:
 class affine_cipher:
     @staticmethod
     def encrypt(message: str, key: int):
+        """
+        Encode using affine cipher
+        """
         a = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?."
         ka, kb = _caffine_get_key_parts(key)
         if _caffine_check_keys(ka, kb):
@@ -298,6 +319,9 @@ class affine_cipher:
 
     @staticmethod
     def decrypt(message: str, key: int):
+        """
+        Decrypt using affine cipher
+        """
         a = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 !?."
         ka, kb = _caffine_get_key_parts(key)
         if _caffine_check_keys(ka, kb):
@@ -317,18 +341,30 @@ class affine_cipher:
 class substitution_cipher:
     @staticmethod
     def encrypt(m: str, key: str):
+        """
+        encrypt using substitution cipher
+        """
         return _csub_translate_message(key, m, "e")
 
     @staticmethod
     def decrypt(m: str, key: str):
+        """
+        decrypt using substitution cipher
+        """
         return _csub_translate_message(key, m, "d")
 
 
 class vigenere_cipher:
     @staticmethod
     def encrypt(m: str, k: str):
+        """
+        encrypt using vigenere cipher
+        """
         return _cvig_translate_message(k, m, "e")
 
     @staticmethod
     def decrypt(m: str, k: str):
+        """
+        decrypt using vigenere cipher
+        """
         return _cvig_translate_message(k, m, "d")

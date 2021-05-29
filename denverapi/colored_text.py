@@ -5,11 +5,6 @@ Also Colorama is present here by default. and
 is used. This Module is tested with windows and
 is perfect for cross-platform applications
 which target *nix, Windows, etc.
-
-You can try advanced color with ctext2 module which uses prompt toolkit
-for 4-bit (8 colors), 8-bit (256 colors), 24-bit truecolor.
-
-ctext2 is recommended
 """
 
 __version__ = "2021.2.24"
@@ -32,18 +27,30 @@ colorama.init()
 
 
 def get_terminal_size():
+    """
+    Wrapper over `shutil.get_terminal_size` for your convenience
+    """
     return shutil.get_terminal_size()
 
 
 def clear_line(mode=2):
+    """
+    Clear current line
+    """
     print(colorama.ansi.clear_line(mode), end="", flush=True)
 
 
 def clear_screen(mode=2):
+    """
+    Clear screen (using ANSI Escape Sequence)
+    """
     print(colorama.ansi.clear_screen(mode), end="", flush=True)
 
 
 def style_text(text: str = " ", fore="none", style="none", back="none"):
+    """
+    Style the provided text
+    """
     return escape(
         "{fore_"
         + fore
@@ -58,41 +65,78 @@ def style_text(text: str = " ", fore="none", style="none", back="none"):
 
 
 def code_to_chars(code):
+    """
+    Wrapper over `colorama.ansi.code_to_chars`
+    """
     return colorama.ansi.code_to_chars(code)
 
 
-def set_title(title):
+def set_title(title: str):
+    """
+    Set terminal title
+    """
     print(colorama.ansi.set_title(title))
 
 
 class Cursor:
+    """
+    Provides static methods to control cursor
+    """
+
     @staticmethod
     def print_at(x=1, y=1, text: str = " ", fore="none", style="none", back="none"):
+        """
+        Print `text` at a specific x and y coordinates
+        """
         Cursor.set_position(x, y)
         print(style_text(text, fore=fore, back=back, style=style))
 
     @staticmethod
     def set_position(x=1, y=1):
+        """
+        Set the current cursor position to x and y coordinates
+        """
         print(colorama.ansi.Cursor.POS(x, y))
 
     @staticmethod
     def up(n=1):
+        """
+        Move cursor up by `n`
+        """
         print(colorama.ansi.Cursor.UP(n))
 
     @staticmethod
     def down(n=1):
+        """
+        Move cursor down by `n`
+        """
         print(colorama.ansi.Cursor.DOWN(n))
 
     @staticmethod
     def left(n=1):
+        """
+        Move cursor left by `n`
+        """
         print(colorama.ansi.Cursor.BACK(n))
 
     @staticmethod
     def right(n=1):
+        """
+        Move cursor right by `n`
+        """
         print(colorama.ansi.Cursor.FORWARD(n))
 
 
 def escape(text: str):
+    """
+    Escape the provided text by formatting it with escape sequences:
+
+    Example:
+
+    ```python
+    >>> print(colored_text.escape("{fore_green}Hello{back_red}{reset_fore}World{reset_all}"))
+    ```
+    """
     return text.format(**escape_sequence)
 
 
@@ -173,8 +217,13 @@ def print(
     sep=" ",
     end="\n",
     flush=False,
-    file=sys.stdout,
+    file=None,
 ):
+    """
+    A Convenient copy of print function for colored text. extra arguments added are: `fore`, `back` and `style`
+    """
+    if file is None:
+        file = sys.stdout
     try:
         builtins.print(
             style_text(
@@ -193,5 +242,8 @@ def print(
 
 
 def input(prompt="", fore="none", back="none", style="bright"):
+    """
+    A Convenient copy of input function for colored text. extra arguments added are: `fore`, `back` and `style`
+    """
     print(prompt, fore=fore, back=back, style=style, end="", flush=True)
     return builtins.input()

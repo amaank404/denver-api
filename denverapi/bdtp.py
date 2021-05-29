@@ -1,9 +1,9 @@
 """
-#Big Data Transfer Protocol
-##What does it do
+##Big Data Transfer Protocol
+###What does it do
 
 This protocol sends big data on a address (IPv4,port)
-without worrying about pipe errors
+without worrying about pipe errors.
 """
 
 __author__ = "Xcodz"
@@ -33,7 +33,6 @@ class _BaseReceiver(abc.ABC):
 
 class DataSenderHost(_BaseSender):
     """
-    ### Data Sender Host
     it is used for sending data as a host or in other words, server
 
     to create a new DataSenderHost please use function implementation for it
@@ -81,7 +80,6 @@ class DataSenderHost(_BaseSender):
 
 class DataSenderPort(_BaseSender):
     """
-    ### Data Sender Port
     it is used for sending data as a client
 
     to create a new DataSenderPort please use function implementation for it
@@ -126,7 +124,6 @@ class DataSenderPort(_BaseSender):
 
 class DataReceiverHost(_BaseReceiver):
     """
-    ### Data Receiver Host
     it is used for receiving data as a server or host
 
     to create a new DataReceiverHost please use function implementation for it
@@ -166,7 +163,6 @@ class DataReceiverHost(_BaseReceiver):
 
 class DataReceiverPort(_BaseReceiver):
     """
-    ### Data Receiver Port
     it is used for receiving data as a client
 
     to create a new DataReceiverPort please use function implementation for it
@@ -230,7 +226,7 @@ def new_send_data_host(data: bytes, addr: tuple = None, buffer_size=None):
     my_sender = bdtp.new_send_data_host(b"Some Data")
     my_sender.send(my_connection)
 
-    # With changed buffer
+    # With changed buffer size
     my_sender = bdtp.new_send_data_host(b"Some Data", ("127.0.0.1", 12345), 3)
     my_sender.send()
     ```
@@ -267,7 +263,7 @@ def new_send_data_port(data: bytes, addr: tuple = None, buffer_size=None):
     my_sender = bdtp.new_send_data_port(b"Some Data")
     my_sender.send(my_connection)
 
-    # With changed buffer
+    # With changed buffer size
     my_sender = bdtp.new_send_data_host(b"Some Data", ("127.0.0.1", 12345), 3)
     my_sender.send()
     ```
@@ -286,9 +282,27 @@ def new_receive_data_host(addr: tuple = None, buffer_size=None):
     supply `addr` if you are going to use it with existing connection. It is highly discouraged to use
     `buffer_size` argument as it is supposed to be kept same at both sender and receiver.
 
-    You can use it's recv method
+    You can use the returned object's `recv` method to start receiving data. Once receiving is complete.
+    data will be stored in object's `data` attribute as bytes.
 
-    .. versionadded::
+    ```python
+    from denverapi import bdtp
+    import socket
+
+    # Without existing connection
+    my_receiver = bdtp.new_receive_data_host(("127.0.0.1", 7575))
+    my_receiver.recv()
+
+    # With existing connection
+    my_connection = socket.socket()
+    my_connection.connect(("127.0.0.1", 1234))
+    my_receiver = bdtp.new_receive_data_host()
+    my_receiver.recv(my_connection)
+
+    # With changed buffer size
+    my_receiver = bdtp.new_receive_data_host(("127.0.0.1", 12345), 3)
+    my_receiver.recv()
+    ```
     """
     sender_object = DataReceiverHost()
     sender_object.address = addr
@@ -298,6 +312,33 @@ def new_receive_data_host(addr: tuple = None, buffer_size=None):
 
 
 def new_receive_data_port(addr: tuple, buffer_size=None):
+    """
+    Make a new `DataReceiverHost` object to receive data sent by sender. It is not recommended to
+    supply `addr` if you are going to use it with existing connection. It is highly discouraged to use
+    `buffer_size` argument as it is supposed to be kept same at both sender and receiver.
+
+    You can use the returned object's `recv` method to start receiving data. Once receiving is complete.
+    data will be stored in object's `data` attribute as bytes.
+
+    ```python
+    from denverapi import bdtp
+    import socket
+
+    # Without existing connection
+    my_receiver = bdtp.new_receive_data_port(("127.0.0.1", 7575))
+    my_receiver.recv()
+
+    # With existing connection
+    my_connection = socket.socket()
+    my_connection.connect(("127.0.0.1", 1234))
+    my_receiver = bdtp.new_receive_data_port()
+    my_receiver.recv(my_connection)
+
+    # With changed buffer size
+    my_receiver = bdtp.new_receive_data_port(("127.0.0.1", 12345), 3)
+    my_receiver.recv()
+    ```
+    """
     sender_object = DataReceiverPort()
     sender_object.address = addr
     if buffer_size is not None:
@@ -305,7 +346,24 @@ def new_receive_data_port(addr: tuple, buffer_size=None):
     return sender_object
 
 
-def attach_speed_logger(data_object):
+def attach_speed_logger(data_object) -> typing.List[int]:
+    """
+    Attaches a speed logger that captures the speed of transfer for either receiver object
+    or sender object. Returns a list that gets updated as the speed transfer continues.
+    To get the average speed use `average_speed_log`.
+
+    Example:
+
+    ```python
+    from denverapi import bdtp
+
+    sender = bdtp.new_receive_data_port(b"Hello World"*10000, ("localhost", 8000))
+    speed_log = bdtp.attach_speed_logger(sender)
+    sender.send()
+
+    speed = bdtp.average_speed_log(speed_log)
+    ```
+    """
     spl = []
 
     @thread_control.runs_parallel
@@ -335,13 +393,20 @@ def attach_speed_logger(data_object):
 
 
 def launch(data_object, connected_socket=None):
+    """
+    Just a simple function that starts a sender or receiver object. It is here because it looks good when using this.
+    """
     if isinstance(data_object, _BaseSender):
         data_object.send(connected_socket)
     else:
         data_object.recv(connected_socket)
 
 
-def average_speed_log(spl: list):
+def average_speed_log(spl: list) -> int:
+    """
+    Finds average speed of the connection.
+    It strips out 0 from the end and starting of `spl` and then finds the average and returns it
+    """
     while spl[0] == 0:
         spl.pop(0)
     while spl[-1] == 0:
@@ -350,6 +415,9 @@ def average_speed_log(spl: list):
 
 
 def main():
+    """
+    Nothing more than a test
+    """
     print("Reading Data")
     datats = open(input("File > "), "r+b").read()
     print("Read Data")

@@ -37,7 +37,7 @@ setuptools.setup(
     packages=setuptools.find_packages()
     + setuptools.find_namespace_packages(include=["denverapi", "denverapi.*"]),
     package_data=find_package_data("denverapi", "denverapi"),
-    version="3.0.0b",
+    version="3.0.1b",
     author="xcodz",
     description="Denver API for python full-stack development",
     long_description=long_description,
@@ -52,8 +52,8 @@ setuptools.setup(
         "requests",
         "playsound",
         "packaging",
-        "dill",
         "pip>=21",
+        "ansiwrap",
     ],
     extras_require={
         "gui-tools": ["pygame"],
@@ -67,8 +67,9 @@ setuptools.setup(
             "rmr = denverapi.clineutils.rmr:main",
             # tools
             "bdtpserver = denverapi.tools.bdtpserver:main",
-            "cpicview = denverapi.tools.cpicview:main",
-            "cpic_editor = denverapi.tools.cpic_editor:fromcmd [gui-tools]",
+            "graphics3d-mview = denverapi.graphics3d:main [gui-tools]",
+            "cryptify = denverapi.tools.cryptify:main [encryption]",
+            "denverdb = denverapi.tools.denverdb:main",
         ]
     },
     zip_safe=False,

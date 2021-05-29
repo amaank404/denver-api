@@ -1,3 +1,7 @@
+"""
+Simple pure python text bitmaps. Something helpful about this is those BitMapPortion.
+"""
+
 __version__ = "2020.6.4"
 __author__ = "Xcodz"
 
@@ -22,8 +26,33 @@ class BitMapBase(metaclass=abc.ABCMeta):
 
 
 class BitMap(BitMapBase):
-    def __init__(self, x, y):
-        self.buffer = [[(255, 255, 255) for _ in range(x)] for _ in range(y)]
+    """
+    A Class for holding a table of text characters.
+
+    Example:
+
+    ```python
+    >>> from denverapi import bitmap
+    >>> b = bitmap.BitMap(10, 10)
+    >>> for x in range(10):
+    ...     b[x, 0] = "-"  # Draw a horizontal line at top
+    >>> b[0, 9] = "-"*9  # Draw a horizontal line at bottom
+    >>> print(b)
+    ----------
+
+
+
+
+
+
+
+
+    ----------
+    ```
+    """
+
+    def __init__(self, width: int, height: int):
+        self.buffer = [[" " for _ in range(width)] for _ in range(height)]
 
     def __repr__(self):
         return "\n".join(["".join(x) for x in self.buffer])
@@ -42,6 +71,17 @@ class BitMap(BitMapBase):
 
 
 class BitMapPortion(BitMapBase):
+    """
+    A Class to get control of certain areas. Overflow is managed and hidden by default.
+
+    `x` is the x coordinate of starting of the portion<br/>
+    `y` is the y coordinate of starting of the portion<br/>
+    `w` is the width of the portion<br/>
+    `h` is the height of the portion
+
+    It can be used just like regular bitmap object
+    """
+
     def __init__(self, bitmap, x, y, w, h):
         self.bmap = bitmap
         self.x = x
