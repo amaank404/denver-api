@@ -12,12 +12,27 @@ import os
 
 
 def find_package_data(package: str, package_name=None):
+    """
+    Find data inside a package. can be used for `setuptools.setup`
+
+    Example:
+    ```python
+    from setuptools import setup
+    from denverapi import setup_utils
+
+    setup(
+        ...
+        package_data=setup_utils.find_package_data("my_package"),
+        ...
+    )
+    ```
+    """
     if package_name is None:
         package_name = package
     files = []
     for r, d, f in os.walk(package):
         files.extend([os.path.join(r, x)[len(package) + 1 :] for x in f])
-    exclude_files(files, [".py"])
+    _exclude_files(files, [".py"])
     root = {}
     for x in files:
         d = x.split(os.sep)
@@ -28,7 +43,7 @@ def find_package_data(package: str, package_name=None):
     return {k.strip("."): v for k, v in root.items()}
 
 
-def exclude_files(filespath: list, exts: list):
+def _exclude_files(filespath: list, exts: list):
     rml = []
     for x in range(len(filespath)):
         if os.path.splitext(filespath[x])[1] in exts:
@@ -38,6 +53,9 @@ def exclude_files(filespath: list, exts: list):
 
 
 def concatenate_dictionaries(d1: dict, d2: dict, *d):
+    """
+    Concatenate two or multiple dictionaries. Can be used with multiple `find_package_data` return values.
+    """
     base = d1
     base.update(d2)
     for x in d:

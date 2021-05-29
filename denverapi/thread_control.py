@@ -1,17 +1,46 @@
 """
-Thread Control
+Thread Control - A simpler, cleaner interface for beginners
 """
 
-__version__ = "2020.11.11"
+__version__ = "2021.5.29"
 __author__ = "Xcodz"
 
 import functools
-import random
-import time
-from threading import Lock, Thread
+from threading import Thread
 
 
-def runs_parallel(_func=None, *, assure_finish=False):
+def runs_parallel(_func=None, assure_finish=False):
+    """
+    use this function decorator to make it run as a thread when called. If
+    `assure_finish` is True then make sure python does not quit without the functions completion
+
+    Example:
+
+    ```python
+    import time
+    from denverapi.thread_control import runs_parallel
+
+    @runs_parallel
+    def long_function(arg):
+        while True:
+            print(arg)
+            time.sleep(1.5)
+
+
+    @runs_parallel(assure_finish=True)  # If you set it to False, The function will terminate before it is finished
+    def long_function_2():
+        for x in range(5):
+            print(x)
+            time.sleep(2)
+
+    def main():
+        long_function("Hello")
+        lonf_function_2()
+
+    main()
+    ```
+    """
+
     def wrap_around_decorator(function):
         @functools.wraps(function)
         def thread_func(*args, **kwargs):
@@ -30,45 +59,3 @@ def runs_parallel(_func=None, *, assure_finish=False):
         return wrap_around_decorator
     else:
         return wrap_around_decorator(_func)
-
-
-class ThreadManager:
-    def __init__(self, initial_threads: list = None):
-        if initial_threads is None:
-            initial_threads = []
-        self.thread_pool = initial_threads
-
-    def add(self, function, *args, **kwargs):
-        self.thread_pool.append((function, args, kwargs))
-
-    def start_execution(self, maximum_thread_count=10):
-        currently_executing = []
-        while len(self.thread_pool) > 0:
-            if len(currently_executing) < maximum_thread_count:
-                function_to_use = self.thread_pool.pop(0)
-                new_thread = Thread(
-                    target=function_to_use[0],
-                    args=tuple(function_to_use[1]),
-                    kwargs=function_to_use[2],
-                    name=function_to_use[0].__name__,
-                    daemon=False,
-                )
-                new_thread.start()
-                currently_executing.append(new_thread)
-            for x in currently_executing:
-                if not x.is_alive():
-                    currently_executing.remove(x)
-
-
-if __name__ == "__main__":
-    print_lock = Lock()
-
-    def create_files(number):
-        time.sleep(random.randint(3, 10) // 4)
-        with print_lock:
-            print(f"Created File {number}")
-
-    manager = ThreadManager()
-    for x in range(100):
-        manager.add(create_files, x)
-    manager.start_execution(10)

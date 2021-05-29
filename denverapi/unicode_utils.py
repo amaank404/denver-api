@@ -3,8 +3,7 @@ Data Unicode
 
 This module provides with Unicode Data Handling also methods to draw boxes.
 Anyone can easily use these unicode data functions until you are working
-with a terminal which supports Unicode. It will completely work only if
-you have Unicode-13.0.0
+with a terminal which supports Unicode. It is guaranteed to work with Unicode-13.0.0
 """
 
 __version__ = "2020.6.4"
