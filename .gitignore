@@ -2,7 +2,7 @@
 *.whl
 *.tar.gz
 *.zip
-__pycache__
-**/__pycache__
-**/.ipynb_checkpoints
-.ipynb_checkpoints
+__pycache__/
+**/__pycache__/
+**/.ipynb_checkpoints/
+.ipynb_checkpoints/
