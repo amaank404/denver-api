@@ -5,13 +5,10 @@ This API is specifically designed for python developers who want to use
 advanced utilities but without coding much. The API requires you to
 have minimum Python 3.6.
 
-## tools
-this is a new package built into denver and now you can use every module inside it as a command line
-tool. You can type the following command `python denverapi.tools` to get a list of available tools.
-
 ## Features
 
 There are a lot of modules and libraries in denverapi and [here](https://xcodz-dot.github.io/denver) is a good list of them.
+It will be worth checking it ;)
 
 ## Installation
 The package can be installed by
@@ -47,7 +44,7 @@ Thanks to all the contributors. Contributions are appreciated.
 It will be really helpful if you raise a issue on finding bugs, documentation issues and typos.
 
 Please do not use forums such as StackOverflow for asking questions related to this repository because
-this repository is not popular enough to be heard on forums. Please use this repositories GitHub issues.
+this repository is not popular enough to be heard on forums. Please use this repositories Q/A in GitHub Discussions.
 
 ## Fixed Bugs
 ### 3.0.0

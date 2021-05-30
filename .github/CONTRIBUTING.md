@@ -11,7 +11,6 @@ Your code must comply with the requirements mentioned below.
 * Your code must be compatible with Python 3.6+
 
 ### Optional
-* Your code should contain doctests (recommended)
 * Your code should be optimized to work fast (recommended)
 
 ### Code Formatting Automation (black, isort automation)
@@ -47,6 +46,6 @@ python make.py check
 
 ## What's next?
 After you are ready and you are willing to contribute just feel free to checkout the issues tab. There you
-will finds label with community, those are the issues which are excepting community contribution. Also
+will finds label with community, those are the issues which are accepting community contribution. Also
 you can add your own custom modules which function to provide user easy methods of hard tasks. The new modules
-can be named and placed under `./denver/`.
+can be named and placed under `./denverapi/`.
