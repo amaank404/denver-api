@@ -11,15 +11,7 @@ __version__ = "2021.2.24"
 __author__ = "Xcodz"
 
 import builtins
-
-if __name__ != "__main__":
-    try:
-        from . import _colorama as colorama
-    except ImportError:
-        import _colorama as colorama
-else:
-    import _colorama as colorama
-
+import colorama
 import shutil
 import sys
 
