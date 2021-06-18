@@ -26,41 +26,16 @@ def clean():
     )
 
 
-@auto.task()
-def clean_build():
-    """
-    Remove all unnecessary data which was produced after make.py build
-    """
-    print("Removing all unnecessary files")
-    terminal.run_command(
-        [
-            executable,
-            "-m",
-            "denverapi.clineutils.rmrdir",
-            "build",
-            "dist",
-            "*.dist-info",
-            "*.egg-info",
-        ]
-    )
-
-
 @auto.task(clean)
 def develop():
     """
-    Install Package in Development mode
+    Install Package in Development mode using poetry.
     """
-    terminal.run_command([executable, "setup.py", "develop"])
+    pip.ensure_pip_package("poetry")
+    terminal.run_command([executable, "-m", "poetry", "install"])
 
 
-@auto.task(clean_build, clean)
-def clean_all():
-    """
-    Clean Everything
-    """
-
-
-@auto.task(clean_all)
+@auto.task(clean)
 def build():
     """
     Make Two types of distribution
