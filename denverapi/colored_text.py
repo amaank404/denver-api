@@ -11,9 +11,10 @@ __version__ = "2021.2.24"
 __author__ = "Xcodz"
 
 import builtins
-import colorama
 import shutil
 import sys
+
+import colorama
 
 colorama.init()
 
