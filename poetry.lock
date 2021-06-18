@@ -248,7 +248,7 @@ gui-tools = ["pygame"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.6"
-content-hash = "43678dc6b8bcccc39e2f6b74bdd9a4db2db805854c73455ce0e939e1fef876a5"
+content-hash = "64953d78a7e5211e8d1695e7a9b1c7c4c8c3ebb62948fec784bf698260279f9e"
 
 [metadata.files]
 ansiwrap = [

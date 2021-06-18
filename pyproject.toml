@@ -25,16 +25,15 @@ packages=[
 
 [tool.poetry.dependencies]
 python = "^3.6"
-setuptools = ">=50"
-requests = ">=2.25.1"
-playsound = ">=1.2.2"
-pygame = {version=">=2.0.1", optional=true}
+requests = "^2.25.1"
+playsound = "^1.2.2"
+pygame = {version="^2.0.1", optional=true}
 packaging = ">=20.9"
 pip = ">=21"
-pycryptodomex = {version=">=3.10.1", optional=true}
-ansiwrap = ">=0.8.4"
-colorama = ">=0.4.4"
-Flask = ">=2.0.1"
+pycryptodomex = {version="^3.10.1", optional=true}
+ansiwrap = "^0.8.4"
+colorama = "^0.4.4"
+Flask = "^2.0.1"
 
 [tool.poetry.extras]
 gui-tools = ["pygame"]
