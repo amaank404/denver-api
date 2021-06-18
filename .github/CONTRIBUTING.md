@@ -1,13 +1,17 @@
 # Contributing
 Contributing to this repository is easy but must follow a few guidelines for perfect code submission. Also, we love
-contributions from community.
+contributions from community. Before contributing make sure you have installed `poetry`
+
+```bash
+pip install poetry
+```
 
 ## Code Format
 Your code must comply with the requirements mentioned below.
 
 ### Must
 * Your code must be PEP8 compliant (test will be conducted automatically when you submit a pull request)
-* Your code must contain version, description, instructions in (classes, function, methods)
+* Your code must contain description, instructions in (classes, function, methods)
 * Your code must be compatible with Python 3.6+
 
 ### Optional
@@ -18,11 +22,10 @@ You can completly forget about the code styling requirements and follow the foll
 automatically format it everytime.
 
 #### Install The Denver Api in development mode
-This process is only required once. (You might need to do it again every time you install denver-api from pip)
+This process is only required once.
 
 ```bash
-pip uninstall denver-api # Make sure you do not have any installed version
-python setup.py develop
+poetry install
 ```
 
 #### Format code using builtin automation script
@@ -30,13 +33,13 @@ The script named `make.py` contains code to fix things up just run the following
 you encounter errors regarding code format
 
 ```bash
-python make.py style
+poetry run python make.py style
 ```
 
 You can also run the below to check for errors
 
 ```bash
-python make.py check
+poetry run python make.py check
 ```
 
 ## Things You should know before you submit your code

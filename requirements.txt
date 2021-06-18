@@ -1,9 +1,0 @@
-setuptools>=50
-requests
-playsound
-pygame
-packaging
-pip>=21
-pycryptodomex
-ansiwrap
-colorama
