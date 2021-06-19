@@ -27,25 +27,6 @@ def clean():
 
 
 @auto.task(clean)
-def develop():
-    """
-    Install Package in Development mode using poetry.
-    """
-    pip.ensure_pip_package("poetry")
-    terminal.run_command([executable, "-m", "poetry", "install"])
-
-
-@auto.task(clean)
-def build():
-    """
-    Make Two types of distribution
-    """
-    pip.ensure_pip_package("wheel")
-    pip.ensure_pip_package("setuptools")
-    terminal.run_command([executable, "setup.py", "sdist", "bdist_wheel"])
-
-
-@auto.task(clean)
 def style():
     """
     Format code for meeting our repository guidelines

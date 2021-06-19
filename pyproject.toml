@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "denver_api"
-version = "3.0.1a0"
+version = "3.1.0a0"
 description = "Denver API for python full-stack development"
 authors = ["xcodz-dot <71920621+xcodz-dot@users.noreply.github.com>"]
 license = "MIT"
