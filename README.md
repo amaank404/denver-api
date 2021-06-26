@@ -1,3 +1,9 @@
+# **WARNING**
+This project is discontinued because of multiple features in single project does not seem to be logical. The pip package will
+be still available but this repository is archived. The documentation will also be discontinued and only manual documentation
+shall work from now on. If you wish to continue this project than you are most welcome to resolve all the license issues by
+yourself and host your own repository. Thank you!
+
 # denver
 Denver API for Python
 
